@@ -153,10 +153,10 @@ El repo contiene:
 
 ## Proximos pasos sugeridos
 
-1. Crear un modelo de datos inicial.
-2. Definir estados definitivos por entidad.
-3. Diseñar casos de uso detallados.
-4. Crear diagramas de flujo.
-5. Preparar backlog en issues.
-6. Decidir tecnologia para un prototipo.
-7. Construir una maqueta funcional del flujo principal.
+1. Validar con Administracion el modelo de datos inicial.
+2. Revisar estados definitivos por entidad y transiciones bloqueantes.
+3. Priorizar los casos de uso detallados para MVP.
+4. Convertir el backlog de issues en tareas de prototipo.
+5. Decidir tecnologia para un prototipo.
+6. Construir una maqueta funcional del flujo principal.
+7. Probar el circuito de excepcion de provision tardia.

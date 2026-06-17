@@ -35,7 +35,15 @@ Compromiso de gasto -> Pedido interno -> Provision -> Factura -> Consumo -> Regu
 
 - [Especificacion funcional inicial](docs/especificacion_funcional_inicial_provisiones.md)
 - [Contexto funcional](docs/contexto_funcional.md)
+- [Modelo de datos inicial](docs/modelo_datos_inicial.md)
+- [Estados por entidad](docs/estados_entidades.md)
+- [Casos de uso detallados](docs/casos_uso_detallados.md)
+- [Diagramas de flujo](docs/diagramas_flujo.md)
+- [Backlog de issues inicial](docs/issues_backlog.md)
+- [Backlog inicial](docs/backlog_inicial.md)
 
 ## Estado
 
 Proyecto en fase de definicion funcional y arquitectura inicial.
+
+El foco actual es consolidar el modelo comun de provisiones, los estados de ciclo de vida, los casos de uso y un backlog accionable para un futuro prototipo.

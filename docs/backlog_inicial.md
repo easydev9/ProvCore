@@ -1,5 +1,7 @@
 # Backlog inicial
 
+Este documento mantiene la vision por epicas. Para una lista mas accionable de issues, ver [Backlog de issues inicial](issues_backlog.md).
+
 ## Epicas
 
 ### Pedido interno

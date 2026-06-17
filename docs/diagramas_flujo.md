@@ -1,0 +1,160 @@
+# Diagramas de flujo
+
+## Objetivo
+
+Representar visualmente los flujos principales del motor de provisiones. Los diagramas usan Mermaid para poder versionarse como texto.
+
+## Flujo principal de gasto provisionado
+
+```mermaid
+flowchart TD
+    A[Responsable compromete gasto] --> B[Crea pedido interno]
+    B --> C[Se genera ID_PROVISION]
+    C --> D{Proveedor fiscal validado?}
+    D -- No --> E[Administracion valida mapeo y datos contables]
+    D -- Si --> F[Provision pendiente de integracion]
+    E --> F
+    F --> G[Provision integrada y abierta]
+    G --> H[Llega factura]
+    H --> I[OCR/IA extrae datos]
+    I --> J[Sistema busca provisiones compatibles]
+    J --> K[Sugiere consumo]
+    K --> L[Responsable valida servicio]
+    L --> M[Administracion revisa contabilidad e impuestos]
+    M --> N[Aprueba consumo]
+    N --> O{Diferencias?}
+    O -- Si --> P[Genera regularizacion]
+    O -- No --> Q[Factura registrada]
+    P --> Q
+    Q --> R[Factura contabilizada]
+    R --> S[Provision cerrada o parcialmente abierta]
+```
+
+## Factura sin provision previa
+
+```mermaid
+flowchart TD
+    A[Llega factura] --> B[OCR/IA extrae datos]
+    B --> C[Sistema busca provisiones abiertas]
+    C --> D{Existe provision compatible?}
+    D -- Si --> E[Continua flujo de consumo]
+    D -- No --> F[Marca factura como pendiente de provision]
+    F --> G[Responsable justifica excepcion]
+    G --> H[Administracion revisa motivo]
+    H --> I[Crea provision tardia]
+    I --> J[Consume provision tardia inmediatamente]
+    J --> K[Registra auditoria completa]
+    K --> L[Factura continua a validacion contable]
+```
+
+## Mapeo proveedor operativo a proveedor fiscal
+
+```mermaid
+flowchart TD
+    A[Usuario informa alias proveedor] --> B[Sistema normaliza alias]
+    B --> C[Busca historico y datos maestros]
+    C --> D[IA/reglas sugieren candidatos]
+    D --> E{Confianza suficiente?}
+    E -- No --> F[Revision manual obligatoria]
+    E -- Si --> G[Muestra candidato y explicacion]
+    F --> H[Administracion decide]
+    G --> H
+    H --> I{Proveedor correcto?}
+    I -- Si --> J[Valida mapeo]
+    I -- No --> K[Rechaza o corrige]
+    J --> L[Mapeo usable en futuros casos]
+    K --> M[Auditoria y aprendizaje historico]
+```
+
+## Consumo N a N entre facturas y provisiones
+
+```mermaid
+flowchart LR
+    P1[Provision A] --> R1[Relacion factura-provision]
+    P2[Provision B] --> R2[Relacion factura-provision]
+    P3[Provision C] --> R3[Relacion factura-provision]
+    R1 --> F[Factura agrupada]
+    R2 --> F
+    R3 --> F
+    F --> C[Consumos aprobados]
+    C --> D{Diferencia contra total factura?}
+    D -- Si --> E[Regularizacion]
+    D -- No --> G[Registro de factura]
+```
+
+## Movimiento de tarjeta con factura
+
+```mermaid
+flowchart TD
+    A[Movimiento tarjeta importado] --> B[Usuario clasifica gasto]
+    B --> C[Se genera provision tarjeta]
+    C --> D[Provision integrada y abierta]
+    D --> E{Factura recibida?}
+    E -- Si --> F[Adjunta o asocia factura]
+    F --> G[OCR/IA extrae datos]
+    G --> H[Consume provision de tarjeta]
+    H --> I{Diferencias base, impuestos o divisa?}
+    I -- Si --> J[Regularizacion]
+    I -- No --> K[Pendiente de liquidacion]
+    J --> K
+    K --> L[Conciliacion con liquidacion bancaria]
+    L --> M[Cierre movimiento]
+    E -- No --> N[Recordatorios y seguimiento]
+```
+
+## Movimiento de tarjeta sin factura
+
+```mermaid
+flowchart TD
+    A[Movimiento pendiente de factura] --> B{Se recibe factura?}
+    B -- Si --> C[Asociar factura]
+    B -- No --> D[Responsable marca sin factura]
+    D --> E[Motivo obligatorio]
+    E --> F[Administracion revisa deducibilidad]
+    F --> G{Regularizacion necesaria?}
+    G -- Si --> H[Crear regularizacion]
+    G -- No --> I[Cerrar como sin factura]
+    H --> I
+    I --> J[Reporting de sin factura/no deducible]
+```
+
+## Ciclo de estados de provision
+
+```mermaid
+stateDiagram-v2
+    [*] --> Creada
+    Creada --> PendienteMapeoProveedor
+    Creada --> PendienteValidacion
+    Creada --> PendienteIntegracion
+    PendienteMapeoProveedor --> PendienteValidacion
+    PendienteValidacion --> PendienteIntegracion
+    PendienteIntegracion --> Integrada
+    Integrada --> Abierta
+    Abierta --> ConsumoSugerido
+    ConsumoSugerido --> ConsumoPreparado
+    ConsumoPreparado --> ConsumidaParcialmente
+    ConsumoPreparado --> ConsumidaTotalmente
+    ConsumidaParcialmente --> ConsumoSugerido
+    ConsumidaParcialmente --> ConsumidaTotalmente
+    ConsumidaTotalmente --> PendienteRegularizacion
+    PendienteRegularizacion --> Regularizada
+    Regularizada --> Cerrada
+    ConsumidaTotalmente --> Cerrada
+    Creada --> Anulada
+    PendienteValidacion --> Anulada
+    Abierta --> Anulada
+    Cerrada --> [*]
+    Anulada --> [*]
+```
+
+## Responsabilidades de gobierno
+
+```mermaid
+flowchart LR
+    R[Responsable] -->|Informa compromiso y valida servicio| PI[Pedido interno / factura]
+    IA[IA/OCR] -->|Sugiere proveedor, datos y matching| S[Sugerencias]
+    S --> A[Administracion]
+    A -->|Valida verdad contable| ERP[ERP y datos maestros]
+    A -->|Aprueba consumos y regularizaciones| MP[Motor de provisiones]
+    MP -->|Trazabilidad| AU[Auditoria]
+```
