@@ -11,7 +11,7 @@ Definir una secuencia de trabajo para convertir ProvCore en un prototipo funcion
 - Demostrar trazabilidad completa con `id_provision`.
 - Incluir una excepcion auditada para mostrar control realista.
 - Evitar automatizacion contable sin revision humana.
-- Mantener alcance portfolio-friendly y sin datos internos sensibles.
+- Mantener alcance acotado y sin datos internos sensibles.
 
 ## Fase 0 - Consolidacion funcional
 
@@ -185,7 +185,7 @@ Valor demostrado:
 - Reutilizacion del motor comun.
 - Cobertura de un caso operativo frecuente.
 
-## MVP recomendado para portfolio
+## MVP recomendado
 
 Alcance recomendado:
 

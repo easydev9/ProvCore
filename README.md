@@ -71,7 +71,7 @@ La IA no es fuente de verdad contable. El gobierno final recae en Administracion
 
 ## Roadmap MVP
 
-El MVP recomendado para portfolio se centra en:
+El MVP recomendado se centra en:
 
 1. Crear pedido interno y generar `id_provision`.
 2. Registrar proveedor operativo y simular mapeo fiscal.
@@ -103,10 +103,10 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 
 Proyecto en fase de definicion funcional y arquitectura inicial.
 
-El foco actual es consolidar la documentacion portfolio-friendly y preparar la conversion del backlog en un prototipo navegable del flujo principal.
+El foco actual es consolidar la documentacion funcional y preparar la conversion del backlog en un prototipo navegable del flujo principal.
 
-## Valor profesional
+## Valor del proyecto
 
 Este repositorio documenta un caso funcional completo de automatizacion financiera: captura temprana del compromiso de gasto, gobierno contable por Administracion, sugerencias asistidas por IA, integracion con facturas y tarjetas, excepciones auditadas, modelo de datos, estados, diagramas y roadmap MVP.
 
-El proyecto esta escrito sin nombres internos sensibles y puede usarse como muestra de analisis funcional, arquitectura de producto, criterio contable-operativo y diseño de procesos auditables.
+El proyecto esta escrito sin nombres internos sensibles y orientado a explicar un proceso financiero completo, auditable y extensible.
