@@ -202,6 +202,7 @@ Decision documentada:
 
 - [Decision 0001 - Alcance del MVP](decisiones/0001-alcance-mvp.md)
 - [Decision 0002 - Formato del prototipo](decisiones/0002-formato-prototipo.md)
+- [Decision 0003 - Arquitectura tecnica minima del backend](decisiones/0003-arquitectura-backend.md)
 
 ## Fuera de alcance inicial
 
@@ -223,11 +224,21 @@ El prototipo se construira con:
 
 La ejecucion sera backend-first y por fases.
 
+## Arquitectura backend
+
+El backend usara una arquitectura modular orientada a clean architecture:
+
+- dominio separado de FastAPI y SQL Server.
+- modulo central `provisioning_engine`.
+- modulos de entrada como adaptadores del motor comun.
+- capas de dominio, application, ports, infrastructure e interface.
+- implementacion pragmatica durante el MVP.
+- evolucion a clean architecture mas estricta tras cerrar el MVP.
+
 ## Siguiente decision
 
-Definir la arquitectura tecnica minima del backend:
+Definir las decisiones tecnicas derivadas:
 
-- estructura de carpetas.
 - estrategia de migraciones.
 - acceso a datos.
 - convencion de API.

@@ -98,6 +98,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Roadmap MVP](docs/roadmap_mvp.md) | Fases recomendadas para convertir la documentacion en prototipo. |
 | [Decision 0001 - Alcance del MVP](docs/decisiones/0001-alcance-mvp.md) | Alcance funcional aprobado para el MVP. |
 | [Decision 0002 - Formato del prototipo](docs/decisiones/0002-formato-prototipo.md) | Stack y fases tecnicas del prototipo. |
+| [Decision 0003 - Arquitectura backend](docs/decisiones/0003-arquitectura-backend.md) | Arquitectura modular orientada a clean architecture. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |
 | [Backlog de issues inicial](docs/issues_backlog.md) | Backlog accionable por epicas y prioridades. |
 | [Backlog inicial](docs/backlog_inicial.md) | Vision resumida por epicas. |
