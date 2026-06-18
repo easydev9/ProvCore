@@ -185,9 +185,9 @@ Valor demostrado:
 - Reutilizacion del motor comun.
 - Cobertura de un caso operativo frecuente.
 
-## MVP recomendado
+## MVP definido
 
-Alcance recomendado:
+Alcance aprobado:
 
 - Fase 1 completa.
 - Fase 2 completa.
@@ -197,6 +197,10 @@ Alcance recomendado:
 Motivo:
 
 Este alcance permite explicar un producto completo sin construir un ERP. Demuestra criterio funcional, arquitectura, gobierno contable, trazabilidad, IA asistida y gestion de excepciones.
+
+Decision documentada:
+
+- [Decision 0001 - Alcance del MVP](decisiones/0001-alcance-mvp.md)
 
 ## Fuera de alcance inicial
 
