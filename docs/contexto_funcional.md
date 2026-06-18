@@ -148,6 +148,13 @@ El repo contiene:
 
 - README con descripcion general.
 - especificacion funcional inicial.
+- arquitectura funcional.
+- modelo de datos inicial.
+- estados por entidad.
+- casos de uso detallados.
+- diagramas de flujo.
+- roadmap MVP.
+- backlog de issues.
 - backlog inicial.
 - contexto funcional para futuros hilos.
 

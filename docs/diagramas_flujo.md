@@ -4,6 +4,33 @@
 
 Representar visualmente los flujos principales del motor de provisiones. Los diagramas usan Mermaid para poder versionarse como texto.
 
+## Arquitectura funcional por modulos
+
+```mermaid
+flowchart LR
+    PI[Pedido interno] --> MP[Motor comun de provisiones]
+    TC[Tarjetas corporativas] --> MP
+    FT[Facturas proveedor] --> MP
+    IA[OCR / IA] --> FT
+    IA --> MAP[Mapeo proveedor operativo-fiscal]
+    MAP --> MP
+    ERP[ERP y datos maestros] --> MAP
+    MP --> REG[Regularizaciones y periodificaciones]
+    MP --> AUD[Auditoria]
+    REG --> AUD
+    MP --> ANA[Analitica y reporting]
+    FT --> AUD
+    TC --> AUD
+    ADM[Administracion] --> MAP
+    ADM --> FT
+    ADM --> REG
+    RESP[Responsable] --> PI
+    RESP --> TC
+    RESP --> FT
+    REG --> ERP
+    FT --> ERP
+```
+
 ## Flujo principal de gasto provisionado
 
 ```mermaid
@@ -157,4 +184,109 @@ flowchart LR
     A -->|Valida verdad contable| ERP[ERP y datos maestros]
     A -->|Aprueba consumos y regularizaciones| MP[Motor de provisiones]
     MP -->|Trazabilidad| AU[Auditoria]
+```
+
+## Modelo entidad-relacion funcional
+
+```mermaid
+erDiagram
+    PEDIDO_INTERNO ||--|| PROVISION : genera
+    MOVIMIENTO_TARJETA ||--|| PROVISION : genera
+    LIQUIDACION_TARJETA ||--o{ MOVIMIENTO_TARJETA : agrupa
+    FACTURA ||--o{ FACTURA_PROVISION : consume
+    PROVISION ||--o{ FACTURA_PROVISION : es_consumida_por
+    PROVEEDOR_OPERATIVO ||--o{ MAPEO_PROVEEDOR : tiene_alias
+    PROVEEDOR_FISCAL ||--o{ MAPEO_PROVEEDOR : valida
+    PROVEEDOR_OPERATIVO ||--o{ PROVISION : informa
+    PROVEEDOR_FISCAL ||--o{ PROVISION : gobierna
+    PROVISION ||--o{ REGULARIZACION : genera
+    FACTURA ||--o{ REGULARIZACION : origina
+    FACTURA ||--o{ PERIODIFICACION : distribuye
+    PROVISION ||--o{ PERIODIFICACION : soporta
+    PROVISION ||--o{ AUDITORIA_ESTADO : audita
+    FACTURA ||--o{ AUDITORIA_ESTADO : audita
+    MAPEO_PROVEEDOR ||--o{ AUDITORIA_ESTADO : audita
+
+    PEDIDO_INTERNO {
+        string id_pedido_interno
+        string id_provision
+        string sociedad
+        string responsable
+        decimal importe_estimado
+        string estado_pedido
+    }
+
+    PROVISION {
+        string id_provision
+        string origen_provision
+        decimal importe_provisionado
+        decimal importe_consumido
+        decimal importe_pendiente
+        string estado_provision
+    }
+
+    FACTURA {
+        string id_factura
+        string numero_factura
+        string proveedor_fiscal_validado
+        decimal total_factura
+        string estado_factura
+    }
+
+    FACTURA_PROVISION {
+        string id_factura_provision
+        string id_factura
+        string id_provision
+        decimal importe_consumido
+        string estado_relacion
+    }
+
+    PROVEEDOR_OPERATIVO {
+        string id_proveedor_operativo
+        string alias_principal
+        string alias_normalizado
+    }
+
+    PROVEEDOR_FISCAL {
+        string id_proveedor_fiscal
+        string codigo_proveedor_erp
+        string razon_social
+        string nif_vat
+    }
+
+    MAPEO_PROVEEDOR {
+        string id_mapeo_proveedor
+        string alias_informado
+        decimal confianza_matching
+        string estado_mapeo
+    }
+
+    MOVIMIENTO_TARJETA {
+        string id_movimiento_tarjeta
+        string id_provision
+        decimal importe_movimiento
+        string estado_movimiento
+    }
+
+    REGULARIZACION {
+        string id_regularizacion
+        string tipo_regularizacion
+        decimal importe_regularizacion
+        string estado_regularizacion
+    }
+
+    PERIODIFICACION {
+        string id_periodificacion
+        string periodo
+        decimal importe_periodificado
+        string estado_periodificacion
+    }
+
+    AUDITORIA_ESTADO {
+        string id_auditoria
+        string entidad
+        string accion
+        string usuario
+        datetime fecha_hora
+    }
 ```
