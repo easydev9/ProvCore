@@ -154,6 +154,7 @@ El repo contiene:
 - casos de uso detallados.
 - diagramas de flujo.
 - roadmap MVP.
+- estructura de issues GitHub.
 - backlog de issues.
 - backlog inicial.
 - contexto funcional para futuros hilos.

@@ -96,6 +96,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Casos de uso detallados](docs/casos_uso_detallados.md) | Casos principales con actores, precondiciones, flujos y excepciones. |
 | [Diagramas de flujo](docs/diagramas_flujo.md) | Diagramas Mermaid de arquitectura, flujos, estados y ERD funcional. |
 | [Roadmap MVP](docs/roadmap_mvp.md) | Fases recomendadas para convertir la documentacion en prototipo. |
+| [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |
 | [Backlog de issues inicial](docs/issues_backlog.md) | Backlog accionable por epicas y prioridades. |
 | [Backlog inicial](docs/backlog_inicial.md) | Vision resumida por epicas. |
 
