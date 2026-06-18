@@ -217,8 +217,8 @@ Decision documentada:
 El prototipo se construira con:
 
 - FastAPI como backend.
-- MySQL como base de datos relacional.
-- HeidiSQL como herramienta de inspeccion y validacion manual.
+- SQL Server como base de datos relacional.
+- SQL Server Management Studio como herramienta de inspeccion y validacion manual.
 - Frontend simple para navegar el flujo.
 
 La ejecucion sera backend-first y por fases.

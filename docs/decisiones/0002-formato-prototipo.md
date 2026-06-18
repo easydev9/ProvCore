@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptada.
+Aceptada y actualizada.
 
 ## Contexto
 
@@ -25,10 +25,12 @@ La maqueta es rapida, pero no valida bien el dominio ni la arquitectura backend.
 El prototipo de ProvCore se construira como:
 
 ```text
-FastAPI + MySQL + HeidiSQL + frontend simple
+FastAPI + SQL Server + SQL Server Management Studio + frontend simple
 ```
 
 La ejecucion sera backend-first y con alcance controlado.
+
+Esta decision sustituye la propuesta inicial de usar MySQL y HeidiSQL. El cambio se realiza para alinear el prototipo con un entorno corporativo mas habitual en administracion, finanzas y backoffice.
 
 ## Justificacion
 
@@ -42,9 +44,9 @@ FastAPI encaja con el objetivo de desarrollar criterio backend:
 - permite introducir testing de API de forma progresiva.
 - ya es coherente con otros proyectos de referencia.
 
-### MySQL
+### SQL Server
 
-MySQL se elige como base de datos relacional del prototipo porque el dominio de ProvCore es claramente relacional:
+SQL Server se elige como base de datos relacional del prototipo porque el dominio de ProvCore es claramente relacional y porque encaja mejor con entornos corporativos Windows, ERP y backoffice financiero:
 
 - pedidos.
 - provisiones.
@@ -54,11 +56,11 @@ MySQL se elige como base de datos relacional del prototipo porque el dominio de 
 - proveedores fiscales.
 - auditoria.
 
-El uso de MySQL permite trabajar integridad referencial, claves, indices, normalizacion y consultas reales.
+El uso de SQL Server permite trabajar integridad referencial, claves, indices, normalizacion, T-SQL, consultas reales y criterios transferibles a proyectos internos de administracion y finanzas.
 
-### HeidiSQL
+### SQL Server Management Studio
 
-HeidiSQL se usara como herramienta de inspeccion y administracion manual de la base de datos durante el desarrollo.
+SQL Server Management Studio se usara como herramienta de inspeccion y administracion manual de la base de datos durante el desarrollo.
 
 Su papel sera:
 
@@ -98,7 +100,7 @@ Incluye:
 - definir convenciones de nombres.
 - definir configuracion local.
 - definir estrategia de migraciones.
-- definir conexion a MySQL.
+- definir conexion a SQL Server.
 - definir comandos minimos de ejecucion.
 
 Resultado:
@@ -121,7 +123,7 @@ Incluye:
 
 Resultado:
 
-Modelo relacional minimo creado y validado en MySQL.
+Modelo relacional minimo creado y validado en SQL Server.
 
 ### Fase tecnica 2 - API del flujo principal
 
@@ -210,7 +212,7 @@ MVP funcional completo segun Decision 0001.
 
 ### Base de datos
 
-- MySQL como motor relacional.
+- SQL Server como motor relacional.
 - Tablas con claves primarias claras.
 - Relaciones con claves foraneas cuando aplique.
 - Campos monetarios con tipos decimales.
