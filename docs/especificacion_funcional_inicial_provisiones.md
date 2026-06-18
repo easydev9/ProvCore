@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Diseñar un sistema que permita que todo gasto de proveedor pase por una provision antes de impactar definitivamente en la cuenta de resultados, garantizando trazabilidad desde el momento en que nace el compromiso de gasto hasta la recepcion de factura, consumo de provision, regularizacion y contabilizacion.
+Diseñar un sistema que permita que ninguna factura de proveedor se contabilice definitivamente sin consumir una provision previa o una provision tardia auditada, garantizando trazabilidad desde el momento en que nace el compromiso de gasto hasta la recepcion de factura, consumo de provision, regularizacion y contabilizacion.
 
 El sistema cubre dos circuitos principales:
 
@@ -15,7 +15,7 @@ Ambos circuitos comparten un motor comun de provisiones, pero mantienen origenes
 
 ### 2.1 Todo pasa por provision
 
-Ninguna factura o movimiento debe terminar impactando en la cuenta de resultados sin haber pasado previamente por una provision.
+Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 
 Flujo esperado:
 
@@ -653,7 +653,7 @@ Todo compromiso de gasto debe notificarse antes de recibir la factura, generando
 ```
 
 ```text
-La factura no debe llegar a la cuenta de resultados sin consumir previamente una provision.
+Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 ```
 
 ```text

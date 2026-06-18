@@ -4,7 +4,7 @@
 
 El proyecto define un motor de provisiones para conectar compromisos de gasto, facturas de proveedor y movimientos de tarjetas corporativas con trazabilidad contable completa.
 
-La idea central es que todo gasto nazca como provision antes de impactar en la cuenta de resultados.
+La idea central es que ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 
 ## Problema que resuelve
 
@@ -14,7 +14,7 @@ El objetivo es adelantar el control al momento en que el responsable contrata o 
 
 ## Principios de diseño
 
-- Todo gasto debe pasar por provision.
+- Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 - El responsable notifica el compromiso de gasto de forma sencilla.
 - El usuario de campo no debe conocer datos fiscales ni contables.
 - La IA sugiere. Administracion valida.

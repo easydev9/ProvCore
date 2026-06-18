@@ -14,11 +14,11 @@ ProvCore propone un flujo distinto:
 Compromiso de gasto -> Pedido interno -> Provision -> Factura -> Consumo -> Regularizacion -> Contabilizacion
 ```
 
-La idea central es sencilla: todo gasto debe pasar por una provision antes de impactar definitivamente en la cuenta de resultados.
+La idea central es sencilla: ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 
 ## Principios
 
-- Todo gasto debe pasar por provision.
+- Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 - La IA sugiere, Administracion valida.
 - El usuario de campo no debe conocer datos fiscales ni contables.
 - El proveedor operativo y el proveedor fiscal son conceptos separados.

@@ -203,8 +203,7 @@ Cualquier decision relevante debe aportar:
 
 ## Reglas transversales
 
-- Todo gasto debe pasar por provision.
-- La factura no debe impactar en resultados sin consumir provision.
+- Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 - La provision tardia existe como excepcion operativa, no como camino normal.
 - La IA sugiere y explica, Administracion valida.
 - El usuario de campo no debe conocer datos fiscales ni contables.
