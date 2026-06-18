@@ -201,6 +201,7 @@ Este alcance permite explicar un producto completo sin construir un ERP. Demuest
 Decision documentada:
 
 - [Decision 0001 - Alcance del MVP](decisiones/0001-alcance-mvp.md)
+- [Decision 0002 - Formato del prototipo](decisiones/0002-formato-prototipo.md)
 
 ## Fuera de alcance inicial
 
@@ -211,11 +212,24 @@ Decision documentada:
 - Contabilizacion automatica sin revision.
 - Aprendizaje automatico que valide proveedores sin Administracion.
 
+## Formato del prototipo
+
+El prototipo se construira con:
+
+- FastAPI como backend.
+- MySQL como base de datos relacional.
+- HeidiSQL como herramienta de inspeccion y validacion manual.
+- Frontend simple para navegar el flujo.
+
+La ejecucion sera backend-first y por fases.
+
 ## Siguiente decision
 
-Elegir el formato del prototipo:
+Definir la arquitectura tecnica minima del backend:
 
-- Maqueta navegable sin backend.
-- Prototipo web con datos en memoria.
-- API funcional con base de datos ligera.
-- Documentacion + issues GitHub sin prototipo inmediato.
+- estructura de carpetas.
+- estrategia de migraciones.
+- acceso a datos.
+- convencion de API.
+- formato de errores.
+- estrategia de testing inicial.
