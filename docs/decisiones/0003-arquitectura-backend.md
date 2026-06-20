@@ -37,7 +37,15 @@ El proyecto necesita separar negocio de datos desde el inicio, pero sin converti
 
 ## Decision
 
-ProvCore usara una arquitectura modular orientada a clean architecture.
+ProvCore se construira como un monolito modular orientado a clean architecture.
+
+Esto significa:
+
+- un unico backend desplegable.
+- una unica base de datos principal.
+- modulos internos con limites funcionales claros.
+- separacion explicita entre dominio, application, ports, infrastructure e interface.
+- evolucion posible hacia una clean architecture mas estricta tras cerrar el MVP.
 
 La implementacion del MVP sera pragmatica, pero respetara desde el inicio la separacion entre:
 

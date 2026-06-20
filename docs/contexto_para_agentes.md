@@ -45,6 +45,8 @@ Ya existen:
 - backlog de issues.
 - estructura de issues GitHub.
 - decisiones 0001, 0002 y 0003.
+- definition of done.
+- glosario.
 
 ## Decisiones tomadas
 
@@ -212,6 +214,7 @@ Para entender arquitectura:
 
 Para entender dominio:
 
+- `docs/glosario.md`
 - `docs/modelo_datos_inicial.md`
 - `docs/estados_entidades.md`
 - `docs/casos_uso_detallados.md`
@@ -222,6 +225,7 @@ Para entender flujo:
 
 Para planificar trabajo:
 
+- `docs/definition_of_done.md`
 - `docs/roadmap_mvp.md`
 - `docs/github_issues.md`
 - `docs/issues_backlog.md`
