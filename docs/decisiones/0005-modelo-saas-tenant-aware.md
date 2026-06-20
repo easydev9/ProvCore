@@ -97,6 +97,8 @@ Cada tenant puede tener una o varias conexiones ERP.
 
 Cada legal entity puede mapearse a una sociedad del ERP.
 
+El routing hacia infraestructura, pools tecnicos o integraciones se define en la Decision 0006. Esta decision solo fija el modelo tenant-aware de dominio y datos.
+
 Conceptos futuros:
 
 - `erp_connection`.

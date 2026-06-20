@@ -47,6 +47,25 @@ flowchart TD
     MP2 --> AUD
 ```
 
+## Routing funcional multi-sociedad
+
+```mermaid
+flowchart TD
+    A[Peticion API] --> B[Autenticacion]
+    B --> C[Autorizacion]
+    C --> D[Resolver tenant y legal entity]
+    D --> E[Aplicar politica de routing]
+    E --> F[Seleccionar pool autorizado]
+    F --> G[Balanceo tecnico dentro del pool]
+    G --> H[Instancia ProvCore]
+    H --> I[Caso de uso application]
+    H --> J[Adaptador ERP permitido]
+    H --> K[Base de datos permitida]
+    F --> L[Health checks y metricas]
+    L --> G
+    E --> M[Log de decision de routing]
+```
+
 ## Flujo principal de gasto provisionado
 
 ```mermaid

@@ -35,6 +35,7 @@ El backlog detallado vive en [Backlog de issues inicial](issues_backlog.md). Est
 - `module:tenants`.
 - `module:alerts`.
 - `module:closing`.
+- `module:infrastructure`.
 
 ### Estado funcional
 
@@ -60,6 +61,7 @@ Issues candidatas:
 - Priorizar backlog P0.
 - Definir vision estrategica SaaS y modelo de dominio MVP.
 - Validar tenant, legal entity y movimiento provisionable como base.
+- Definir routing funcional multi-sociedad.
 
 ### M1 - Flujo principal
 
@@ -273,7 +275,19 @@ Objetivo:
 
 Documentar vision SaaS tenant-aware, movimiento provisionable, modelo de dominio, eventos, alertas, buyer groups y alta de proveedor fiscal.
 
-### 13. Modelar alta de proveedor fiscal para ERP simulado
+### 13. Definir routing funcional multi-sociedad
+
+Labels:
+
+```text
+functional-analysis, documentation, P1, module:tenants, module:infrastructure, ready
+```
+
+Objetivo:
+
+Separar routing funcional, pool autorizado y balanceo tecnico para escenarios con multiples sociedades e infraestructuras.
+
+### 14. Modelar alta de proveedor fiscal para ERP simulado
 
 Labels:
 
@@ -285,7 +299,7 @@ Objetivo:
 
 Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
 
-### 14. Generar alertas de cierre por grupo responsable
+### 15. Generar alertas de cierre por grupo responsable
 
 Labels:
 

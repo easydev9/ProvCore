@@ -18,6 +18,8 @@ El sistema no sustituye al ERP ni convierte a la IA en fuente de verdad contable
 
 El modelo funcional se disena tenant-aware. Un tenant representa el cliente o grupo empresarial y una legal entity representa la sociedad sobre la que aplican proveedor fiscal, ERP, periodos y reglas contables.
 
+En escenarios multi-sociedad, el sistema debe resolver primero el contexto funcional de la peticion y despues aplicar balanceo tecnico dentro del pool de infraestructura autorizado.
+
 ## Modulos funcionales
 
 ### Pedido interno
@@ -136,6 +138,12 @@ No debe hacer:
 ## Capas de responsabilidad
 
 ```text
+Routing funcional
+  Tenant
+  Legal entity
+  Permisos
+  Pool autorizado
+
 Experiencia operativa
   Pedido interno
   Tarjetas corporativas
@@ -158,6 +166,28 @@ Analitica
   Seguimiento operativo
   Reporting de excepciones
   Vista contable analitica
+```
+
+## Routing multi-sociedad
+
+ProvCore puede desplegarse sobre una infraestructura comun, pools por region, pools por grupo de sociedades o pools dedicados.
+
+La decision de destino debe basarse en:
+
+- tenant.
+- legal entity.
+- usuario y permisos.
+- residencia del dato.
+- ERP asociado.
+- tipo de operacion.
+- disponibilidad del pool autorizado.
+
+Una vez seleccionado el pool, la infraestructura puede aplicar balanceo tecnico con metricas de salud, latencia, conexiones o capacidad.
+
+Regla:
+
+```text
+Routing funcional primero. Balanceo tecnico despues.
 ```
 
 ## Contratos entre modulos
@@ -231,6 +261,8 @@ Cualquier evento explotable analiticamente debe aportar:
 - Toda excepcion debe ser medible.
 - El tenant es frontera funcional y futura frontera de seguridad.
 - Las reglas fiscales y ERP se evaluan como minimo por legal entity.
+- Las reglas de routing viven fuera del dominio.
+- El balanceo tecnico solo opera dentro de un pool autorizado.
 
 ## Integraciones conceptuales
 
@@ -273,3 +305,4 @@ Uso previsto:
 - Definir tolerancias manuales para diferencias antes de regularizacion.
 - Separar permisos minimos de responsable y Administracion.
 - Decidir si el reporting inicial vive como vistas funcionales o dashboard prototipo.
+- Definir convencion concreta de API y errores para propagar contexto de routing.

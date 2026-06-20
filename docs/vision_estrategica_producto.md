@@ -65,6 +65,30 @@ Tenant: Grupo empresarial
 
 El MVP puede operar con un tenant inicial, pero el modelo debe nacer preparado para multiples sociedades y para una futura separacion estricta entre tenants.
 
+## Routing multi-sociedad
+
+En una version SaaS o multipais, ProvCore debe poder enrutar peticiones hacia la infraestructura autorizada para cada contexto.
+
+El criterio principal no es solo tecnico. Antes de ejecutar una operacion, el sistema debe resolver:
+
+- tenant.
+- legal entity.
+- permisos.
+- pais.
+- residencia del dato.
+- ERP asociado.
+- tipo de operacion.
+
+Despues se aplica balanceo tecnico dentro del pool autorizado.
+
+Esto permite soportar distintos modelos de despliegue:
+
+- infraestructura comun para MVP.
+- pools por region.
+- pools por grupo de sociedades.
+- pools dedicados para sociedades criticas.
+- integraciones ERP diferentes por legal entity.
+
 ## Integracion ERP
 
 ProvCore no debe acoplar su dominio al ERP.

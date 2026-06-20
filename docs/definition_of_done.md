@@ -98,6 +98,7 @@ Un cambio de backend estara terminado si cumple:
 - No introduce acceso directo a SQL Server fuera de infrastructure.
 - No introduce FastAPI fuera de interface.
 - No usa modelos ORM como entidades de dominio.
+- No introduce reglas de routing o balanceo tecnico en domain.
 - Incluye tests cuando toca reglas de dominio o casos de uso.
 - Mantiene trazabilidad con auditoria cuando aplica.
 

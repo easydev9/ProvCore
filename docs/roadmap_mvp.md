@@ -216,6 +216,7 @@ Decision documentada:
 - [Decision 0003 - Arquitectura tecnica minima del backend](decisiones/0003-arquitectura-backend.md)
 - [Decision 0004 - Persistencia y migraciones](decisiones/0004-persistencia-migraciones.md)
 - [Decision 0005 - Modelo SaaS tenant-aware](decisiones/0005-modelo-saas-tenant-aware.md)
+- [Decision 0006 - Routing funcional multi-sociedad](decisiones/0006-routing-funcional-multisociedad.md)
 
 ## Fuera de alcance inicial
 
@@ -254,6 +255,7 @@ La vision final incorpora:
 
 - SaaS tenant-aware.
 - multiples legal entities por tenant.
+- routing funcional multi-sociedad.
 - integracion ERP por puertos y adaptadores.
 - movimientos provisionables como entrada comun.
 - eventos, auditoria y metricas.
@@ -265,6 +267,7 @@ Documentos:
 
 - [Vision estrategica de producto](vision_estrategica_producto.md)
 - [Modelo de dominio MVP](modelo_dominio_mvp.md)
+- [Arquitectura de routing multi-sociedad](arquitectura_routing_multisociedad.md)
 
 ## Siguiente decision
 
@@ -272,4 +275,5 @@ Definir las decisiones tecnicas derivadas:
 
 - convencion de API.
 - formato de errores.
+- propagacion de contexto tenant, legal entity y correlation id.
 - estrategia de testing inicial.

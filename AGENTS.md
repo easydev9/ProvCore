@@ -36,6 +36,8 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0003-arquitectura-backend.md`
 - `docs/decisiones/0004-persistencia-migraciones.md`
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
+- `docs/decisiones/0006-routing-funcional-multisociedad.md`
+- `docs/arquitectura_routing_multisociedad.md`
 
 Para cambios de dominio:
 
@@ -69,6 +71,7 @@ Para trabajo planificado:
 - Modelo SaaS tenant-aware aprobado.
 - El motor identifica movimientos provisionables y su origen.
 - La factura se bloquea si el proveedor fiscal no existe para la legal entity.
+- Routing funcional antes de balanceo tecnico aprobado.
 
 ## Reglas de arquitectura
 
@@ -93,6 +96,8 @@ Reglas obligatorias:
 - El tenant es frontera de seguridad.
 - La legal entity es contexto minimo para proveedor fiscal, factura, provision, periodo e integracion ERP.
 - Los bloqueos, alertas y excepciones deben generar auditoria o evento de proceso.
+- El balanceo tecnico solo se decide dentro del pool autorizado por tenant, legal entity y permisos.
+- Las reglas de routing no viven en domain.
 
 ## Modulos iniciales
 

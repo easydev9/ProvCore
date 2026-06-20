@@ -35,6 +35,19 @@ Criterios de aceptacion:
 - Explica que cada origen aporta datos a su manera.
 - Evita convertir la API en CRUD de tablas.
 
+### P1 - Definir routing funcional multi-sociedad
+
+Como equipo de arquitectura, quiero separar routing funcional y balanceo tecnico, para poder operar multiples sociedades sin mezclar contexto de negocio, permisos e infraestructura.
+
+Criterios de aceptacion:
+
+- Define contexto minimo de routing.
+- Diferencia routing funcional de balanceo tecnico.
+- Define pool autorizado.
+- Indica que el dominio no conoce reglas de infraestructura.
+- Incluye observabilidad minima de decisiones de routing.
+- Deja alcance MVP y evolucion futura documentados.
+
 ## Epic 1 - Modelo comun de provisiones
 
 ### P0 - Definir contrato funcional de Provisionable

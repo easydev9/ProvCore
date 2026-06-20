@@ -38,6 +38,12 @@ Registro trazable de acciones, decisiones, cambios de estado y motivos.
 
 Debe permitir reconstruir quien hizo que, cuando y por que.
 
+## Balanceo tecnico
+
+Distribucion de carga entre instancias tecnicas dentro de un pool autorizado.
+
+No decide tenant, legal entity ni permisos.
+
 ## Buyer group
 
 Grupo comprador o grupo responsable asociado a proveedores, sociedades o areas.
@@ -53,6 +59,10 @@ Puede estar asociado a una legal entity.
 ## Contabilizacion definitiva
 
 Momento en que una factura queda registrada contablemente de forma final en el circuito previsto.
+
+## Correlation id
+
+Identificador tecnico que permite seguir una peticion o proceso a traves de logs, eventos, auditoria e integraciones.
 
 En ProvCore, ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 
@@ -79,6 +89,12 @@ No debe depender de FastAPI, SQL Server, ORM ni frameworks.
 Sistema externo que actua como fuente de datos maestros y destino conceptual de integraciones contables.
 
 En el MVP no habra integracion real con ERP.
+
+## Infrastructure pool
+
+Conjunto de recursos tecnicos autorizados para procesar peticiones de un contexto funcional concreto.
+
+Puede ser comun, regional, por grupo de sociedades o dedicado a una legal entity.
 
 ## Evento de proceso
 
@@ -170,11 +186,27 @@ Ejemplos:
 - factura sin provision previa.
 - suscripcion recurrente.
 
+## Pool autorizado
+
+Pool de infraestructura seleccionado por reglas funcionales de tenant, legal entity, permisos, residencia del dato e integracion asociada.
+
 ## Process event
 
 Nombre tecnico posible para evento de proceso.
 
 Puede convivir con auditoria en MVP si todavia no se separa fisicamente.
+
+## Resource-aware routing
+
+Estrategia tecnica que usa metricas como latencia, errores, conexiones, CPU, memoria o colas para elegir una instancia dentro del pool autorizado.
+
+## Routing funcional
+
+Decision de destino basada en contexto de negocio y seguridad.
+
+Usa tenant, legal entity, permisos, residencia del dato, ERP asociado y tipo de operacion.
+
+Debe ejecutarse antes del balanceo tecnico.
 
 ## Pedido interno
 

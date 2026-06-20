@@ -44,7 +44,7 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002, 0003, 0004 y 0005.
+- decisiones 0001, 0002, 0003, 0004, 0005 y 0006.
 - vision estrategica de producto.
 - modelo de dominio MVP.
 - definition of done.
@@ -143,6 +143,22 @@ Documento:
 
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 
+### Decision 0006 - Routing funcional multi-sociedad
+
+ProvCore separa routing funcional y balanceo tecnico.
+
+Reglas:
+
+- primero se resuelve tenant, legal entity, permisos, residencia del dato e integracion asociada.
+- despues se selecciona el pool de infraestructura autorizado.
+- el balanceo tecnico opera solo dentro del pool autorizado.
+- las reglas de routing viven fuera del dominio.
+
+Documento:
+
+- `docs/decisiones/0006-routing-funcional-multisociedad.md`
+- `docs/arquitectura_routing_multisociedad.md`
+
 ## Modulos iniciales
 
 ### provisioning_engine
@@ -217,6 +233,7 @@ Issues cerradas:
 - #10 Definir arquitectura tecnica minima del backend.
 - #11 Definir persistencia y migraciones.
 - #12 Definir vision estrategica SaaS y modelo de dominio MVP.
+- #13 Definir routing funcional multi-sociedad.
 
 Issues abiertas relevantes:
 
@@ -256,6 +273,8 @@ Para entender arquitectura:
 - `docs/decisiones/0003-arquitectura-backend.md`
 - `docs/decisiones/0004-persistencia-migraciones.md`
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
+- `docs/decisiones/0006-routing-funcional-multisociedad.md`
+- `docs/arquitectura_routing_multisociedad.md`
 
 Para entender dominio:
 
@@ -289,6 +308,8 @@ Para planificar trabajo:
 - Considerar tenant y legal entity en datos operativos, fiscales y analiticos.
 - Bloquear factura cuando el proveedor fiscal no exista para la legal entity.
 - Registrar evento o auditoria para decisiones, bloqueos, alertas y excepciones.
+- Separar routing funcional y balanceo tecnico.
+- No poner reglas de infraestructura en domain.
 - No poner reglas de provision dentro de invoices.
 - No poner reglas de provision dentro de internal_orders.
 - No usar SQL Server desde capas de dominio o application.

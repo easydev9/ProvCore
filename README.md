@@ -27,6 +27,7 @@ La idea central es sencilla: ninguna factura debe contabilizarse definitivamente
 - La provision tardia existe para no bloquear la operacion, pero debe medirse como incumplimiento del proceso.
 - El tenant es frontera funcional y futura frontera de seguridad.
 - El motor identifica movimientos provisionables y su origen antes de aplicar reglas comunes.
+- El routing funcional se decide por tenant, legal entity, permisos, residencia del dato e integracion asociada.
 
 ## Alcance funcional
 
@@ -99,6 +100,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Contexto funcional](docs/contexto_funcional.md) | Vision del problema, principios y flujos principales. |
 | [Especificacion funcional inicial](docs/especificacion_funcional_inicial_provisiones.md) | Documento funcional base del motor de provisiones. |
 | [Arquitectura funcional](docs/arquitectura_funcional.md) | Modulos, responsabilidades, contratos e integraciones conceptuales. |
+| [Arquitectura de routing multi-sociedad](docs/arquitectura_routing_multisociedad.md) | Routing funcional, pools de infraestructura, balanceo tecnico y observabilidad. |
 | [Vision estrategica de producto](docs/vision_estrategica_producto.md) | Vision SaaS, analitica, control de cierre, alertas e integracion ERP. |
 | [Modelo de datos inicial](docs/modelo_datos_inicial.md) | Entidades, relaciones, campos funcionales e indices sugeridos. |
 | [Modelo de dominio MVP](docs/modelo_dominio_mvp.md) | Entidades, metodos conceptuales y movimientos provisionables. |
@@ -111,6 +113,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Decision 0003 - Arquitectura backend](docs/decisiones/0003-arquitectura-backend.md) | Arquitectura modular orientada a clean architecture. |
 | [Decision 0004 - Persistencia y migraciones](docs/decisiones/0004-persistencia-migraciones.md) | SQLAlchemy ORM, Alembic, pyodbc y Unit of Work. |
 | [Decision 0005 - Modelo SaaS tenant-aware](docs/decisiones/0005-modelo-saas-tenant-aware.md) | Tenants, legal entities y frontera de seguridad SaaS. |
+| [Decision 0006 - Routing funcional multi-sociedad](docs/decisiones/0006-routing-funcional-multisociedad.md) | Routing funcional antes de balanceo tecnico. |
 | [Definition of Done](docs/definition_of_done.md) | Criterios para considerar terminadas tareas, decisiones e implementacion. |
 | [Glosario](docs/glosario.md) | Vocabulario comun del dominio y arquitectura. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |

@@ -139,6 +139,7 @@ No puede depender de:
 - Pydantic de API.
 - SQL Server.
 - variables de entorno.
+- reglas de routing o balanceo tecnico.
 
 ### Application
 
@@ -178,6 +179,7 @@ Puede contener:
 - conexion a base de datos.
 - implementacion de Unit of Work.
 - migraciones.
+- adaptadores de routing tecnico cuando apliquen.
 
 Esta capa si puede depender de SQLAlchemy, pyodbc o librerias concretas de persistencia.
 
