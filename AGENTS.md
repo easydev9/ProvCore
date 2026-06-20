@@ -34,6 +34,7 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0001-alcance-mvp.md`
 - `docs/decisiones/0002-formato-prototipo.md`
 - `docs/decisiones/0003-arquitectura-backend.md`
+- `docs/decisiones/0004-persistencia-migraciones.md`
 
 Para cambios de dominio:
 
@@ -57,6 +58,8 @@ Para trabajo planificado:
 - La arquitectura sera modular orientada a clean architecture.
 - El modulo central sera `provisioning_engine`.
 - El dominio no debe depender de FastAPI ni de SQL Server.
+- Persistencia aprobada: SQLAlchemy ORM, Alembic, pyodbc y Unit of Work.
+- SQLAlchemy y pyodbc solo pueden vivir en infrastructure.
 
 ## Reglas de arquitectura
 
@@ -66,12 +69,15 @@ Reglas obligatorias:
 
 - FastAPI vive en `interface`.
 - SQL Server vive en `infrastructure`.
+- SQLAlchemy vive en `infrastructure`.
+- pyodbc vive en `infrastructure`.
 - La logica de negocio vive en `domain` y `application`.
 - Los casos de uso dependen de puertos, no de implementaciones concretas.
 - Los repositorios concretos implementan puertos.
 - Los routers no contienen reglas de negocio.
 - Los repositorios no contienen reglas de negocio.
 - Los modelos ORM no sustituyen a entidades de dominio.
+- El commit y rollback se controlan desde Unit of Work.
 - El motor `provisioning_engine` concentra reglas comunes de provision, consumo y regularizacion.
 - Los modulos de entrada no implementan reglas propias de provision.
 

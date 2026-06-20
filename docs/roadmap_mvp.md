@@ -203,6 +203,7 @@ Decision documentada:
 - [Decision 0001 - Alcance del MVP](decisiones/0001-alcance-mvp.md)
 - [Decision 0002 - Formato del prototipo](decisiones/0002-formato-prototipo.md)
 - [Decision 0003 - Arquitectura tecnica minima del backend](decisiones/0003-arquitectura-backend.md)
+- [Decision 0004 - Persistencia y migraciones](decisiones/0004-persistencia-migraciones.md)
 
 ## Fuera de alcance inicial
 
@@ -239,8 +240,6 @@ El backend usara una arquitectura modular orientada a clean architecture:
 
 Definir las decisiones tecnicas derivadas:
 
-- estrategia de migraciones.
-- acceso a datos.
 - convencion de API.
 - formato de errores.
 - estrategia de testing inicial.

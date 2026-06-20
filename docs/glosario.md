@@ -22,6 +22,12 @@ Conjunto inicial de vistas para entender:
 - provisiones tardias.
 - casos bloqueados o pendientes.
 
+## Alembic
+
+Herramienta de migraciones usada para versionar cambios de esquema de base de datos.
+
+En ProvCore, Alembic sera la fuente de verdad tecnica para crear o modificar estructura de SQL Server.
+
 ## Auditoria
 
 Registro trazable de acciones, decisiones, cambios de estado y motivos.
@@ -137,6 +143,12 @@ Forma en que el sistema guarda y recupera informacion estable.
 
 En ProvCore se realizara sobre SQL Server, aislada en infrastructure.
 
+## pyodbc
+
+Driver que permite a Python conectarse a SQL Server mediante ODBC.
+
+En ProvCore es un detalle de infrastructure y no debe aparecer en domain ni application.
+
 ## Proveedor fiscal
 
 Proveedor validado fiscalmente.
@@ -211,6 +223,12 @@ No debe conocer datos fiscales ni contables.
 Herramienta usada para inspeccionar y validar manualmente la base de datos SQL Server durante el desarrollo.
 
 No sustituye migraciones versionadas.
+
+## SQLAlchemy ORM
+
+Herramienta de mapeo objeto-relacional usada para representar tablas SQL Server como modelos de persistencia Python.
+
+En ProvCore solo debe vivir en infrastructure. Los modelos ORM no son entidades de dominio.
 
 ## Unit of Work
 

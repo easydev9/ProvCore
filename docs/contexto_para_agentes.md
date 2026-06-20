@@ -44,7 +44,7 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002 y 0003.
+- decisiones 0001, 0002, 0003 y 0004.
 - definition of done.
 - glosario.
 
@@ -102,6 +102,27 @@ Arquitectura aprobada:
 Documento:
 
 - `docs/decisiones/0003-arquitectura-backend.md`
+
+### Decision 0004 - Persistencia y migraciones
+
+Persistencia aprobada:
+
+```text
+SQLAlchemy ORM + Alembic + pyodbc + Unit of Work
+```
+
+Regla no negociable:
+
+- SQLAlchemy y pyodbc solo viven en infrastructure.
+- Domain no conoce ORM.
+- Application no conoce SQLAlchemy.
+- Unit of Work controla commit y rollback.
+- Alembic gobierna cambios de esquema.
+- SQL Server Management Studio valida e inspecciona, pero no sustituye migraciones.
+
+Documento:
+
+- `docs/decisiones/0004-persistencia-migraciones.md`
 
 ## Modulos iniciales
 
@@ -186,19 +207,18 @@ Issues abiertas relevantes:
 
 ## Siguiente decision pendiente
 
-La siguiente decision debe tratar persistencia y migraciones con SQL Server.
+La siguiente decision debe tratar contratos de API y formato de errores.
 
 Temas a decidir:
 
-- SQLAlchemy o pyodbc directo.
-- Alembic o scripts SQL manuales.
-- patron Unit of Work.
-- manejo de transacciones.
-- organizacion de modelos ORM.
-- separacion entre entidades de dominio y modelos persistidos.
-- validacion manual con SQL Server Management Studio.
+- prefijo de API.
+- versionado.
+- formato de respuesta.
+- formato de error.
+- codigos HTTP.
+- traduccion de errores de dominio a HTTP.
 
-No implementar codigo antes de cerrar esta decision.
+No implementar endpoints antes de cerrar esta decision.
 
 ## Documentos clave por tarea
 
@@ -211,6 +231,7 @@ Para entender arquitectura:
 
 - `docs/arquitectura_funcional.md`
 - `docs/decisiones/0003-arquitectura-backend.md`
+- `docs/decisiones/0004-persistencia-migraciones.md`
 
 Para entender dominio:
 

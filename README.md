@@ -100,6 +100,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Decision 0001 - Alcance del MVP](docs/decisiones/0001-alcance-mvp.md) | Alcance funcional aprobado para el MVP. |
 | [Decision 0002 - Formato del prototipo](docs/decisiones/0002-formato-prototipo.md) | Stack y fases tecnicas del prototipo. |
 | [Decision 0003 - Arquitectura backend](docs/decisiones/0003-arquitectura-backend.md) | Arquitectura modular orientada a clean architecture. |
+| [Decision 0004 - Persistencia y migraciones](docs/decisiones/0004-persistencia-migraciones.md) | SQLAlchemy ORM, Alembic, pyodbc y Unit of Work. |
 | [Definition of Done](docs/definition_of_done.md) | Criterios para considerar terminadas tareas, decisiones e implementacion. |
 | [Glosario](docs/glosario.md) | Vocabulario comun del dominio y arquitectura. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |
