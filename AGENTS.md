@@ -35,13 +35,19 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0002-formato-prototipo.md`
 - `docs/decisiones/0003-arquitectura-backend.md`
 - `docs/decisiones/0004-persistencia-migraciones.md`
+- `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 
 Para cambios de dominio:
 
+- `docs/modelo_dominio_mvp.md`
 - `docs/modelo_datos_inicial.md`
 - `docs/estados_entidades.md`
 - `docs/casos_uso_detallados.md`
 - `docs/diagramas_flujo.md`
+
+Para cambios de vision de producto:
+
+- `docs/vision_estrategica_producto.md`
 
 Para trabajo planificado:
 
@@ -60,6 +66,9 @@ Para trabajo planificado:
 - El dominio no debe depender de FastAPI ni de SQL Server.
 - Persistencia aprobada: SQLAlchemy ORM, Alembic, pyodbc y Unit of Work.
 - SQLAlchemy y pyodbc solo pueden vivir en infrastructure.
+- Modelo SaaS tenant-aware aprobado.
+- El motor identifica movimientos provisionables y su origen.
+- La factura se bloquea si el proveedor fiscal no existe para la legal entity.
 
 ## Reglas de arquitectura
 
@@ -80,6 +89,10 @@ Reglas obligatorias:
 - El commit y rollback se controlan desde Unit of Work.
 - El motor `provisioning_engine` concentra reglas comunes de provision, consumo y regularizacion.
 - Los modulos de entrada no implementan reglas propias de provision.
+- Los modulos de entrada adaptan su origen a `ProvisionableMovement`.
+- El tenant es frontera de seguridad.
+- La legal entity es contexto minimo para proveedor fiscal, factura, provision, periodo e integracion ERP.
+- Los bloqueos, alertas y excepciones deben generar auditoria o evento de proceso.
 
 ## Modulos iniciales
 

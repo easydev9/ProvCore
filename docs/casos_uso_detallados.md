@@ -128,6 +128,7 @@ Excepciones:
 
 - No hay provision compatible: se activa CU-06 provision tardia.
 - Proveedor detectado no coincide: se envia a mapeo o correccion.
+- Proveedor fiscal no existe para la sociedad: se activa CU-13 alta de proveedor fiscal.
 - Importe con diferencia: se propone regularizacion.
 
 Resultado:
@@ -443,3 +444,89 @@ Resultado:
 
 - Seguimiento por responsable y Administracion.
 - Exportacion o reporting de excepciones.
+
+## CU-13 Alta de proveedor fiscal desde factura
+
+Objetivo:
+
+Bloquear y resolver una factura cuyo proveedor fiscal no existe en ERP para la legal entity correspondiente.
+
+Actores:
+
+- Administracion.
+- Sistema.
+- IA/OCR.
+- ERP.
+
+Precondiciones:
+
+- Existe una factura procesada por OCR o carga manual.
+- El proveedor fiscal detectado no existe o no esta validado para la legal entity.
+
+Flujo principal:
+
+1. OCR/IA o Administracion detecta datos fiscales del proveedor.
+2. El sistema consulta el ERP o maestro simulado por tenant y legal entity.
+3. El sistema confirma que el proveedor no existe para esa sociedad.
+4. La factura pasa a `PendienteAltaProveedor`.
+5. El sistema crea `solicitud_alta_proveedor`.
+6. Administracion valida datos minimos del proveedor.
+7. El sistema marca la solicitud como lista para envio ERP.
+8. El adaptador ERP envia la solicitud o simula la respuesta en MVP.
+9. El ERP confirma creacion o validacion satisfactoria.
+10. El sistema asocia proveedor fiscal resultante a la factura.
+11. La factura se desbloquea y continua hacia busqueda de provision.
+
+Excepciones:
+
+- ERP rechaza la creacion: la solicitud queda en `FallidaERP` con motivo.
+- Datos fiscales incompletos: Administracion corrige antes de enviar.
+- Ya existe proveedor equivalente: Administracion vincula el proveedor correcto y cancela la solicitud.
+
+Resultado:
+
+- Proveedor fiscal validado para la legal entity.
+- Factura desbloqueada.
+- Auditoria de bloqueo, validacion, envio y confirmacion.
+- Evento de proceso para medir tiempo de alta proveedor.
+
+## CU-14 Generar alertas de cierre operativo
+
+Objetivo:
+
+Avisar a usuarios o grupos responsables sobre pendientes que pueden afectar al cierre.
+
+Actores:
+
+- Sistema.
+- Administracion.
+- Responsable.
+- Grupo comprador.
+
+Precondiciones:
+
+- Existe un periodo de cierre configurado.
+- Existen proveedores, grupos responsables o asignaciones vigentes.
+
+Flujo principal:
+
+1. El sistema identifica el periodo de cierre activo o proximo.
+2. Busca provisiones abiertas, facturas bloqueadas, proveedores pendientes, movimientos sin factura y regularizaciones pendientes.
+3. Determina el grupo responsable mediante `supplier_responsibility`.
+4. Crea alertas por usuario o buyer group.
+5. Notifica a responsables.
+6. El responsable reconoce o resuelve la alerta.
+7. Administracion revisa pendientes criticos antes del cierre.
+8. El sistema registra resolucion o escalado.
+
+Excepciones:
+
+- No existe grupo responsable: la alerta se dirige a Administracion.
+- La alerta vence sin respuesta: el sistema escala.
+- El periodo ya esta cerrado: cualquier reapertura exige motivo auditado.
+
+Resultado:
+
+- Pendientes de cierre visibles y asignados.
+- Tiempos de resolucion medibles.
+- Auditoria y eventos de proceso disponibles para analitica.

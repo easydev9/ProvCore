@@ -31,6 +31,22 @@ flowchart LR
     FT --> ERP
 ```
 
+## Modelo SaaS tenant-aware
+
+```mermaid
+flowchart TD
+    T[Tenant] --> LE1[Legal entity A]
+    T --> LE2[Legal entity B]
+    T --> BG[Buyer groups]
+    LE1 --> ERP1[ERP company A]
+    LE2 --> ERP2[ERP company B]
+    LE1 --> MP1[Provisiones, facturas y proveedores]
+    LE2 --> MP2[Provisiones, facturas y proveedores]
+    BG --> ALT[Alertas y responsabilidades]
+    MP1 --> AUD[Auditoria y eventos]
+    MP2 --> AUD
+```
+
 ## Flujo principal de gasto provisionado
 
 ```mermaid
@@ -93,6 +109,25 @@ flowchart TD
     K --> M[Auditoria y aprendizaje historico]
 ```
 
+## Alta de proveedor fiscal desde factura
+
+```mermaid
+flowchart TD
+    A[Llega factura] --> B[OCR/IA detecta proveedor fiscal]
+    B --> C[Consulta ERP por legal entity]
+    C --> D{Proveedor existe?}
+    D -- Si --> E[Asocia proveedor fiscal validado]
+    D -- No --> F[Bloquea factura]
+    F --> G[Crea solicitud de alta proveedor]
+    G --> H[Administracion valida datos]
+    H --> I[Envia o simula alta ERP]
+    I --> J{ERP confirma?}
+    J -- Si --> K[Desbloquea factura]
+    J -- No --> L[Marca fallo y motivo]
+    K --> M[Continua busqueda de provision]
+    L --> H
+```
+
 ## Consumo N a N entre facturas y provisiones
 
 ```mermaid
@@ -145,6 +180,28 @@ flowchart TD
     I --> J[Reporting de sin factura/no deducible]
 ```
 
+## Alertas de cierre operativo
+
+```mermaid
+flowchart TD
+    A[Periodo de cierre proximo] --> B[Busca pendientes]
+    B --> C[Provisiones abiertas]
+    B --> D[Facturas bloqueadas]
+    B --> E[Proveedores pendientes de alta]
+    B --> F[Movimientos sin factura]
+    B --> G[Regularizaciones pendientes]
+    C --> H[Determina buyer group]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    H --> I[Crea alerta]
+    I --> J[Usuario reconoce o resuelve]
+    J --> K{Resuelta a tiempo?}
+    K -- Si --> L[Cierra alerta]
+    K -- No --> M[Escala a Administracion]
+```
+
 ## Ciclo de estados de provision
 
 ```mermaid
@@ -190,6 +247,12 @@ flowchart LR
 
 ```mermaid
 erDiagram
+    TENANT ||--o{ LEGAL_ENTITY : contiene
+    TENANT ||--o{ BUYER_GROUP : agrupa
+    LEGAL_ENTITY ||--o{ PEDIDO_INTERNO : opera
+    LEGAL_ENTITY ||--o{ PROVISION : registra
+    LEGAL_ENTITY ||--o{ FACTURA : recibe
+    LEGAL_ENTITY ||--o{ PROVEEDOR_FISCAL : valida
     PEDIDO_INTERNO ||--|| PROVISION : genera
     MOVIMIENTO_TARJETA ||--|| PROVISION : genera
     LIQUIDACION_TARJETA ||--o{ MOVIMIENTO_TARJETA : agrupa
@@ -197,6 +260,11 @@ erDiagram
     PROVISION ||--o{ FACTURA_PROVISION : es_consumida_por
     PROVEEDOR_OPERATIVO ||--o{ MAPEO_PROVEEDOR : tiene_alias
     PROVEEDOR_FISCAL ||--o{ MAPEO_PROVEEDOR : valida
+    FACTURA ||--o{ SOLICITUD_ALTA_PROVEEDOR : bloquea
+    PROVEEDOR_FISCAL ||--o{ SUPPLIER_RESPONSIBILITY : asigna
+    BUYER_GROUP ||--o{ SUPPLIER_RESPONSIBILITY : gestiona
+    BUYER_GROUP ||--o{ ALERTA : recibe
+    PERIODO_CIERRE ||--o{ ALERTA : genera
     PROVEEDOR_OPERATIVO ||--o{ PROVISION : informa
     PROVEEDOR_FISCAL ||--o{ PROVISION : gobierna
     PROVISION ||--o{ REGULARIZACION : genera
@@ -206,9 +274,26 @@ erDiagram
     PROVISION ||--o{ AUDITORIA_ESTADO : audita
     FACTURA ||--o{ AUDITORIA_ESTADO : audita
     MAPEO_PROVEEDOR ||--o{ AUDITORIA_ESTADO : audita
+    PROVISION ||--o{ EVENTO_PROCESO : emite
+    FACTURA ||--o{ EVENTO_PROCESO : emite
+
+    TENANT {
+        string id_tenant
+        string nombre_tenant
+        string estado_tenant
+    }
+
+    LEGAL_ENTITY {
+        string id_legal_entity
+        string id_tenant
+        string codigo_sociedad_erp
+        string pais
+    }
 
     PEDIDO_INTERNO {
         string id_pedido_interno
+        string id_tenant
+        string id_legal_entity
         string id_provision
         string sociedad
         string responsable
@@ -218,6 +303,8 @@ erDiagram
 
     PROVISION {
         string id_provision
+        string id_tenant
+        string id_legal_entity
         string origen_provision
         decimal importe_provisionado
         decimal importe_consumido
@@ -227,6 +314,8 @@ erDiagram
 
     FACTURA {
         string id_factura
+        string id_tenant
+        string id_legal_entity
         string numero_factura
         string proveedor_fiscal_validado
         decimal total_factura
@@ -235,6 +324,8 @@ erDiagram
 
     FACTURA_PROVISION {
         string id_factura_provision
+        string id_tenant
+        string id_legal_entity
         string id_factura
         string id_provision
         decimal importe_consumido
@@ -243,26 +334,60 @@ erDiagram
 
     PROVEEDOR_OPERATIVO {
         string id_proveedor_operativo
+        string id_tenant
         string alias_principal
         string alias_normalizado
     }
 
     PROVEEDOR_FISCAL {
         string id_proveedor_fiscal
+        string id_tenant
+        string id_legal_entity
         string codigo_proveedor_erp
         string razon_social
         string nif_vat
     }
 
+    SOLICITUD_ALTA_PROVEEDOR {
+        string id_solicitud_alta_proveedor
+        string id_factura
+        string estado_solicitud
+        string codigo_respuesta_erp
+    }
+
     MAPEO_PROVEEDOR {
         string id_mapeo_proveedor
+        string id_tenant
+        string id_legal_entity
         string alias_informado
         decimal confianza_matching
         string estado_mapeo
     }
 
+    BUYER_GROUP {
+        string id_buyer_group
+        string id_tenant
+        string nombre_buyer_group
+    }
+
+    SUPPLIER_RESPONSIBILITY {
+        string id_supplier_responsibility
+        string id_proveedor_fiscal
+        string id_buyer_group
+        string estado_asignacion
+    }
+
+    ALERTA {
+        string id_alerta
+        string tipo_alerta
+        string estado_alerta
+        datetime fecha_objetivo
+    }
+
     MOVIMIENTO_TARJETA {
         string id_movimiento_tarjeta
+        string id_tenant
+        string id_legal_entity
         string id_provision
         decimal importe_movimiento
         string estado_movimiento
@@ -284,9 +409,25 @@ erDiagram
 
     AUDITORIA_ESTADO {
         string id_auditoria
+        string id_tenant
+        string id_legal_entity
         string entidad
         string accion
         string usuario
         datetime fecha_hora
+    }
+
+    EVENTO_PROCESO {
+        string id_evento_proceso
+        string tipo_evento
+        string entidad
+        datetime fecha_hora
+    }
+
+    PERIODO_CIERRE {
+        string id_periodo_cierre
+        string id_legal_entity
+        string periodo
+        string estado_periodo
     }
 ```

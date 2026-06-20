@@ -15,8 +15,53 @@ El modelo no presupone tecnologia ni plan contable concreto. Describe entidades,
 - Una provision puede consumirse con varias facturas.
 - Toda decision relevante debe tener auditoria.
 - La IA puede crear sugerencias, no verdades contables.
+- El tenant es frontera funcional y futura frontera de seguridad.
+- La legal entity representa la sociedad sobre la que aplican proveedor fiscal, periodo, ERP y reglas contables.
 
 ## Entidades principales
+
+### tenant
+
+Representa el cliente, grupo empresarial o unidad aislada dentro del SaaS.
+
+Campos recomendados:
+
+- id_tenant.
+- nombre_tenant.
+- estado_tenant.
+- pais_principal.
+- moneda_principal.
+- creado_por.
+- fecha_creacion.
+
+Reglas:
+
+- Un tenant puede contener varias legal entities.
+- Ninguna consulta futura debe mezclar datos entre tenants sin autorizacion explicita.
+- En MVP puede existir un tenant unico de prueba.
+
+### legal_entity
+
+Representa una sociedad juridica dentro de un tenant.
+
+Campos recomendados:
+
+- id_legal_entity.
+- id_tenant.
+- codigo_sociedad_erp.
+- nombre_sociedad.
+- pais.
+- moneda_funcional.
+- identificador_fiscal.
+- estado_sociedad.
+- fecha_inicio_operacion.
+- fecha_fin_operacion.
+
+Reglas:
+
+- Una provision, factura o proveedor fiscal debe estar asociada a una legal entity.
+- Una legal entity puede tener integracion ERP propia.
+- Las reglas fiscales futuras se aplicaran como minimo por legal entity.
 
 ### pedido_interno
 
@@ -25,6 +70,8 @@ Representa el compromiso de gasto informado por un responsable antes de recibir 
 Campos recomendados:
 
 - id_pedido_interno.
+- id_tenant.
+- id_legal_entity.
 - id_provision.
 - sociedad.
 - area.
@@ -62,6 +109,8 @@ Entidad central del motor. Representa el gasto estimado que debe existir antes d
 Campos recomendados:
 
 - id_provision.
+- id_tenant.
+- id_legal_entity.
 - origen_provision.
 - id_origen.
 - sociedad.
@@ -109,6 +158,8 @@ Documento fiscal recibido de proveedor. Es maestra del documento, OCR, validacio
 Campos recomendados:
 
 - id_factura.
+- id_tenant.
+- id_legal_entity.
 - sociedad.
 - proveedor_fiscal_detectado.
 - id_proveedor_fiscal_validado.
@@ -128,6 +179,7 @@ Campos recomendados:
 - estado_contabilizacion.
 - deducibilidad.
 - requiere_periodificacion.
+- id_solicitud_alta_proveedor.
 - asiento_factura_id.
 - fecha_contabilizacion.
 - documento_origen.
@@ -147,6 +199,8 @@ Relacion de consumo entre factura y provision.
 Campos recomendados:
 
 - id_factura_provision.
+- id_tenant.
+- id_legal_entity.
 - id_factura.
 - id_provision.
 - importe_consumido.
@@ -175,6 +229,7 @@ Proveedor como lo conoce el usuario de campo.
 Campos recomendados:
 
 - id_proveedor_operativo.
+- id_tenant.
 - alias_principal.
 - alias_normalizado.
 - descripcion.
@@ -198,6 +253,8 @@ Proveedor validado contra ERP o datos maestros.
 Campos recomendados:
 
 - id_proveedor_fiscal.
+- id_tenant.
+- id_legal_entity.
 - codigo_proveedor_erp.
 - razon_social.
 - nif_vat.
@@ -212,6 +269,38 @@ Reglas:
 
 - Es fuente de verdad solo si procede de ERP o validacion de Administracion.
 - Puede estar asociado a multiples proveedores operativos o alias.
+- Puede existir para una legal entity y no para otra.
+
+### solicitud_alta_proveedor
+
+Solicitud para crear o validar un proveedor fiscal en ERP antes de continuar el flujo de factura.
+
+Campos recomendados:
+
+- id_solicitud_alta_proveedor.
+- id_tenant.
+- id_legal_entity.
+- id_factura.
+- razon_social_detectada.
+- nif_vat_detectado.
+- pais_detectado.
+- direccion_detectada.
+- estado_solicitud.
+- origen_deteccion.
+- enviada_erp.
+- codigo_respuesta_erp.
+- id_proveedor_fiscal_resultante.
+- motivo_bloqueo.
+- creada_por.
+- fecha_creacion.
+- confirmada_por.
+- fecha_confirmacion.
+
+Reglas:
+
+- Si el proveedor fiscal no existe para la legal entity, la factura queda bloqueada.
+- La factura solo continua cuando el ERP confirma o Administracion valida una alternativa.
+- En MVP se puede simular la respuesta ERP.
 
 ### mapeo_proveedor
 
@@ -220,6 +309,8 @@ Une alias/proveedor operativo con proveedor fiscal validado o sugerido.
 Campos recomendados:
 
 - id_mapeo_proveedor.
+- id_tenant.
+- id_legal_entity.
 - id_proveedor_operativo.
 - alias_informado.
 - id_proveedor_fiscal_sugerido.
@@ -241,6 +332,50 @@ Reglas:
 - Solo Administracion puede convertir un mapeo en validado.
 - Todo rechazo o correccion alimenta historico auditable.
 
+### buyer_group
+
+Grupo comprador o responsable operativo asociado a proveedores, sociedades o areas.
+
+Campos recomendados:
+
+- id_buyer_group.
+- id_tenant.
+- codigo_buyer_group_erp.
+- nombre_buyer_group.
+- origen_dato.
+- estado_buyer_group.
+- creado_por.
+- fecha_creacion.
+
+Reglas:
+
+- Puede venir del ERP o de configuracion interna.
+- Alimenta alertas, control de cierre y responsabilidad por proveedor.
+
+### supplier_responsibility
+
+Relacion entre proveedor fiscal, proveedor operativo o area y grupo responsable.
+
+Campos recomendados:
+
+- id_supplier_responsibility.
+- id_tenant.
+- id_legal_entity.
+- id_proveedor_fiscal.
+- id_proveedor_operativo.
+- id_buyer_group.
+- fecha_desde.
+- fecha_hasta.
+- origen_asignacion.
+- estado_asignacion.
+- creado_por.
+- fecha_creacion.
+
+Reglas:
+
+- Permite saber a que grupo avisar por movimientos abiertos o excepciones.
+- Debe poder cambiar en el tiempo sin perder historico.
+
 ### movimiento_tarjeta
 
 Movimiento operativo de tarjeta corporativa que genera provision.
@@ -248,6 +383,8 @@ Movimiento operativo de tarjeta corporativa que genera provision.
 Campos recomendados:
 
 - id_movimiento_tarjeta.
+- id_tenant.
+- id_legal_entity.
 - id_provision.
 - sociedad.
 - titular_tarjeta.
@@ -281,6 +418,8 @@ Agrupa movimientos contra liquidacion bancaria o extracto de tarjeta.
 Campos recomendados:
 
 - id_liquidacion_tarjeta.
+- id_tenant.
+- id_legal_entity.
 - sociedad.
 - entidad_tarjeta.
 - periodo_liquidacion.
@@ -303,6 +442,8 @@ Ajuste generado por diferencia entre provision, factura, impuestos, divisa, peri
 Campos recomendados:
 
 - id_regularizacion.
+- id_tenant.
+- id_legal_entity.
 - id_provision.
 - id_factura.
 - id_movimiento_tarjeta.
@@ -339,6 +480,8 @@ Distribucion temporal de un gasto entre periodos.
 Campos recomendados:
 
 - id_periodificacion.
+- id_tenant.
+- id_legal_entity.
 - id_factura.
 - id_provision.
 - periodo.
@@ -357,6 +500,8 @@ Registro comun de cambios relevantes.
 Campos recomendados:
 
 - id_auditoria.
+- id_tenant.
+- id_legal_entity.
 - entidad.
 - id_entidad.
 - accion.
@@ -376,6 +521,81 @@ Reglas:
 - Debe cubrir cambios de estado, consumos, rechazos, mapeos, provisiones tardias, regularizaciones y anulaciones.
 - Debe permitir reconstruir quien decidio que, cuando y por que.
 
+### evento_proceso
+
+Registro estructurado de eventos explotables para analitica y trazabilidad.
+
+Campos recomendados:
+
+- id_evento_proceso.
+- id_tenant.
+- id_legal_entity.
+- tipo_evento.
+- entidad.
+- id_entidad.
+- origen_evento.
+- payload_resumido.
+- correlacion_proceso.
+- fecha_hora.
+
+Reglas:
+
+- No sustituye a la auditoria de decisiones.
+- Sirve para metricas de tiempos, conversiones, bloqueos y eficiencia operativa.
+- En MVP puede convivir fisicamente con auditoria si se documenta la distincion.
+
+### periodo_cierre
+
+Periodo operativo o financiero usado para control de cierre y alertas.
+
+Campos recomendados:
+
+- id_periodo_cierre.
+- id_tenant.
+- id_legal_entity.
+- periodo.
+- fecha_inicio.
+- fecha_fin.
+- fecha_limite_operativa.
+- fecha_limite_contable.
+- estado_periodo.
+- creado_por.
+- fecha_creacion.
+
+Reglas:
+
+- Permite detectar pendientes antes del cierre.
+- Puede variar por legal entity.
+
+### alerta
+
+Aviso generado para usuario o grupo responsable.
+
+Campos recomendados:
+
+- id_alerta.
+- id_tenant.
+- id_legal_entity.
+- id_periodo_cierre.
+- id_buyer_group.
+- usuario_destino.
+- tipo_alerta.
+- entidad_origen.
+- id_entidad_origen.
+- prioridad.
+- estado_alerta.
+- fecha_objetivo.
+- fecha_creacion.
+- fecha_resolucion.
+- resuelta_por.
+- motivo_resolucion.
+
+Reglas:
+
+- Debe poder dirigirse a usuario o grupo.
+- Debe enlazar con la entidad que genera el pendiente.
+- Debe ser medible para reporting de cierre.
+
 ### comentario
 
 Comentarios funcionales o contables asociados a entidades.
@@ -383,6 +603,7 @@ Comentarios funcionales o contables asociados a entidades.
 Campos recomendados:
 
 - id_comentario.
+- id_tenant.
 - entidad.
 - id_entidad.
 - tipo_comentario.
@@ -398,6 +619,7 @@ Documentacion soporte.
 Campos recomendados:
 
 - id_adjunto.
+- id_tenant.
 - entidad.
 - id_entidad.
 - tipo_adjunto.
@@ -410,15 +632,27 @@ Campos recomendados:
 ## Relaciones clave
 
 ```text
+tenant 1 -> N legal_entity
+tenant 1 -> N buyer_group
+legal_entity 1 -> N pedido_interno
+legal_entity 1 -> N provision
+legal_entity 1 -> N factura
+legal_entity 1 -> N proveedor_fiscal
 pedido_interno 1 -> 1 provision
 movimiento_tarjeta 1 -> 1 provision
 factura N -> N provision mediante factura_provision
 proveedor_operativo N -> N proveedor_fiscal mediante mapeo_proveedor
+factura 1 -> N solicitud_alta_proveedor
+proveedor_fiscal 1 -> N supplier_responsibility
+buyer_group 1 -> N supplier_responsibility
+buyer_group 1 -> N alerta
+periodo_cierre 1 -> N alerta
 provision 1 -> N regularizacion
 factura 1 -> N regularizacion
 factura 1 -> N periodificacion
 liquidacion_tarjeta 1 -> N movimiento_tarjeta
 entidad funcional 1 -> N auditoria_estado
+entidad funcional 1 -> N evento_proceso
 entidad funcional 1 -> N comentario
 entidad funcional 1 -> N adjunto
 ```
@@ -427,6 +661,8 @@ entidad funcional 1 -> N adjunto
 
 Para entidades principales:
 
+- id_tenant.
+- id_legal_entity cuando aplique.
 - sociedad.
 - responsable.
 - area.
@@ -441,6 +677,8 @@ Para entidades principales:
 
 ## Indices funcionales sugeridos
 
+- tenant + estado.
+- tenant + legal entity + periodo.
 - `id_provision`.
 - proveedor fiscal + sociedad + periodo.
 - proveedor operativo + responsable + area.
@@ -449,6 +687,8 @@ Para entidades principales:
 - origen provision + id origen.
 - responsable + periodo.
 - estado de mapeo + confianza.
+- buyer group + periodo + estado de alerta.
+- tipo evento + fecha_hora + correlacion_proceso.
 
 ## Decisiones pendientes
 
@@ -457,3 +697,5 @@ Para entidades principales:
 - Si la periodificacion se decide en provision, factura o ambos.
 - Como versionar reglas contables y fiscales sin acoplarlas al ERP.
 - Como representar roles y permisos en el modelo final.
+- Como aislar tenants fisicamente en una version productiva.
+- Que datos minimos exige cada ERP para alta de proveedor fiscal.

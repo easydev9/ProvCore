@@ -22,6 +22,10 @@ Conjunto inicial de vistas para entender:
 - provisiones tardias.
 - casos bloqueados o pendientes.
 
+## Alerta
+
+Aviso operativo generado por el sistema para que un usuario o grupo responsable actue sobre un pendiente, excepcion o fecha clave.
+
 ## Alembic
 
 Herramienta de migraciones usada para versionar cambios de esquema de base de datos.
@@ -33,6 +37,18 @@ En ProvCore, Alembic sera la fuente de verdad tecnica para crear o modificar est
 Registro trazable de acciones, decisiones, cambios de estado y motivos.
 
 Debe permitir reconstruir quien hizo que, cuando y por que.
+
+## Buyer group
+
+Grupo comprador o grupo responsable asociado a proveedores, sociedades o areas.
+
+Puede venir de ERP, configuracion interna o sincronizacion externa.
+
+## Closing period
+
+Periodo usado para controlar fechas de cierre, pendientes y alertas.
+
+Puede estar asociado a una legal entity.
 
 ## Contabilizacion definitiva
 
@@ -64,6 +80,12 @@ Sistema externo que actua como fuente de datos maestros y destino conceptual de 
 
 En el MVP no habra integracion real con ERP.
 
+## Evento de proceso
+
+Registro estructurado de algo que ocurrio en el flujo.
+
+Sirve para trazabilidad, metricas y analitica operativa.
+
 ## Factura
 
 Documento recibido de proveedor.
@@ -85,6 +107,23 @@ Permite:
 Herramienta de extraccion o sugerencia.
 
 Puede sugerir datos, proveedor fiscal o matching factura-provision. No valida la verdad contable.
+
+## Legal entity
+
+Sociedad juridica dentro de un tenant.
+
+Puede tener pais, moneda, identificador fiscal, reglas fiscales, periodos contables e integracion ERP propia.
+
+## Matching suggestion
+
+Sugerencia generada por reglas, historico o IA para relacionar entidades.
+
+Ejemplos:
+
+- proveedor operativo con proveedor fiscal.
+- factura con provision.
+- factura con responsable.
+- factura con movimiento de tarjeta.
 
 ## Interfaz
 
@@ -114,6 +153,12 @@ Gasto originado por tarjeta corporativa.
 
 Es un origen operativo futuro del motor de provisiones.
 
+## Movimiento provisionable
+
+Entrada operativa normalizada capaz de generar una provision.
+
+Tiene un origen identificado y cumple un contrato comun para que el motor pueda procesarla sin conocer detalles del origen.
+
 ## Origen provisionable
 
 Cualquier origen capaz de generar una provision bajo un contrato comun.
@@ -124,6 +169,12 @@ Ejemplos:
 - movimiento de tarjeta.
 - factura sin provision previa.
 - suscripcion recurrente.
+
+## Process event
+
+Nombre tecnico posible para evento de proceso.
+
+Puede convivir con auditoria en MVP si todavia no se separa fisicamente.
 
 ## Pedido interno
 
@@ -162,6 +213,24 @@ La fuente de verdad es Administracion y los datos maestros.
 Proveedor tal como lo conoce el usuario.
 
 Puede ser alias, nombre comercial o denominacion habitual. No sustituye al proveedor fiscal.
+
+## Solicitud de alta proveedor
+
+Flujo por el que se solicita crear o validar un proveedor fiscal que no existe en ERP para una legal entity.
+
+Debe resolverse antes de continuar con el registro definitivo de la factura afectada.
+
+## Supplier responsibility
+
+Relacion entre proveedor y grupo responsable.
+
+Permite saber que usuarios deben recibir alertas por pendientes, excepciones o cierre.
+
+## Tenant
+
+Cliente, grupo empresarial o unidad aislada dentro de un SaaS.
+
+Los datos de un tenant no deben mezclarse con los de otro tenant.
 
 ## Provision
 

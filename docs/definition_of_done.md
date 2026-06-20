@@ -61,6 +61,7 @@ Un cambio de dominio esta terminado si cumple:
 - Los estados afectados estan revisados.
 - Las excepciones relevantes estan contempladas.
 - Auditoria queda considerada si hay decision, cambio de estado o excepcion.
+- Tenant y legal entity quedan considerados si el cambio toca datos operativos, fiscales o analiticos.
 - El dominio no depende de FastAPI, SQL Server, ORM ni frameworks.
 
 ## Para cambios de base de datos
@@ -73,6 +74,7 @@ Un cambio de base de datos estara terminado si cumple:
 - Los tipos monetarios usan precision decimal.
 - Los campos de estado tienen valores controlados.
 - Los indices necesarios para el flujo principal estan identificados.
+- Las claves o filtros de tenant y legal entity estan contemplados cuando aplique.
 - El cambio se puede validar en SQL Server Management Studio.
 
 ## Para cambios de API
@@ -83,6 +85,7 @@ Un cambio de API estara terminado si cumple:
 - La ruta sigue la convencion de versionado vigente.
 - Los schemas de entrada y salida estan definidos.
 - Los errores esperados estan definidos.
+- Los limites de acceso por tenant, legal entity y rol estan considerados cuando aplique.
 - La ruta no contiene logica de negocio.
 - La ruta llama a application, no a infrastructure directamente.
 

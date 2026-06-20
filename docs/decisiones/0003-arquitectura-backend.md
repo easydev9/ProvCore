@@ -63,6 +63,8 @@ provisioning_engine
 
 Este modulo encapsulara las reglas comunes de provision, consumo, regularizacion y auditoria funcional. Los modulos de entrada no implementaran reglas de provision por su cuenta. Actuaran como origenes o adaptadores del motor comun.
 
+El motor debe trabajar contra movimientos provisionables. Cada movimiento tiene un origen identificado y cada origen puede implementar su propia forma de aportar datos. El motor no debe implementar variantes concretas por cada origen.
+
 ## Arquitectura conceptual
 
 ```text
@@ -199,6 +201,7 @@ El modulo `provisioning_engine` es el nucleo del sistema.
 Debe contener:
 
 - entidad `Provision`.
+- abstraccion `ProvisionableMovement`.
 - contrato de origen provisionable.
 - reglas de creacion de provision.
 - reglas de consumo.
@@ -233,6 +236,12 @@ Un origen operativo puede generar provision si cumple un contrato minimo:
 - tipo de gasto.
 
 El motor no debe depender del detalle interno de cada origen.
+
+Regla:
+
+```text
+Identificar origen, normalizar movimiento, aplicar motor comun.
+```
 
 ## Reglas de dependencia
 

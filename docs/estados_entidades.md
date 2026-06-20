@@ -116,6 +116,7 @@ Estados:
 Subida
 OCRProcesado
 ProveedorDetectado
+PendienteAltaProveedor
 PendienteProvision
 ProvisionSugerida
 PendienteValidacionFuncional
@@ -132,6 +133,8 @@ Transiciones principales:
 ```text
 Subida -> OCRProcesado
 OCRProcesado -> ProveedorDetectado
+ProveedorDetectado -> PendienteAltaProveedor
+PendienteAltaProveedor -> PendienteProvision
 ProveedorDetectado -> PendienteProvision
 ProveedorDetectado -> ProvisionSugerida
 PendienteProvision -> ProvisionSugerida
@@ -149,6 +152,7 @@ Registrada -> Anulada
 
 Reglas:
 
+- `PendienteAltaProveedor` bloquea el registro hasta confirmar proveedor fiscal para la sociedad.
 - `PendienteProvision` puede resolverse con provision existente o provision tardia.
 - `PendienteValidacionFuncional` confirma que el servicio corresponde.
 - `PendienteRevisionContable` confirma datos fiscales, impuestos, cuentas, periodificacion y consumo.
@@ -228,6 +232,40 @@ Reglas:
 - `SugeridoPorIA` nunca debe bastar para integracion contable automatica.
 - `Corregido` debe preservar el valor anterior.
 
+## Solicitud de alta proveedor
+
+Estados:
+
+```text
+Detectada
+PendienteValidacionAdministracion
+ListaParaEnvioERP
+EnviadaERP
+ConfirmadaERP
+FallidaERP
+Cancelada
+```
+
+Transiciones principales:
+
+```text
+Detectada -> PendienteValidacionAdministracion
+PendienteValidacionAdministracion -> ListaParaEnvioERP
+ListaParaEnvioERP -> EnviadaERP
+EnviadaERP -> ConfirmadaERP
+EnviadaERP -> FallidaERP
+FallidaERP -> ListaParaEnvioERP
+Detectada -> Cancelada
+PendienteValidacionAdministracion -> Cancelada
+```
+
+Reglas:
+
+- `ConfirmadaERP` desbloquea la factura afectada.
+- `FallidaERP` exige motivo tecnico o funcional.
+- `Cancelada` exige motivo si habia una factura bloqueada.
+- En MVP la confirmacion ERP puede estar simulada.
+
 ## Movimiento de tarjeta
 
 Estados:
@@ -301,6 +339,67 @@ Reglas:
 - Las regularizaciones por no deducible o sin factura deben alimentar reporting.
 - La anulacion exige motivo y auditoria.
 
+## Periodo de cierre
+
+Estados:
+
+```text
+Preparado
+Abierto
+EnRevision
+Cerrado
+Reabierto
+```
+
+Transiciones principales:
+
+```text
+Preparado -> Abierto
+Abierto -> EnRevision
+EnRevision -> Cerrado
+Cerrado -> Reabierto
+Reabierto -> EnRevision
+```
+
+Reglas:
+
+- `EnRevision` dispara controles de pendientes y alertas.
+- `Cerrado` no debe permitir nuevos consumos sin excepcion auditada.
+- `Reabierto` exige motivo y usuario.
+
+## Alerta
+
+Estados:
+
+```text
+Creada
+Notificada
+Reconocida
+Escalada
+Resuelta
+Cerrada
+Cancelada
+```
+
+Transiciones principales:
+
+```text
+Creada -> Notificada
+Notificada -> Reconocida
+Reconocida -> Resuelta
+Notificada -> Escalada
+Escalada -> Resuelta
+Resuelta -> Cerrada
+Creada -> Cancelada
+Notificada -> Cancelada
+```
+
+Reglas:
+
+- `Escalada` se usa cuando no hay respuesta antes de fecha objetivo.
+- `Resuelta` exige indicar como se resolvio el pendiente.
+- La alerta debe mantener vinculo con entidad origen.
+
 ## Provision tardia
 
 La provision tardia no es una entidad separada, sino una `provision` con `origen_provision = ProvisionTardiaDesdeFactura`.
@@ -319,6 +418,7 @@ Estados bloqueantes:
 - `PendienteMapeoProveedor`.
 - `PendienteValidacion`.
 - `PendienteValidacionAdministracion`.
+- `PendienteAltaProveedor`.
 - `PendienteProvision`.
 - `PendienteValidacionFuncional`.
 - `PendienteRevisionContable`.
@@ -326,6 +426,7 @@ Estados bloqueantes:
 - `Seleccionada`.
 - `PendienteRevision`.
 - `Rechazada`.
+- `FallidaERP`.
 
 ## Estados aptos para reporting de cumplimiento
 

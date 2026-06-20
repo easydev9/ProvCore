@@ -44,7 +44,9 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002, 0003 y 0004.
+- decisiones 0001, 0002, 0003, 0004 y 0005.
+- vision estrategica de producto.
+- modelo de dominio MVP.
 - definition of done.
 - glosario.
 
@@ -124,6 +126,23 @@ Documento:
 
 - `docs/decisiones/0004-persistencia-migraciones.md`
 
+### Decision 0005 - Modelo SaaS tenant-aware
+
+ProvCore se disena como SaaS tenant-aware.
+
+Conceptos:
+
+- `tenant`: cliente o grupo empresarial.
+- `legal_entity`: sociedad dentro del tenant.
+- el tenant es frontera de seguridad.
+- las entidades operativas principales deben contemplar tenant.
+- las entidades fiscales y contables deben contemplar legal entity.
+- el alta de proveedor fiscal depende de tenant, legal entity y ERP.
+
+Documento:
+
+- `docs/decisiones/0005-modelo-saas-tenant-aware.md`
+
 ## Modulos iniciales
 
 ### provisioning_engine
@@ -132,6 +151,8 @@ Modulo central del sistema.
 
 Responsabilidades:
 
+- identificar movimientos provisionables.
+- normalizar cada origen antes de aplicar reglas comunes.
 - crear provisiones desde origenes.
 - mantener reglas comunes de provision.
 - consumir provisiones.
@@ -194,6 +215,8 @@ Issues cerradas:
 - #2 Definir alcance exacto del MVP.
 - #9 Definir prototipo navegable.
 - #10 Definir arquitectura tecnica minima del backend.
+- #11 Definir persistencia y migraciones.
+- #12 Definir vision estrategica SaaS y modelo de dominio MVP.
 
 Issues abiertas relevantes:
 
@@ -232,13 +255,19 @@ Para entender arquitectura:
 - `docs/arquitectura_funcional.md`
 - `docs/decisiones/0003-arquitectura-backend.md`
 - `docs/decisiones/0004-persistencia-migraciones.md`
+- `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 
 Para entender dominio:
 
 - `docs/glosario.md`
+- `docs/modelo_dominio_mvp.md`
 - `docs/modelo_datos_inicial.md`
 - `docs/estados_entidades.md`
 - `docs/casos_uso_detallados.md`
+
+Para entender vision estrategica:
+
+- `docs/vision_estrategica_producto.md`
 
 Para entender flujo:
 
@@ -255,6 +284,11 @@ Para planificar trabajo:
 
 - No asumir que el primer modulo implementado define el dominio.
 - No convertir pedido interno en centro del sistema.
+- No modelar el motor como CRUD de pedidos o facturas.
+- Identificar siempre el movimiento provisionable y su origen.
+- Considerar tenant y legal entity en datos operativos, fiscales y analiticos.
+- Bloquear factura cuando el proveedor fiscal no exista para la legal entity.
+- Registrar evento o auditoria para decisiones, bloqueos, alertas y excepciones.
 - No poner reglas de provision dentro de invoices.
 - No poner reglas de provision dentro de internal_orders.
 - No usar SQL Server desde capas de dominio o application.

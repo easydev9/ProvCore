@@ -11,6 +11,7 @@ Definir una secuencia de trabajo para convertir ProvCore en un prototipo funcion
 - Demostrar trazabilidad completa con `id_provision`.
 - Incluir una excepcion auditada para mostrar control realista.
 - Evitar automatizacion contable sin revision humana.
+- Mantener tenant y legal entity como contexto obligatorio del modelo.
 - Mantener alcance acotado y sin datos internos sensibles.
 
 ## Fase 0 - Consolidacion funcional
@@ -27,12 +28,15 @@ Incluye:
 - Ajustar diagramas de arquitectura y flujo.
 - Priorizar backlog P0.
 - Definir roles minimos: Responsable y Administracion.
+- Validar tenant, legal entity y movimiento provisionable como conceptos base.
 
 Entregables:
 
 - Documentacion funcional coherente.
 - Diagrama de arquitectura.
 - Diagrama entidad-relacion funcional.
+- Vision estrategica de producto.
+- Modelo de dominio MVP.
 - Backlog P0 listo para prototipo.
 
 Riesgos a resolver:
@@ -51,6 +55,7 @@ Incluye:
 
 - Crear pedido interno.
 - Generar `id_provision`.
+- Trabajar con tenant y legal entity iniciales.
 - Registrar proveedor operativo.
 - Simular mapeo a proveedor fiscal.
 - Crear provision abierta.
@@ -125,6 +130,7 @@ Incluye:
 - Sugerir proveedor fiscal.
 - Mostrar confianza y origen de sugerencia.
 - Validar o rechazar mapeo por Administracion.
+- Simular alta de proveedor fiscal cuando no exista para la legal entity.
 - Reutilizar mapeo validado en futuros pedidos y facturas.
 
 Resultado esperado:
@@ -150,6 +156,8 @@ Incluye:
 - Vista de consumos y pendientes.
 - Reporte de provisiones tardias.
 - Reporte de diferencias o regularizaciones pendientes.
+- Eventos de proceso minimos.
+- Alertas basicas de cierre por grupo responsable.
 
 Resultado esperado:
 
@@ -193,6 +201,9 @@ Alcance aprobado:
 - Fase 2 completa.
 - Parte esencial de Fase 3.
 - Analitica minima de Fase 4.
+- Tenant y legal entity como contexto de datos.
+- Alta de proveedor fiscal simulada si la factura lo requiere.
+- Eventos y alertas basicas cuando afecten al cierre.
 
 Motivo:
 
@@ -204,6 +215,7 @@ Decision documentada:
 - [Decision 0002 - Formato del prototipo](decisiones/0002-formato-prototipo.md)
 - [Decision 0003 - Arquitectura tecnica minima del backend](decisiones/0003-arquitectura-backend.md)
 - [Decision 0004 - Persistencia y migraciones](decisiones/0004-persistencia-migraciones.md)
+- [Decision 0005 - Modelo SaaS tenant-aware](decisiones/0005-modelo-saas-tenant-aware.md)
 
 ## Fuera de alcance inicial
 
@@ -235,6 +247,24 @@ El backend usara una arquitectura modular orientada a clean architecture:
 - capas de dominio, application, ports, infrastructure e interface.
 - implementacion pragmatica durante el MVP.
 - evolucion a clean architecture mas estricta tras cerrar el MVP.
+
+## Vision estrategica
+
+La vision final incorpora:
+
+- SaaS tenant-aware.
+- multiples legal entities por tenant.
+- integracion ERP por puertos y adaptadores.
+- movimientos provisionables como entrada comun.
+- eventos, auditoria y metricas.
+- grupos compradores y responsables por proveedor.
+- alertas de cierre.
+- forecast y presupuestacion futura.
+
+Documentos:
+
+- [Vision estrategica de producto](vision_estrategica_producto.md)
+- [Modelo de dominio MVP](modelo_dominio_mvp.md)
 
 ## Siguiente decision
 

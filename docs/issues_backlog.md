@@ -10,6 +10,31 @@ Las prioridades son orientativas:
 - P1: necesario para un MVP serio.
 - P2: mejora o ampliacion posterior.
 
+## Epic 0 - Base SaaS y dominio comun
+
+### P0 - Modelar tenant y legal entity
+
+Como equipo de producto, quiero distinguir tenant y legal entity desde el inicio, para que el sistema pueda evolucionar a SaaS y multipais sin redisenar el dominio.
+
+Criterios de aceptacion:
+
+- Define tenant como frontera funcional y futura frontera de seguridad.
+- Define legal entity como sociedad juridica dentro del tenant.
+- Identifica entidades que deben llevar `tenant_id`.
+- Identifica entidades que deben llevar `legal_entity_id`.
+- Documenta impacto en permisos, reporting e integraciones ERP.
+
+### P0 - Definir movimiento provisionable como abstraccion central
+
+Como equipo de arquitectura, quiero que pedidos, tarjetas, facturas tardias y origenes futuros implementen un contrato comun, para que el motor de provisiones no dependa de cada caso concreto.
+
+Criterios de aceptacion:
+
+- Define metodos conceptuales de `ProvisionableMovement`.
+- Identifica origen, tenant, legal entity, responsable, proveedor, importe, moneda y periodo.
+- Explica que cada origen aporta datos a su manera.
+- Evita convertir la API en CRUD de tablas.
+
 ## Epic 1 - Modelo comun de provisiones
 
 ### P0 - Definir contrato funcional de Provisionable
@@ -134,6 +159,20 @@ Criterios de aceptacion:
 - Requiere motivo.
 - Guarda candidato rechazado.
 - Permite seleccionar candidato alternativo.
+
+### P1 - Alta de proveedor fiscal para legal entity
+
+Como Administracion, quiero solicitar alta o validacion de proveedor fiscal cuando una factura llega con proveedor inexistente en ERP, para no continuar el registro sin maestro valido.
+
+Criterios de aceptacion:
+
+- Detecta proveedor fiscal inexistente por tenant y legal entity.
+- Bloquea factura afectada.
+- Crea solicitud de alta proveedor.
+- Permite validacion de Administracion antes de envio ERP.
+- Permite simular confirmacion ERP en MVP.
+- Desbloquea factura tras confirmacion satisfactoria.
+- Audita bloqueo, envio, confirmacion o fallo.
 
 ## Epic 4 - Facturas de proveedor
 
@@ -298,6 +337,29 @@ Criterios de aceptacion:
 - Filtros por sociedad, area, proveedor, periodo, moneda, estado y deducibilidad.
 - Incluye regularizaciones.
 - Exportable.
+
+### P1 - Registrar eventos de proceso
+
+Como equipo de producto, quiero registrar eventos estructurados del flujo, para medir tiempos, bloqueos, conversiones y eficiencia operativa.
+
+Criterios de aceptacion:
+
+- Registra eventos de movimiento identificado, provision creada, proveedor bloqueado, matching sugerido, consumo aprobado y alerta resuelta.
+- Incluye tenant, legal entity, entidad, id entidad y correlacion de proceso.
+- Distingue evento analitico de auditoria de decision.
+- Permite calcular metricas basicas de cierre y operacion.
+
+### P1 - Generar alertas de cierre
+
+Como Administracion, quiero generar alertas por proveedor, grupo comprador y periodo, para limpiar pendientes antes del cierre.
+
+Criterios de aceptacion:
+
+- Detecta provisiones abiertas, facturas bloqueadas, proveedores pendientes y regularizaciones pendientes.
+- Determina grupo responsable por supplier responsibility.
+- Crea alerta con fecha objetivo.
+- Permite resolver, cerrar o escalar.
+- Alimenta reporting de cumplimiento de cierre.
 
 ## Epic 8 - Integracion ERP conceptual
 

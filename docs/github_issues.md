@@ -32,6 +32,9 @@ El backlog detallado vive en [Backlog de issues inicial](issues_backlog.md). Est
 - `module:audit`.
 - `module:analytics`.
 - `module:erp`.
+- `module:tenants`.
+- `module:alerts`.
+- `module:closing`.
 
 ### Estado funcional
 
@@ -55,6 +58,8 @@ Issues candidatas:
 - Validar casos de uso principales.
 - Revisar diagramas Mermaid.
 - Priorizar backlog P0.
+- Definir vision estrategica SaaS y modelo de dominio MVP.
+- Validar tenant, legal entity y movimiento provisionable como base.
 
 ### M1 - Flujo principal
 
@@ -231,6 +236,66 @@ functional-analysis, prototype, P0, mvp, needs-decision
 Objetivo:
 
 Elegir si el primer prototipo sera maqueta navegable, app web con datos en memoria o API con base de datos ligera.
+
+### 10. Definir arquitectura tecnica minima del backend
+
+Labels:
+
+```text
+functional-analysis, prototype, P0, mvp, needs-decision
+```
+
+Objetivo:
+
+Decidir arquitectura modular, capas, modulos iniciales y reglas de dependencia del backend.
+
+### 11. Definir persistencia y migraciones
+
+Labels:
+
+```text
+functional-analysis, prototype, P0, mvp, needs-decision
+```
+
+Objetivo:
+
+Decidir ORM, migraciones, driver SQL Server y patron de transaccion.
+
+### 12. Definir vision estrategica SaaS y modelo de dominio MVP
+
+Labels:
+
+```text
+functional-analysis, documentation, P0, mvp, module:tenants, module:analytics, ready
+```
+
+Objetivo:
+
+Documentar vision SaaS tenant-aware, movimiento provisionable, modelo de dominio, eventos, alertas, buyer groups y alta de proveedor fiscal.
+
+### 13. Modelar alta de proveedor fiscal para ERP simulado
+
+Labels:
+
+```text
+feature, P1, module:suppliers, module:erp, mvp, ready
+```
+
+Objetivo:
+
+Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
+
+### 14. Generar alertas de cierre por grupo responsable
+
+Labels:
+
+```text
+feature, P1, module:alerts, module:closing, module:analytics, ready
+```
+
+Objetivo:
+
+Crear alertas para grupos compradores o responsables cuando existan pendientes antes del cierre.
 
 ## Uso recomendado
 

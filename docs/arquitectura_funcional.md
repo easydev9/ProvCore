@@ -16,6 +16,8 @@ Origen operativo -> Motor de provisiones -> Validacion / consumo -> ERP / report
 
 El sistema no sustituye al ERP ni convierte a la IA en fuente de verdad contable. Su papel es adelantar el control, mantener trazabilidad y reducir trabajo manual en la conciliacion entre pedidos, facturas y tarjetas.
 
+El modelo funcional se disena tenant-aware. Un tenant representa el cliente o grupo empresarial y una legal entity representa la sociedad sobre la que aplican proveedor fiscal, ERP, periodos y reglas contables.
+
 ## Modulos funcionales
 
 ### Pedido interno
@@ -36,6 +38,7 @@ No debe hacer:
 
 Responsabilidad:
 
+- Identificar movimientos provisionables y su origen.
 - Crear provisiones desde distintos origenes.
 - Mantener estados de provision.
 - Exponer reglas comunes de consumo.
@@ -123,6 +126,7 @@ Responsabilidad:
 - Mostrar gasto provisionado, consumido y pendiente.
 - Medir provisiones tardias, movimientos sin factura y no deducibles.
 - Dar vistas por responsable, sociedad, proveedor, area y periodo.
+- Alimentar metricas de cierre, alertas, eficiencia operativa y calidad de matching.
 - Respetar permisos por ambito.
 
 No debe hacer:
@@ -164,6 +168,8 @@ Cualquier origen que quiera generar provision debe aportar:
 
 - origen.
 - id_origen.
+- tenant.
+- legal entity.
 - sociedad.
 - responsable.
 - area.
@@ -201,6 +207,19 @@ Cualquier decision relevante debe aportar:
 - motivo cuando aplique.
 - origen de la accion.
 
+### Contrato de evento de proceso
+
+Cualquier evento explotable analiticamente debe aportar:
+
+- tipo de evento.
+- entidad.
+- id_entidad.
+- tenant.
+- legal entity cuando aplique.
+- fecha y hora.
+- correlacion de proceso.
+- origen del evento.
+
 ## Reglas transversales
 
 - Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
@@ -210,6 +229,8 @@ Cualquier decision relevante debe aportar:
 - El proveedor operativo y el proveedor fiscal son conceptos distintos.
 - El `id_provision` debe viajar por pedido, factura, consumo, regularizacion y reporting.
 - Toda excepcion debe ser medible.
+- El tenant es frontera funcional y futura frontera de seguridad.
+- Las reglas fiscales y ERP se evaluan como minimo por legal entity.
 
 ## Integraciones conceptuales
 
