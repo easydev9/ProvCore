@@ -231,7 +231,7 @@ Cada sugerencia debe guardar:
 - usuario validador.
 - fecha de validacion.
 
-La IA sugiere. Administracion valida.
+La IA sugiere. El usuario financiero autorizado valida.
 
 El valor futuro esta en analizar que sugerencias funcionan, cuales fallan y que senales son mas fiables.
 

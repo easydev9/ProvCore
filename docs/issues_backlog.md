@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Convertir el backlog funcional en issues accionables para fases de discovery, prototipo y validacion con Administracion.
+Convertir el backlog funcional en issues accionables para fases de discovery, prototipo y validacion con usuarios financieros autorizados.
 
 Las prioridades son orientativas:
 
@@ -58,7 +58,7 @@ Criterios de aceptacion:
 
 - Incluye origen, sociedad, responsable, proveedor operativo, proveedor fiscal, importe, moneda, periodo y estado.
 - Define reglas minimas de consumo y regularizacion.
-- Distingue datos obligatorios del origen y datos validados por Administracion.
+- Distingue datos obligatorios del origen y datos validados por usuario financiero autorizado.
 
 ### P0 - Crear entidad provision
 
@@ -74,7 +74,7 @@ Criterios de aceptacion:
 
 ### P0 - Consumir provision total o parcialmente
 
-Como Administracion, quiero aprobar consumos de provision contra factura, para reflejar la realidad del gasto.
+Como usuario financiero autorizado, quiero aprobar consumos de provision contra factura, para reflejar la realidad del gasto.
 
 Criterios de aceptacion:
 
@@ -86,7 +86,7 @@ Criterios de aceptacion:
 
 ### P1 - Regularizar diferencias
 
-Como Administracion, quiero generar regularizaciones cuando provision y factura no coincidan, para mantener coherencia contable y analitica.
+Como usuario financiero autorizado, quiero generar regularizaciones cuando provision y factura no coincidan, para mantener coherencia contable y analitica.
 
 Criterios de aceptacion:
 
@@ -121,7 +121,7 @@ Criterios de aceptacion:
 
 ### P1 - Cancelar pedido con motivo
 
-Como responsable o Administracion, quiero cancelar un pedido con motivo, para evitar provisiones abiertas incorrectas.
+Como responsable o usuario financiero autorizado, quiero cancelar un pedido con motivo, para evitar provisiones abiertas incorrectas.
 
 Criterios de aceptacion:
 
@@ -143,7 +143,7 @@ Criterios de aceptacion:
 
 ### P0 - Sugerir proveedor fiscal
 
-Como Administracion, quiero ver candidatos de proveedor fiscal con confianza y explicacion, para validar mas rapido.
+Como usuario financiero autorizado, quiero ver candidatos de proveedor fiscal con confianza y explicacion, para validar mas rapido.
 
 Criterios de aceptacion:
 
@@ -154,7 +154,7 @@ Criterios de aceptacion:
 
 ### P0 - Validar mapeo proveedor
 
-Como Administracion, quiero validar el proveedor fiscal correcto, para convertirlo en fuente de verdad operativa.
+Como usuario financiero autorizado, quiero validar el proveedor fiscal correcto, para convertirlo en fuente de verdad operativa.
 
 Criterios de aceptacion:
 
@@ -165,7 +165,7 @@ Criterios de aceptacion:
 
 ### P1 - Rechazar o corregir mapeo
 
-Como Administracion, quiero rechazar sugerencias incorrectas, para mejorar la calidad futura del matching.
+Como usuario financiero autorizado, quiero rechazar sugerencias incorrectas, para mejorar la calidad futura del matching.
 
 Criterios de aceptacion:
 
@@ -175,14 +175,14 @@ Criterios de aceptacion:
 
 ### P1 - Alta de proveedor fiscal para legal entity
 
-Como Administracion, quiero solicitar alta o validacion de proveedor fiscal cuando una factura llega con proveedor inexistente en ERP, para no continuar el registro sin maestro valido.
+Como usuario financiero autorizado, quiero solicitar alta o validacion de proveedor fiscal cuando una factura llega con proveedor inexistente en ERP, para no continuar el registro sin maestro valido.
 
 Criterios de aceptacion:
 
 - Detecta proveedor fiscal inexistente por tenant y legal entity.
 - Bloquea factura afectada.
 - Crea solicitud de alta proveedor.
-- Permite validacion de Administracion antes de envio ERP.
+- Permite validacion de usuario financiero autorizado antes de envio ERP.
 - Permite simular confirmacion ERP en MVP.
 - Desbloquea factura tras confirmacion satisfactoria.
 - Audita bloqueo, envio, confirmacion o fallo.
@@ -191,7 +191,7 @@ Criterios de aceptacion:
 
 ### P0 - Procesar factura con OCR/IA
 
-Como Administracion, quiero extraer datos de factura, para buscar provisiones compatibles y preparar validacion.
+Como usuario financiero autorizado, quiero extraer datos de factura, para buscar provisiones compatibles y preparar validacion.
 
 Criterios de aceptacion:
 
@@ -211,7 +211,7 @@ Criterios de aceptacion:
 
 ### P0 - Aprobar relacion factura-provision
 
-Como Administracion, quiero aprobar la relacion entre factura y provision, para consumir la provision correcta.
+Como usuario financiero autorizado, quiero aprobar la relacion entre factura y provision, para consumir la provision correcta.
 
 Criterios de aceptacion:
 
@@ -222,7 +222,7 @@ Criterios de aceptacion:
 
 ### P0 - Crear provision tardia
 
-Como Administracion, quiero crear una provision tardia cuando no exista provision previa, para no bloquear la operacion y medir incumplimientos.
+Como usuario financiero autorizado, quiero crear una provision tardia cuando no exista provision previa, para no bloquear la operacion y medir incumplimientos.
 
 Criterios de aceptacion:
 
@@ -233,7 +233,7 @@ Criterios de aceptacion:
 
 ### P1 - Registrar factura para integracion
 
-Como Administracion, quiero marcar una factura como registrada, para enviarla al ERP cuando este validada.
+Como usuario financiero autorizado, quiero marcar una factura como registrada, para enviarla al ERP cuando este validada.
 
 Criterios de aceptacion:
 
@@ -255,7 +255,7 @@ Criterios de aceptacion:
 
 ### P1 - Asociar factura a movimiento de tarjeta
 
-Como Administracion, quiero asociar factura soporte a un movimiento, para consumir la provision de tarjeta.
+Como usuario financiero autorizado, quiero asociar factura soporte a un movimiento, para consumir la provision de tarjeta.
 
 Criterios de aceptacion:
 
@@ -270,13 +270,13 @@ Como responsable, quiero marcar un movimiento sin factura con motivo, para cerra
 Criterios de aceptacion:
 
 - Motivo obligatorio.
-- Revision de Administracion.
+- Revision de usuario financiero autorizado.
 - Clasificacion deducible/no deducible/pendiente.
 - Reporting especifico.
 
 ### P2 - Asociar factura agrupada a varios movimientos
 
-Como Administracion, quiero asociar una factura a varios movimientos, para gestionar cargos agrupados.
+Como usuario financiero autorizado, quiero asociar una factura a varios movimientos, para gestionar cargos agrupados.
 
 Criterios de aceptacion:
 
@@ -296,7 +296,7 @@ Criterios de aceptacion:
 - Guarda entidad, estado anterior, estado nuevo, usuario, fecha y motivo.
 - Aplica a pedido, provision, factura, relacion, mapeo y regularizacion.
 
-### P0 - Auditar decisiones de Administracion
+### P0 - Auditar decisiones financieras autorizadas
 
 Como auditor, quiero ver decisiones contables y fiscales, para justificar la verdad final.
 
@@ -309,7 +309,7 @@ Criterios de aceptacion:
 
 ### P1 - Reportar excepciones
 
-Como Administracion, quiero reportar provisiones tardias, sin factura y no deducibles, para medir cumplimiento del proceso.
+Como usuario financiero autorizado, quiero reportar provisiones tardias, sin factura y no deducibles, para medir cumplimiento del proceso.
 
 Criterios de aceptacion:
 
@@ -332,7 +332,7 @@ Criterios de aceptacion:
 
 ### P1 - Vista detallada por provision
 
-Como Administracion, quiero consultar cada provision con sus facturas, consumos y regularizaciones, para revisar trazabilidad.
+Como usuario financiero autorizado, quiero consultar cada provision con sus facturas, consumos y regularizaciones, para revisar trazabilidad.
 
 Criterios de aceptacion:
 
@@ -343,7 +343,7 @@ Criterios de aceptacion:
 
 ### P2 - Vista contable analitica
 
-Como Administracion, quiero analizar gasto provisionado, consumido, pendiente, no deducible y regularizado, para seguimiento contable.
+Como usuario financiero autorizado, quiero analizar gasto provisionado, consumido, pendiente, no deducible y regularizado, para seguimiento contable.
 
 Criterios de aceptacion:
 
@@ -364,7 +364,7 @@ Criterios de aceptacion:
 
 ### P1 - Generar alertas de cierre
 
-Como Administracion, quiero generar alertas por proveedor, grupo comprador y periodo, para limpiar pendientes antes del cierre.
+Como usuario financiero autorizado, quiero generar alertas por proveedor, grupo comprador y periodo, para limpiar pendientes antes del cierre.
 
 Criterios de aceptacion:
 
@@ -378,7 +378,7 @@ Criterios de aceptacion:
 
 ### P1 - Preparar asiento conceptual de provision
 
-Como Administracion, quiero preparar el asiento conceptual de provision, para integrarlo segun reglas ERP.
+Como usuario financiero autorizado, quiero preparar el asiento conceptual de provision, para integrarlo segun reglas ERP.
 
 Criterios de aceptacion:
 
@@ -388,7 +388,7 @@ Criterios de aceptacion:
 
 ### P1 - Preparar asiento conceptual de factura
 
-Como Administracion, quiero preparar asiento de factura consumiendo provision, para evitar doble impacto en resultados.
+Como usuario financiero autorizado, quiero preparar asiento de factura consumiendo provision, para evitar doble impacto en resultados.
 
 Criterios de aceptacion:
 
@@ -398,7 +398,7 @@ Criterios de aceptacion:
 
 ### P2 - Versionar reglas contables y fiscales
 
-Como Administracion, quiero versionar reglas, para explicar por que se aplico un criterio en una fecha concreta.
+Como usuario financiero autorizado, quiero versionar reglas, para explicar por que se aplico un criterio en una fecha concreta.
 
 Criterios de aceptacion:
 

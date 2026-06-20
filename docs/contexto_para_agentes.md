@@ -21,11 +21,11 @@ El sistema separa:
 - usuario operativo.
 - proveedor operativo.
 - proveedor fiscal.
-- Administracion.
+- usuario financiero autorizado.
 - ERP.
 - IA/OCR como herramienta de sugerencia.
 
-La IA no es fuente de verdad contable. Administracion valida.
+La IA no es fuente de verdad contable. El usuario financiero autorizado valida.
 
 ## Estado actual
 
@@ -44,7 +44,7 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002, 0003, 0004, 0005 y 0006.
+- decisiones 0001, 0002, 0003, 0004, 0005, 0006 y 0007.
 - vision estrategica de producto.
 - modelo de dominio MVP.
 - definition of done.
@@ -159,6 +159,23 @@ Documento:
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
 - `docs/arquitectura_routing_multisociedad.md`
 
+### Decision 0007 - Modelo de usuarios, roles y autorizacion
+
+ProvCore separa usuario, rol, permiso y alcance.
+
+Reglas:
+
+- `usuario financiero autorizado` sustituye a `Administracion` cuando el texto hable de acciones de validacion dentro del sistema.
+- `Administracion` solo debe mantenerse cuando represente area funcional o contexto de discovery.
+- todo permiso se evalua por tenant y alcance.
+- toda operacion fiscal o contable requiere legal entity.
+- servicios de integracion no pueden aprobar decisiones humanas.
+
+Documentos:
+
+- `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
+- `docs/modelo_usuarios_roles_autorizacion.md`
+
 ## Modulos iniciales
 
 ### provisioning_engine
@@ -234,6 +251,7 @@ Issues cerradas:
 - #11 Definir persistencia y migraciones.
 - #12 Definir vision estrategica SaaS y modelo de dominio MVP.
 - #13 Definir routing funcional multi-sociedad.
+- #14 Definir modelo de usuarios, roles y autorizacion.
 
 Issues abiertas relevantes:
 
@@ -274,7 +292,9 @@ Para entender arquitectura:
 - `docs/decisiones/0004-persistencia-migraciones.md`
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
+- `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/arquitectura_routing_multisociedad.md`
+- `docs/modelo_usuarios_roles_autorizacion.md`
 
 Para entender dominio:
 
@@ -310,6 +330,8 @@ Para planificar trabajo:
 - Registrar evento o auditoria para decisiones, bloqueos, alertas y excepciones.
 - Separar routing funcional y balanceo tecnico.
 - No poner reglas de infraestructura en domain.
+- Separar usuario, rol, permiso y alcance.
+- No usar usuario generico como autoridad contable.
 - No poner reglas de provision dentro de invoices.
 - No poner reglas de provision dentro de internal_orders.
 - No usar SQL Server desde capas de dominio o application.

@@ -71,7 +71,7 @@ Despues se añadiran:
 - Registrar proveedor operativo informado por usuario.
 - Simular o registrar proveedor fiscal validado.
 - Mantener separacion entre dato operativo y dato fiscal.
-- Dejar claro que la IA sugiere y Administracion valida.
+- Dejar claro que la IA sugiere y el usuario financiero autorizado valida.
 
 ### Analitica minima
 
@@ -99,7 +99,7 @@ Despues se añadiran:
 - El MVP demuestra el valor diferencial de ProvCore sin intentar construir un ERP.
 - El flujo principal queda protegido como primer incremento.
 - La provision tardia muestra control de excepciones, no solo happy path.
-- El mapeo operativo-fiscal refuerza la separacion entre usuario de campo y Administracion.
+- El mapeo operativo-fiscal refuerza la separacion entre usuario operativo y usuario financiero autorizado.
 - La analitica minima permite explicar impacto y seguimiento.
 
 ### Costes

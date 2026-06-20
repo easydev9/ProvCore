@@ -62,6 +62,7 @@ Un cambio de dominio esta terminado si cumple:
 - Las excepciones relevantes estan contempladas.
 - Auditoria queda considerada si hay decision, cambio de estado o excepcion.
 - Tenant y legal entity quedan considerados si el cambio toca datos operativos, fiscales o analiticos.
+- Usuario, rol, permiso y alcance quedan considerados si el cambio ejecuta una accion protegida.
 - El dominio no depende de FastAPI, SQL Server, ORM ni frameworks.
 
 ## Para cambios de base de datos
@@ -86,6 +87,7 @@ Un cambio de API estara terminado si cumple:
 - Los schemas de entrada y salida estan definidos.
 - Los errores esperados estan definidos.
 - Los limites de acceso por tenant, legal entity y rol estan considerados cuando aplique.
+- Los permisos requeridos y el alcance de la operacion estan definidos cuando aplique.
 - La ruta no contiene logica de negocio.
 - La ruta llama a application, no a infrastructure directamente.
 

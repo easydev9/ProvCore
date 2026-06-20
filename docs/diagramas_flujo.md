@@ -21,9 +21,9 @@ flowchart LR
     MP --> ANA[Analitica y reporting]
     FT --> AUD
     TC --> AUD
-    ADM[Administracion] --> MAP
-    ADM --> FT
-    ADM --> REG
+    UFA[Usuario financiero autorizado] --> MAP
+    UFA --> FT
+    UFA --> REG
     RESP[Responsable] --> PI
     RESP --> TC
     RESP --> FT
@@ -73,7 +73,7 @@ flowchart TD
     A[Responsable compromete gasto] --> B[Crea pedido interno]
     B --> C[Se genera ID_PROVISION]
     C --> D{Proveedor fiscal validado?}
-    D -- No --> E[Administracion valida mapeo y datos contables]
+    D -- No --> E[Usuario financiero autorizado valida mapeo y datos contables]
     D -- Si --> F[Provision pendiente de integracion]
     E --> F
     F --> G[Provision integrada y abierta]
@@ -82,7 +82,7 @@ flowchart TD
     I --> J[Sistema busca provisiones compatibles]
     J --> K[Sugiere consumo]
     K --> L[Responsable valida servicio]
-    L --> M[Administracion revisa contabilidad e impuestos]
+    L --> M[Usuario financiero autorizado revisa contabilidad e impuestos]
     M --> N[Aprueba consumo]
     N --> O{Diferencias?}
     O -- Si --> P[Genera regularizacion]
@@ -102,7 +102,7 @@ flowchart TD
     D -- Si --> E[Continua flujo de consumo]
     D -- No --> F[Marca factura como pendiente de provision]
     F --> G[Responsable justifica excepcion]
-    G --> H[Administracion revisa motivo]
+    G --> H[Usuario financiero autorizado revisa motivo]
     H --> I[Crea provision tardia]
     I --> J[Consume provision tardia inmediatamente]
     J --> K[Registra auditoria completa]
@@ -119,7 +119,7 @@ flowchart TD
     D --> E{Confianza suficiente?}
     E -- No --> F[Revision manual obligatoria]
     E -- Si --> G[Muestra candidato y explicacion]
-    F --> H[Administracion decide]
+    F --> H[Usuario financiero autorizado decide]
     G --> H
     H --> I{Proveedor correcto?}
     I -- Si --> J[Valida mapeo]
@@ -138,7 +138,7 @@ flowchart TD
     D -- Si --> E[Asocia proveedor fiscal validado]
     D -- No --> F[Bloquea factura]
     F --> G[Crea solicitud de alta proveedor]
-    G --> H[Administracion valida datos]
+    G --> H[Usuario financiero autorizado valida datos]
     H --> I[Envia o simula alta ERP]
     I --> J{ERP confirma?}
     J -- Si --> K[Desbloquea factura]
@@ -191,7 +191,7 @@ flowchart TD
     B -- Si --> C[Asociar factura]
     B -- No --> D[Responsable marca sin factura]
     D --> E[Motivo obligatorio]
-    E --> F[Administracion revisa deducibilidad]
+    E --> F[Usuario financiero autorizado revisa deducibilidad]
     F --> G{Regularizacion necesaria?}
     G -- Si --> H[Crear regularizacion]
     G -- No --> I[Cerrar como sin factura]
@@ -218,7 +218,7 @@ flowchart TD
     I --> J[Usuario reconoce o resuelve]
     J --> K{Resuelta a tiempo?}
     K -- Si --> L[Cierra alerta]
-    K -- No --> M[Escala a Administracion]
+    K -- No --> M[Escala a usuario financiero autorizado]
 ```
 
 ## Ciclo de estados de provision
@@ -256,7 +256,7 @@ stateDiagram-v2
 flowchart LR
     R[Responsable] -->|Informa compromiso y valida servicio| PI[Pedido interno / factura]
     IA[IA/OCR] -->|Sugiere proveedor, datos y matching| S[Sugerencias]
-    S --> A[Administracion]
+    S --> A[Usuario financiero autorizado]
     A -->|Valida verdad contable| ERP[ERP y datos maestros]
     A -->|Aprueba consumos y regularizaciones| MP[Motor de provisiones]
     MP -->|Trazabilidad| AU[Auditoria]

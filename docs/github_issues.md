@@ -36,6 +36,7 @@ El backlog detallado vive en [Backlog de issues inicial](issues_backlog.md). Est
 - `module:alerts`.
 - `module:closing`.
 - `module:infrastructure`.
+- `module:security`.
 
 ### Estado funcional
 
@@ -62,6 +63,7 @@ Issues candidatas:
 - Definir vision estrategica SaaS y modelo de dominio MVP.
 - Validar tenant, legal entity y movimiento provisionable como base.
 - Definir routing funcional multi-sociedad.
+- Definir modelo de usuarios, roles y autorizacion.
 
 ### M1 - Flujo principal
 
@@ -87,7 +89,7 @@ Cubrir factura sin provision previa y regularizaciones basicas.
 Issues candidatas:
 
 - Crear provision tardia.
-- Auditar decisiones de Administracion.
+- Auditar decisiones financieras autorizadas.
 - Reportar excepciones.
 - Regularizar diferencias.
 
@@ -95,7 +97,7 @@ Issues candidatas:
 
 Objetivo:
 
-Separar proveedor operativo y proveedor fiscal con validacion de Administracion.
+Separar proveedor operativo y proveedor fiscal con validacion de usuario financiero autorizado.
 
 Issues candidatas:
 
@@ -287,7 +289,19 @@ Objetivo:
 
 Separar routing funcional, pool autorizado y balanceo tecnico para escenarios con multiples sociedades e infraestructuras.
 
-### 14. Modelar alta de proveedor fiscal para ERP simulado
+### 14. Definir modelo de usuarios, roles y autorizacion
+
+Labels:
+
+```text
+functional-analysis, documentation, P0, mvp, module:security, module:tenants, ready
+```
+
+Objetivo:
+
+Definir usuarios, roles, permisos, alcance y criterio de reemplazo de Administracion por usuario financiero autorizado.
+
+### 15. Modelar alta de proveedor fiscal para ERP simulado
 
 Labels:
 
@@ -299,7 +313,7 @@ Objetivo:
 
 Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
 
-### 15. Generar alertas de cierre por grupo responsable
+### 16. Generar alertas de cierre por grupo responsable
 
 Labels:
 

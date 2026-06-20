@@ -23,7 +23,7 @@ Este documento mantiene la vision por epicas. Para una lista mas accionable de i
 
 - Guardar proveedor informado por usuario.
 - Sugerir proveedor fiscal mediante IA/historico.
-- Validar mapeo por Administracion.
+- Validar mapeo por usuario financiero autorizado.
 - Mantener tabla de alias operativos.
 
 ### Modulo de facturas de proveedor

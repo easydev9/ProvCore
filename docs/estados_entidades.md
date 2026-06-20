@@ -14,7 +14,7 @@ Estados:
 Borrador
 Enviado
 PendienteMapeoProveedor
-PendienteValidacionAdministracion
+PendienteValidacionFinanciera
 ProvisionGenerada
 ProvisionIntegrada
 EnConsumo
@@ -29,10 +29,10 @@ Transiciones principales:
 ```text
 Borrador -> Enviado
 Enviado -> PendienteMapeoProveedor
-Enviado -> PendienteValidacionAdministracion
+Enviado -> PendienteValidacionFinanciera
 Enviado -> ProvisionGenerada
-PendienteMapeoProveedor -> PendienteValidacionAdministracion
-PendienteValidacionAdministracion -> ProvisionGenerada
+PendienteMapeoProveedor -> PendienteValidacionFinanciera
+PendienteValidacionFinanciera -> ProvisionGenerada
 ProvisionGenerada -> ProvisionIntegrada
 ProvisionIntegrada -> EnConsumo
 EnConsumo -> ConsumidoParcialmente
@@ -48,7 +48,7 @@ Reglas:
 - `Borrador` no genera impacto ni asiento.
 - `Enviado` debe generar o reservar `id_provision`.
 - `PendienteMapeoProveedor` bloquea integracion contable automatica.
-- `PendienteValidacionAdministracion` requiere decision humana.
+- `PendienteValidacionFinanciera` requiere decision de usuario financiero autorizado.
 - `Cancelado` exige motivo si ya existia provision.
 
 ## Provision
@@ -202,8 +202,8 @@ Estados:
 PendienteMapeo
 SugeridoPorIA
 MapeadoPorHistorico
-PendienteValidacionAdministracion
-ValidadoAdministracion
+PendienteValidacionFinanciera
+ValidadoFinanciero
 ConfirmadoPorFactura
 Rechazado
 Corregido
@@ -215,20 +215,20 @@ Transiciones principales:
 ```text
 PendienteMapeo -> SugeridoPorIA
 PendienteMapeo -> MapeadoPorHistorico
-SugeridoPorIA -> PendienteValidacionAdministracion
-MapeadoPorHistorico -> PendienteValidacionAdministracion
-PendienteValidacionAdministracion -> ValidadoAdministracion
-ValidadoAdministracion -> ConfirmadoPorFactura
+SugeridoPorIA -> PendienteValidacionFinanciera
+MapeadoPorHistorico -> PendienteValidacionFinanciera
+PendienteValidacionFinanciera -> ValidadoFinanciero
+ValidadoFinanciero -> ConfirmadoPorFactura
 SugeridoPorIA -> Rechazado
 MapeadoPorHistorico -> Rechazado
-ValidadoAdministracion -> Corregido
-Corregido -> ValidadoAdministracion
-ValidadoAdministracion -> Inactivo
+ValidadoFinanciero -> Corregido
+Corregido -> ValidadoFinanciero
+ValidadoFinanciero -> Inactivo
 ```
 
 Reglas:
 
-- Solo `ValidadoAdministracion` y `ConfirmadoPorFactura` pueden actuar como verdad operativa para nuevos casos.
+- Solo `ValidadoFinanciero` y `ConfirmadoPorFactura` pueden actuar como verdad operativa para nuevos casos.
 - `SugeridoPorIA` nunca debe bastar para integracion contable automatica.
 - `Corregido` debe preservar el valor anterior.
 
@@ -238,7 +238,7 @@ Estados:
 
 ```text
 Detectada
-PendienteValidacionAdministracion
+PendienteValidacionFinanciera
 ListaParaEnvioERP
 EnviadaERP
 ConfirmadaERP
@@ -249,14 +249,14 @@ Cancelada
 Transiciones principales:
 
 ```text
-Detectada -> PendienteValidacionAdministracion
-PendienteValidacionAdministracion -> ListaParaEnvioERP
+Detectada -> PendienteValidacionFinanciera
+PendienteValidacionFinanciera -> ListaParaEnvioERP
 ListaParaEnvioERP -> EnviadaERP
 EnviadaERP -> ConfirmadaERP
 EnviadaERP -> FallidaERP
 FallidaERP -> ListaParaEnvioERP
 Detectada -> Cancelada
-PendienteValidacionAdministracion -> Cancelada
+PendienteValidacionFinanciera -> Cancelada
 ```
 
 Reglas:
@@ -417,7 +417,7 @@ Estados bloqueantes:
 
 - `PendienteMapeoProveedor`.
 - `PendienteValidacion`.
-- `PendienteValidacionAdministracion`.
+- `PendienteValidacionFinanciera`.
 - `PendienteAltaProveedor`.
 - `PendienteProvision`.
 - `PendienteValidacionFuncional`.

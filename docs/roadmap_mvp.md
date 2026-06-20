@@ -27,7 +27,8 @@ Incluye:
 - Validar casos de uso principales.
 - Ajustar diagramas de arquitectura y flujo.
 - Priorizar backlog P0.
-- Definir roles minimos: Responsable y Administracion.
+- Definir roles minimos: usuario operativo y usuario financiero autorizado.
+- Definir roles, permisos y alcance minimo del MVP.
 - Validar tenant, legal entity y movimiento provisionable como conceptos base.
 
 Entregables:
@@ -85,7 +86,7 @@ Valor demostrado:
 
 - Trazabilidad de `id_provision`.
 - Separacion entre dato operativo y dato fiscal.
-- Validacion por Administracion.
+- Validacion por usuario financiero autorizado.
 - Consumo total o parcial.
 
 ## Fase 2 - Excepcion de provision tardia
@@ -129,13 +130,13 @@ Incluye:
 - Crear alias operativo.
 - Sugerir proveedor fiscal.
 - Mostrar confianza y origen de sugerencia.
-- Validar o rechazar mapeo por Administracion.
+- Validar o rechazar mapeo por usuario financiero autorizado.
 - Simular alta de proveedor fiscal cuando no exista para la legal entity.
 - Reutilizar mapeo validado en futuros pedidos y facturas.
 
 Resultado esperado:
 
-El responsable trabaja con nombres operativos y Administracion gobierna la verdad fiscal.
+El responsable trabaja con nombres operativos y el usuario financiero autorizado gobierna la verdad fiscal dentro de su alcance.
 
 Valor demostrado:
 
@@ -161,7 +162,7 @@ Incluye:
 
 Resultado esperado:
 
-Administracion puede identificar:
+El usuario financiero autorizado puede identificar:
 
 - gasto provisionado.
 - gasto consumido.
@@ -217,6 +218,7 @@ Decision documentada:
 - [Decision 0004 - Persistencia y migraciones](decisiones/0004-persistencia-migraciones.md)
 - [Decision 0005 - Modelo SaaS tenant-aware](decisiones/0005-modelo-saas-tenant-aware.md)
 - [Decision 0006 - Routing funcional multi-sociedad](decisiones/0006-routing-funcional-multisociedad.md)
+- [Decision 0007 - Modelo de usuarios, roles y autorizacion](decisiones/0007-modelo-usuarios-roles-autorizacion.md)
 
 ## Fuera de alcance inicial
 
@@ -225,7 +227,7 @@ Decision documentada:
 - Reglas fiscales multipais completas.
 - Conciliacion bancaria real.
 - Contabilizacion automatica sin revision.
-- Aprendizaje automatico que valide proveedores sin Administracion.
+- Aprendizaje automatico que valide proveedores sin usuario financiero autorizado.
 
 ## Formato del prototipo
 
@@ -256,6 +258,7 @@ La vision final incorpora:
 - SaaS tenant-aware.
 - multiples legal entities por tenant.
 - routing funcional multi-sociedad.
+- usuarios, roles, permisos y alcance.
 - integracion ERP por puertos y adaptadores.
 - movimientos provisionables como entrada comun.
 - eventos, auditoria y metricas.
@@ -268,6 +271,7 @@ Documentos:
 - [Vision estrategica de producto](vision_estrategica_producto.md)
 - [Modelo de dominio MVP](modelo_dominio_mvp.md)
 - [Arquitectura de routing multi-sociedad](arquitectura_routing_multisociedad.md)
+- [Modelo de usuarios, roles y autorizacion](modelo_usuarios_roles_autorizacion.md)
 
 ## Siguiente decision
 
@@ -276,4 +280,5 @@ Definir las decisiones tecnicas derivadas:
 - convencion de API.
 - formato de errores.
 - propagacion de contexto tenant, legal entity y correlation id.
+- propagacion de usuario, rol, permiso y alcance.
 - estrategia de testing inicial.

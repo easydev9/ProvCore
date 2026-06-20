@@ -4,7 +4,7 @@
 
 Definir un modelo funcional inicial para el motor comun de provisiones, separando la realidad operativa, la verdad fiscal/contable y la trazabilidad de decisiones.
 
-El modelo no presupone tecnologia ni plan contable concreto. Describe entidades, relaciones y campos funcionales necesarios para construir un prototipo y conversar con Administracion, sistemas y negocio.
+El modelo no presupone tecnologia ni plan contable concreto. Describe entidades, relaciones y campos funcionales necesarios para construir un prototipo y conversar con area financiera, sistemas y negocio.
 
 ## Principios de modelado
 
@@ -62,6 +62,103 @@ Reglas:
 - Una provision, factura o proveedor fiscal debe estar asociada a una legal entity.
 - Una legal entity puede tener integracion ERP propia.
 - Las reglas fiscales futuras se aplicaran como minimo por legal entity.
+
+### usuario
+
+Persona o servicio autenticado en ProvCore.
+
+Campos recomendados:
+
+- id_usuario.
+- id_tenant.
+- tipo_usuario.
+- nombre_visible.
+- email.
+- estado_usuario.
+- origen_identidad.
+- creado_por.
+- fecha_creacion.
+
+Reglas:
+
+- Todo usuario pertenece a un tenant.
+- Un usuario puede tener varios roles.
+- Un servicio de integracion tambien debe modelarse como actor auditable.
+
+### rol
+
+Perfil funcional asignable a usuarios o servicios.
+
+Campos recomendados:
+
+- id_rol.
+- id_tenant.
+- codigo_rol.
+- nombre_rol.
+- descripcion.
+- estado_rol.
+
+Valores iniciales:
+
+```text
+UsuarioOperativo
+UsuarioFinancieroAutorizado
+SupervisorFinanciero
+AdministradorTenant
+AdministradorTecnico
+ServicioIntegracion
+Auditor
+```
+
+### permiso
+
+Capacidad concreta de ejecutar una accion.
+
+Campos recomendados:
+
+- id_permiso.
+- codigo_permiso.
+- descripcion.
+- categoria_permiso.
+
+### usuario_rol
+
+Asignacion de rol a usuario con alcance.
+
+Campos recomendados:
+
+- id_usuario_rol.
+- id_usuario.
+- id_rol.
+- id_tenant.
+- id_legal_entity.
+- id_buyer_group.
+- area.
+- pais.
+- fecha_desde.
+- fecha_hasta.
+- estado_asignacion.
+
+Reglas:
+
+- Un rol sin alcance valido no autoriza operaciones sensibles.
+- Las operaciones fiscales y contables requieren legal entity.
+
+### rol_permiso
+
+Relacion entre rol y permiso.
+
+Campos recomendados:
+
+- id_rol_permiso.
+- id_rol.
+- id_permiso.
+- estado_permiso.
+
+Reglas:
+
+- El permiso define la accion.
+- El alcance viene de la asignacion del usuario.
 
 ### pedido_interno
 
@@ -267,7 +364,7 @@ Campos recomendados:
 
 Reglas:
 
-- Es fuente de verdad solo si procede de ERP o validacion de Administracion.
+- Es fuente de verdad solo si procede de ERP o validacion de usuario financiero autorizado.
 - Puede estar asociado a multiples proveedores operativos o alias.
 - Puede existir para una legal entity y no para otra.
 
@@ -299,7 +396,7 @@ Campos recomendados:
 Reglas:
 
 - Si el proveedor fiscal no existe para la legal entity, la factura queda bloqueada.
-- La factura solo continua cuando el ERP confirma o Administracion valida una alternativa.
+- La factura solo continua cuando el ERP confirma o un usuario financiero autorizado valida una alternativa.
 - En MVP se puede simular la respuesta ERP.
 
 ### mapeo_proveedor
@@ -329,7 +426,7 @@ Campos recomendados:
 Reglas:
 
 - La IA puede crear mapeos sugeridos.
-- Solo Administracion puede convertir un mapeo en validado.
+- Solo un usuario financiero autorizado puede convertir un mapeo en validado.
 - Todo rechazo o correccion alimenta historico auditable.
 
 ### buyer_group
@@ -513,6 +610,8 @@ Campos recomendados:
 - motivo.
 - origen_accion.
 - usuario.
+- rol_usado.
+- permiso_usado.
 - fecha_hora.
 - correlacion_proceso.
 
@@ -633,7 +732,11 @@ Campos recomendados:
 
 ```text
 tenant 1 -> N legal_entity
+tenant 1 -> N usuario
+tenant 1 -> N rol
 tenant 1 -> N buyer_group
+usuario N -> N rol mediante usuario_rol
+rol N -> N permiso mediante rol_permiso
 legal_entity 1 -> N pedido_interno
 legal_entity 1 -> N provision
 legal_entity 1 -> N factura
@@ -663,6 +766,9 @@ Para entidades principales:
 
 - id_tenant.
 - id_legal_entity cuando aplique.
+- usuario.
+- rol_usado cuando aplique.
+- permiso_usado cuando aplique.
 - sociedad.
 - responsable.
 - area.
@@ -679,6 +785,8 @@ Para entidades principales:
 
 - tenant + estado.
 - tenant + legal entity + periodo.
+- usuario + rol + tenant.
+- rol + permiso.
 - `id_provision`.
 - proveedor fiscal + sociedad + periodo.
 - proveedor operativo + responsable + area.
@@ -696,6 +804,6 @@ Para entidades principales:
 - Nivel exacto de tolerancia para diferencias antes de exigir regularizacion.
 - Si la periodificacion se decide en provision, factura o ambos.
 - Como versionar reglas contables y fiscales sin acoplarlas al ERP.
-- Como representar roles y permisos en el modelo final.
+- Nivel exacto de granularidad de permisos en el MVP.
 - Como aislar tenants fisicamente en una version productiva.
 - Que datos minimos exige cada ERP para alta de proveedor fiscal.

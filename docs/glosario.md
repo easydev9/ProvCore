@@ -12,6 +12,8 @@ Equipo responsable de validar la verdad fiscal y contable.
 
 Valida proveedor fiscal, impuestos, cuentas, consumos, regularizaciones y contabilizacion.
 
+En acciones de sistema debe modelarse como `usuario financiero autorizado`.
+
 ## Analitica minima
 
 Conjunto inicial de vistas para entender:
@@ -26,6 +28,12 @@ Conjunto inicial de vistas para entender:
 
 Aviso operativo generado por el sistema para que un usuario o grupo responsable actue sobre un pendiente, excepcion o fecha clave.
 
+## Alcance
+
+Limite funcional dentro del que un permiso es valido.
+
+Puede definirse por tenant, legal entity, pais, area, buyer group, proveedor o periodo.
+
 ## Alembic
 
 Herramienta de migraciones usada para versionar cambios de esquema de base de datos.
@@ -37,6 +45,10 @@ En ProvCore, Alembic sera la fuente de verdad tecnica para crear o modificar est
 Registro trazable de acciones, decisiones, cambios de estado y motivos.
 
 Debe permitir reconstruir quien hizo que, cuando y por que.
+
+## Autorizacion
+
+Proceso por el que el sistema decide si un usuario o servicio puede ejecutar una accion concreta dentro de un alcance.
 
 ## Balanceo tecnico
 
@@ -123,6 +135,16 @@ Permite:
 Herramienta de extraccion o sugerencia.
 
 Puede sugerir datos, proveedor fiscal o matching factura-provision. No valida la verdad contable.
+
+## Permiso
+
+Capacidad concreta de ejecutar una accion del sistema.
+
+Ejemplos:
+
+- `approve_provision_consumption`.
+- `validate_fiscal_supplier`.
+- `manage_routing_policies`.
 
 ## Legal entity
 
@@ -238,7 +260,7 @@ Proveedor validado fiscalmente.
 
 Puede incluir razon social, NIF/VAT y codigo ERP.
 
-La fuente de verdad es Administracion y los datos maestros.
+La fuente de verdad es el usuario financiero autorizado y los datos maestros.
 
 ## Proveedor operativo
 
@@ -263,6 +285,18 @@ Permite saber que usuarios deben recibir alertas por pendientes, excepciones o c
 Cliente, grupo empresarial o unidad aislada dentro de un SaaS.
 
 Los datos de un tenant no deben mezclarse con los de otro tenant.
+
+## Usuario financiero autorizado
+
+Usuario con permisos para validar decisiones fiscales o contables dentro de su alcance.
+
+Puede validar proveedor fiscal, aprobar consumos, crear provision tardia, aprobar regularizaciones y desbloquear facturas cuando tenga permisos especificos.
+
+## Usuario operativo
+
+Usuario que informa compromisos, pedidos, proveedores conocidos, adjuntos o validaciones funcionales.
+
+No debe validar verdad contable ni datos fiscales.
 
 ## Provision
 
@@ -318,6 +352,12 @@ La aplicacion usa el contrato. Infrastructure implementa el acceso real a SQL Se
 Usuario operativo que informa el compromiso de gasto y valida que la factura corresponde al servicio.
 
 No debe conocer datos fiscales ni contables.
+
+## Rol
+
+Conjunto funcional de responsabilidades asignado a un usuario o servicio.
+
+Un rol no autoriza por si solo si no existe permiso y alcance valido.
 
 ## SQL Server Management Studio
 

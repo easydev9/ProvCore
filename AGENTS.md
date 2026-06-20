@@ -37,7 +37,9 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0004-persistencia-migraciones.md`
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
+- `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/arquitectura_routing_multisociedad.md`
+- `docs/modelo_usuarios_roles_autorizacion.md`
 
 Para cambios de dominio:
 
@@ -72,6 +74,7 @@ Para trabajo planificado:
 - El motor identifica movimientos provisionables y su origen.
 - La factura se bloquea si el proveedor fiscal no existe para la legal entity.
 - Routing funcional antes de balanceo tecnico aprobado.
+- Modelo de usuarios, roles, permisos y alcance aprobado.
 
 ## Reglas de arquitectura
 
@@ -98,6 +101,8 @@ Reglas obligatorias:
 - Los bloqueos, alertas y excepciones deben generar auditoria o evento de proceso.
 - El balanceo tecnico solo se decide dentro del pool autorizado por tenant, legal entity y permisos.
 - Las reglas de routing no viven en domain.
+- No usar `Administracion` como rol tecnico nuevo.
+- Usar `usuario financiero autorizado` para decisiones contables dentro del sistema.
 
 ## Modulos iniciales
 

@@ -25,11 +25,11 @@ Compromiso de gasto -> Pedido interno -> Provision -> Factura -> Consumo de prov
 
 Cuando llegue una factura sin provision previa, el sistema permitira crear una provision tardia, consumirla inmediatamente y dejar trazabilidad obligatoria del motivo. Este caso debe tratarse como excepcion.
 
-### 2.2 La IA sugiere, Administracion gobierna
+### 2.2 La IA sugiere, el usuario financiero autorizado gobierna
 
 La IA sera motor de sugerencia, no fuente de verdad contable.
 
-La fuente de verdad sobre proveedor fiscal, NIF/VAT, codigo de proveedor ERP, dimension financiera, cuenta contable y tratamiento fiscal recaera sobre Administracion y los datos maestros del ERP.
+La fuente de verdad sobre proveedor fiscal, NIF/VAT, codigo de proveedor ERP, dimension financiera, cuenta contable y tratamiento fiscal recaera sobre usuarios financieros autorizados y los datos maestros del ERP.
 
 ### 2.3 El usuario de campo no debe conocer datos fiscales
 
@@ -158,7 +158,7 @@ Al subir una factura, el sistema debera:
 - sugerir consumo de provision.
 - informar al validador si existe o no provision previa.
 
-Despues de validada la factura, Administracion revisara:
+Despues de validada la factura, el usuario financiero autorizado revisara:
 
 - datos contables.
 - proveedor fiscal.
@@ -242,7 +242,7 @@ Debe mostrar:
 - estado contable.
 - comentarios y auditoria relevante.
 
-La vista contable analitica debe estar orientada a Administracion y responsables con permisos ampliados.
+La vista contable analitica debe estar orientada a usuarios financieros autorizados y responsables con permisos ampliados.
 
 Debe permitir consultar:
 
@@ -259,7 +259,7 @@ Debe permitir consultar:
 - regularizaciones pendientes.
 - regularizaciones integradas.
 
-La analitica debe respetar permisos por rol. Un responsable solo debe consultar proveedores, pedidos, provisiones y facturas asociadas a su ambito. Administracion podra consultar toda la informacion con filtros globales.
+La analitica debe respetar permisos por rol. Un responsable solo debe consultar proveedores, pedidos, provisiones y facturas asociadas a su ambito. El usuario financiero autorizado podra consultar informacion dentro de su alcance.
 
 Filtros recomendados:
 
@@ -319,7 +319,7 @@ Estados posibles:
 PendienteMapeo
 SugeridoPorIA
 MapeadoPorHistorico
-ValidadoAdministracion
+ValidadoFinanciero
 ConfirmadoPorFactura
 Rechazado
 Corregido
@@ -340,7 +340,7 @@ Fuentes de confianza:
 Regla de gobierno:
 
 ```text
-La IA puede sugerir el proveedor fiscal, pero Administracion debe validar el mapeo antes de convertirlo en verdad contable.
+La IA puede sugerir el proveedor fiscal, pero el usuario financiero autorizado debe validar el mapeo antes de convertirlo en verdad contable.
 ```
 
 ## 5. Flujo happy path - proveedor normal
@@ -351,15 +351,15 @@ La IA puede sugerir el proveedor fiscal, pero Administracion debe validar el map
 3. Informa proveedor conocido, importe, moneda, sociedad, tipo de gasto y periodo.
 4. Sistema genera ID_PROVISION.
 5. IA sugiere proveedor fiscal si puede.
-6. Administracion valida proveedor fiscal/cuenta/dimension si falta.
+6. El usuario financiero autorizado valida proveedor fiscal/cuenta/dimension si falta.
 7. Se integra asiento de provision.
 8. Llega factura a buzon.
-9. Administracion sube factura al modulo de facturas.
+9. El usuario financiero autorizado sube factura al modulo de facturas.
 10. OCR/IA extrae datos.
 11. El sistema detecta proveedor fiscal y busca provisiones abiertas.
 12. Sistema sugiere consumir ID_PROVISION.
 13. Responsable valida que la factura corresponde al servicio.
-14. Administracion revisa contabilidad, impuestos y consumo.
+14. El usuario financiero autorizado revisa contabilidad, impuestos y consumo.
 15. Factura guarda ID_PROVISION.
 16. Se registra factura.
 17. Integracion ERP procesa las facturas registradas.
@@ -376,7 +376,7 @@ La IA puede sugerir el proveedor fiscal, pero Administracion debe validar el map
 4. No encuentra provision compatible.
 5. Se marca como SinProvisionPrevia.
 6. Responsable debe justificar por que no existia pedido interno.
-7. Administracion crea provision tardia.
+7. El usuario financiero autorizado crea provision tardia.
 8. La provision tardia se consume inmediatamente con la factura.
 9. Queda trazabilidad completa.
 10. La factura puede pasar a registrada.
@@ -403,7 +403,7 @@ Cuando el sistema no pueda mapear con seguridad el proveedor operativo contra pr
 - mostrar candidatos.
 - explicar origen de la sugerencia.
 - bloquear integracion contable automatica.
-- enviar a revision de Administracion.
+- enviar a revision de usuario financiero autorizado.
 - guardar decision final para mejorar futuros casos.
 
 ### 7.2 Una factura consume varias provisiones
@@ -434,7 +434,7 @@ Campos:
 
 Cuando la factura cubra varios periodos, el modulo de facturas debera sugerir periodificacion.
 
-Administracion podra:
+El usuario financiero autorizado podra:
 
 - aceptar sugerencia.
 - modificarla.
@@ -499,7 +499,7 @@ El sistema debe permitir:
 Borrador
 Enviado
 PendienteMapeoProveedor
-PendienteValidacionAdministracion
+PendienteValidacionFinanciera
 ProvisionPendienteIntegracion
 ProvisionIntegrada
 ConsumidoParcialmente
@@ -635,7 +635,7 @@ Primera fase:
 - factura contra varias provisiones.
 - provision tardia auditada.
 - mapeo proveedor operativo/fiscal con confianza.
-- validacion final por Administracion.
+- validacion final por usuario financiero autorizado.
 - reporting de no deducibles/sin factura.
 - auditoria completa.
 
@@ -661,7 +661,7 @@ Si no existe provision previa, se crea una provision tardia como excepcion audit
 ```
 
 ```text
-La IA sugiere. Administracion valida.
+La IA sugiere. El usuario financiero autorizado valida.
 ```
 
 ```text

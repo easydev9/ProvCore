@@ -19,8 +19,9 @@ La idea central es sencilla: ninguna factura debe contabilizarse definitivamente
 ## Principios
 
 - Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
-- La IA sugiere, Administracion valida.
+- La IA sugiere, el usuario financiero autorizado valida.
 - El usuario de campo no debe conocer datos fiscales ni contables.
+- Las decisiones contables las valida un usuario financiero autorizado dentro de su alcance.
 - El proveedor operativo y el proveedor fiscal son conceptos separados.
 - El `id_provision` debe viajar por todo el ciclo.
 - Toda excepcion debe quedar auditada.
@@ -57,11 +58,11 @@ Responsable operativo
 IA / OCR
   Extrae datos, sugiere proveedor fiscal y propone matching factura-provision.
 
-Administracion
+Usuario financiero autorizado
   Valida proveedor fiscal, datos contables, impuestos, consumos, regularizaciones y contabilizacion.
 ```
 
-La IA no es fuente de verdad contable. El gobierno final recae en Administracion y en los datos maestros del ERP.
+La IA no es fuente de verdad contable. El gobierno final recae en usuarios financieros autorizados y en los datos maestros del ERP.
 
 ## Casos clave
 
@@ -104,6 +105,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Vision estrategica de producto](docs/vision_estrategica_producto.md) | Vision SaaS, analitica, control de cierre, alertas e integracion ERP. |
 | [Modelo de datos inicial](docs/modelo_datos_inicial.md) | Entidades, relaciones, campos funcionales e indices sugeridos. |
 | [Modelo de dominio MVP](docs/modelo_dominio_mvp.md) | Entidades, metodos conceptuales y movimientos provisionables. |
+| [Modelo de usuarios, roles y autorizacion](docs/modelo_usuarios_roles_autorizacion.md) | Perfiles, permisos, alcance, auditoria y criterios de reemplazo de Administracion. |
 | [Estados por entidad](docs/estados_entidades.md) | Ciclos de vida de pedido, provision, factura, mapeo y regularizacion. |
 | [Casos de uso detallados](docs/casos_uso_detallados.md) | Casos principales con actores, precondiciones, flujos y excepciones. |
 | [Diagramas de flujo](docs/diagramas_flujo.md) | Diagramas Mermaid de arquitectura, flujos, estados y ERD funcional. |
@@ -114,6 +116,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Decision 0004 - Persistencia y migraciones](docs/decisiones/0004-persistencia-migraciones.md) | SQLAlchemy ORM, Alembic, pyodbc y Unit of Work. |
 | [Decision 0005 - Modelo SaaS tenant-aware](docs/decisiones/0005-modelo-saas-tenant-aware.md) | Tenants, legal entities y frontera de seguridad SaaS. |
 | [Decision 0006 - Routing funcional multi-sociedad](docs/decisiones/0006-routing-funcional-multisociedad.md) | Routing funcional antes de balanceo tecnico. |
+| [Decision 0007 - Usuarios, roles y autorizacion](docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md) | Usuarios, roles, permisos y alcance. |
 | [Definition of Done](docs/definition_of_done.md) | Criterios para considerar terminadas tareas, decisiones e implementacion. |
 | [Glosario](docs/glosario.md) | Vocabulario comun del dominio y arquitectura. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |
@@ -128,6 +131,6 @@ El foco actual es consolidar la documentacion funcional y preparar la conversion
 
 ## Valor del proyecto
 
-Este repositorio documenta un caso funcional completo de automatizacion financiera: captura temprana del compromiso de gasto, gobierno contable por Administracion, sugerencias asistidas por IA, integracion con facturas y tarjetas, excepciones auditadas, modelo de datos, estados, diagramas y roadmap MVP.
+Este repositorio documenta un caso funcional completo de automatizacion financiera: captura temprana del compromiso de gasto, gobierno contable por usuarios financieros autorizados, sugerencias asistidas por IA, integracion con facturas y tarjetas, excepciones auditadas, modelo de datos, estados, diagramas y roadmap MVP.
 
 El proyecto esta escrito sin nombres internos sensibles y orientado a explicar un proceso financiero completo, auditable y extensible.

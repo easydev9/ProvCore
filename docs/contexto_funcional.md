@@ -17,8 +17,8 @@ El objetivo es adelantar el control al momento en que el responsable contrata o 
 - Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 - El responsable notifica el compromiso de gasto de forma sencilla.
 - El usuario de campo no debe conocer datos fiscales ni contables.
-- La IA sugiere. Administracion valida.
-- La fuente de verdad contable es Administracion y el ERP.
+- La IA sugiere. El usuario financiero autorizado valida.
+- La fuente de verdad contable son los usuarios financieros autorizados y el ERP.
 - Toda excepcion debe quedar auditada.
 - El ID de provision debe viajar por todo el ciclo.
 
@@ -28,7 +28,7 @@ El objetivo es adelantar el control al momento en que el responsable contrata o 
 Responsable contrata servicio
 -> crea pedido interno
 -> el sistema genera ID_PROVISION
--> Administracion valida datos contables si falta informacion
+-> Usuario financiero autorizado valida datos contables si falta informacion
 -> se integra la provision
 -> llega factura
 -> el modulo de facturas busca provisiones compatibles
@@ -87,7 +87,7 @@ El sistema debe permitir mapear:
 Alias operativo -> proveedor fiscal ERP
 ```
 
-La IA puede sugerir candidatos con nivel de confianza usando alias, historico, similitud semantica, categoria de gasto y datos de factura. Administracion valida el mapeo antes de convertirlo en fuente de verdad.
+La IA puede sugerir candidatos con nivel de confianza usando alias, historico, similitud semantica, categoria de gasto y datos de factura. El usuario financiero autorizado valida el mapeo antes de convertirlo en fuente de verdad.
 
 ## Modulo de facturas
 
@@ -118,7 +118,7 @@ Debe cubrir:
 
 ## Analitica
 
-El sistema necesita analitica para responsables y Administracion.
+El sistema necesita analitica para responsables y usuarios financieros autorizados.
 
 Vistas principales:
 
@@ -126,7 +126,7 @@ Vistas principales:
 - vista detallada por pedido interno, provision, factura, consumo y regularizacion.
 - vista contable analitica con gasto provisionado, consumido, pendiente, no deducible, sin factura y regularizaciones.
 
-Los permisos deben limitar a cada responsable a su ambito. Administracion puede consultar informacion global.
+Los permisos deben limitar a cada responsable a su ambito. El usuario financiero autorizado puede consultar informacion dentro de su alcance.
 
 ## Casos importantes
 
@@ -161,7 +161,7 @@ El repo contiene:
 
 ## Proximos pasos sugeridos
 
-1. Validar con Administracion el modelo de datos inicial.
+1. Validar con el area financiera el modelo de datos inicial.
 2. Revisar estados definitivos por entidad y transiciones bloqueantes.
 3. Priorizar los casos de uso detallados para MVP.
 4. Convertir el backlog de issues en tareas de prototipo.

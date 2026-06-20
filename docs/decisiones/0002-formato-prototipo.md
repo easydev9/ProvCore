@@ -190,7 +190,7 @@ Incluye:
 
 - proveedor operativo.
 - proveedor fiscal.
-- mapeo validado por Administracion.
+- mapeo validado por usuario financiero autorizado.
 - vista de provisionado, consumido y pendiente.
 - vista de excepciones.
 

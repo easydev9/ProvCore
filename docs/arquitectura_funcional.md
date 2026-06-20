@@ -60,7 +60,7 @@ Responsabilidad:
 - Separar proveedor operativo y proveedor fiscal.
 - Gestionar alias informados por usuarios.
 - Sugerir candidatos por historico, datos maestros, OCR/IA y similitud.
-- Requerir validacion de Administracion antes de convertir un mapeo en verdad.
+- Requerir validacion de usuario financiero autorizado antes de convertir un mapeo en verdad.
 
 No debe hacer:
 
@@ -107,7 +107,7 @@ Responsabilidad:
 
 No debe hacer:
 
-- Aplicar reglas fiscales complejas sin validacion de Administracion.
+- Aplicar reglas fiscales complejas sin validacion de usuario financiero autorizado.
 
 ### Auditoria
 
@@ -254,7 +254,7 @@ Cualquier evento explotable analiticamente debe aportar:
 
 - Ninguna factura debe contabilizarse definitivamente sin consumir una provision previa o una provision tardia auditada.
 - La provision tardia existe como excepcion operativa, no como camino normal.
-- La IA sugiere y explica, Administracion valida.
+- La IA sugiere y explica, el usuario financiero autorizado valida.
 - El usuario de campo no debe conocer datos fiscales ni contables.
 - El proveedor operativo y el proveedor fiscal son conceptos distintos.
 - El `id_provision` debe viajar por pedido, factura, consumo, regularizacion y reporting.
@@ -303,6 +303,6 @@ Uso previsto:
 - Definir si el MVP empieza con pedido interno, facturas o tarjetas.
 - Decidir si la primera maqueta simula ERP o usa una tabla de maestros.
 - Definir tolerancias manuales para diferencias antes de regularizacion.
-- Separar permisos minimos de responsable y Administracion.
+- Separar permisos minimos de usuario operativo y usuario financiero autorizado.
 - Decidir si el reporting inicial vive como vistas funcionales o dashboard prototipo.
 - Definir convencion concreta de API y errores para propagar contexto de routing.
