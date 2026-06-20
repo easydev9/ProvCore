@@ -88,6 +88,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 
 | Documento | Contenido |
 | --- | --- |
+| [Contexto para agentes](docs/contexto_para_agentes.md) | Resumen operativo para trabajar con Codex u otros agentes. |
 | [Contexto funcional](docs/contexto_funcional.md) | Vision del problema, principios y flujos principales. |
 | [Especificacion funcional inicial](docs/especificacion_funcional_inicial_provisiones.md) | Documento funcional base del motor de provisiones. |
 | [Arquitectura funcional](docs/arquitectura_funcional.md) | Modulos, responsabilidades, contratos e integraciones conceptuales. |
