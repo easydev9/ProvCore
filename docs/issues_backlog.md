@@ -88,6 +88,21 @@ Criterios de aceptacion:
 - Define `.env.example` sin secretos.
 - Define comandos mínimos de instalación y tests.
 
+### P0 - Crear esqueleto backend mínimo
+
+Como equipo de desarrollo, quiero crear la estructura inicial del backend, para empezar a trabajar con un proyecto Python preparado y testeable sin introducir lógica de negocio todavía.
+
+Criterios de aceptacion:
+
+- Crea carpeta `backend/`.
+- Crea `pyproject.toml`.
+- Crea archivos `requirements.in` y `requirements-dev.in`.
+- Crea archivos `requirements.txt` y `requirements-dev.txt` preparados para `pip-tools`.
+- Crea `.env.example` sin secretos.
+- Crea paquete mínimo `provcore`.
+- Crea un test mínimo de importación.
+- No introduce entidades, casos de uso ni reglas de negocio.
+
 ## Epic 1 - Modelo comun de provisiones
 
 ### P0 - Definir contrato funcional de Provisionable

@@ -50,6 +50,8 @@ pip-compile requirements.in
 pip-compile requirements-dev.in
 ```
 
+Los archivos `requirements.txt` y `requirements-dev.txt` se generan con `pip-tools`.
+
 Instalar entorno:
 
 ```powershell

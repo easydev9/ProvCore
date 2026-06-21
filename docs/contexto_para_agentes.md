@@ -308,6 +308,7 @@ Issues cerradas:
 - #15 Definir contratos API MVP.
 - #16 Definir testing y primer caso backend.
 - #17 Definir configuración local backend.
+- #18 Crear esqueleto backend mínimo.
 
 Issues abiertas relevantes:
 
@@ -321,15 +322,15 @@ Issues abiertas relevantes:
 
 ## Siguiente decision pendiente
 
-La siguiente decision debe tratar creación del esqueleto backend mínimo.
+La siguiente decision debe tratar el primer diseño técnico de `CreateInternalOrder`.
 
 Temas a decidir:
 
-- carpetas iniciales reales.
-- archivos iniciales de dependencias.
-- primer paquete Python.
-- primer test mínimo.
-- criterio para no crear carpetas vacías.
+- entidad mínima de dominio.
+- value objects mínimos.
+- comando de application.
+- puertos necesarios.
+- tests unitarios iniciales.
 
 No implementar codigo productivo antes de vincularlo a una issue.
 

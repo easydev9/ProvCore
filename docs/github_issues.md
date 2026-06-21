@@ -68,6 +68,7 @@ Issues candidatas:
 - Definir contratos API MVP.
 - Definir testing y primer caso backend.
 - Definir configuración local backend.
+- Crear esqueleto backend mínimo.
 
 ### M1 - Flujo principal
 
@@ -341,7 +342,19 @@ Objetivo:
 
 Definir Python 3.12.3, venv, pip-tools, pytest, reglas de `.env` y comandos mínimos del entorno local backend.
 
-### 18. Modelar alta de proveedor fiscal para ERP simulado
+### 18. Crear esqueleto backend mínimo
+
+Labels:
+
+```text
+feature, prototype, P0, mvp, module:infrastructure, ready
+```
+
+Objetivo:
+
+Crear la estructura mínima del backend Python sin implementar lógica de negocio.
+
+### 19. Modelar alta de proveedor fiscal para ERP simulado
 
 Labels:
 
@@ -353,7 +366,7 @@ Objetivo:
 
 Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
 
-### 19. Generar alertas de cierre por grupo responsable
+### 20. Generar alertas de cierre por grupo responsable
 
 Labels:
 
