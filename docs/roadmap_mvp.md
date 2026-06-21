@@ -221,6 +221,7 @@ Decision documentada:
 - [Decision 0007 - Modelo de usuarios, roles y autorizacion](decisiones/0007-modelo-usuarios-roles-autorizacion.md)
 - [Decision 0008 - Contratos API MVP](decisiones/0008-contratos-api-mvp.md)
 - [Decision 0009 - Testing, esqueleto backend y primer caso implementable](decisiones/0009-testing-esqueleto-backend-primer-caso.md)
+- [Decision 0010 - Configuracion local del backend](decisiones/0010-configuracion-local-backend.md)
 
 ## Fuera de alcance inicial
 
@@ -281,7 +282,6 @@ Documentos:
 
 Definir las decisiones tecnicas derivadas:
 
-- convencion minima de configuracion local.
-- estrategia de configuración local.
 - primer entorno de desarrollo.
+- esqueleto backend mínimo.
 - primera migración cuando entre infrastructure.

@@ -44,9 +44,10 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002, 0003, 0004, 0005, 0006, 0007, 0008 y 0009.
+- decisiones 0001, 0002, 0003, 0004, 0005, 0006, 0007, 0008, 0009 y 0010.
 - contratos API del MVP.
 - estrategia de testing y primer caso implementable.
+- configuración local del backend.
 - vision estrategica de producto.
 - modelo de dominio MVP.
 - definition of done.
@@ -211,6 +212,23 @@ Documento:
 
 - `docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md`
 
+### Decision 0010 - Configuración local del backend
+
+ProvCore usará Python 3.12.3, `venv`, `pip-tools` y `pytest` para el backend.
+
+Reglas:
+
+- `.env` no se sube al repositorio.
+- `.env.example` documenta variables sin secretos.
+- las dependencias directas se declaran en archivos `.in`.
+- los archivos `.txt` se generan con `pip-compile`.
+- FastAPI, SQLAlchemy, Alembic y pyodbc se añaden cuando una issue los requiera.
+
+Documentos:
+
+- `docs/decisiones/0010-configuracion-local-backend.md`
+- `docs/setup_backend.md`
+
 ## Modulos iniciales
 
 ### provisioning_engine
@@ -289,6 +307,7 @@ Issues cerradas:
 - #14 Definir modelo de usuarios, roles y autorizacion.
 - #15 Definir contratos API MVP.
 - #16 Definir testing y primer caso backend.
+- #17 Definir configuración local backend.
 
 Issues abiertas relevantes:
 
@@ -302,15 +321,15 @@ Issues abiertas relevantes:
 
 ## Siguiente decision pendiente
 
-La siguiente decision debe tratar configuración local del backend y entorno de desarrollo.
+La siguiente decision debe tratar creación del esqueleto backend mínimo.
 
 Temas a decidir:
 
-- versión de Python.
-- gestor de dependencias.
-- variables de entorno.
-- configuración local de SQL Server para fases posteriores.
-- comandos mínimos de desarrollo.
+- carpetas iniciales reales.
+- archivos iniciales de dependencias.
+- primer paquete Python.
+- primer test mínimo.
+- criterio para no crear carpetas vacías.
 
 No implementar codigo productivo antes de vincularlo a una issue.
 
@@ -331,9 +350,11 @@ Para entender arquitectura:
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/decisiones/0008-contratos-api-mvp.md`
 - `docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md`
+- `docs/decisiones/0010-configuracion-local-backend.md`
 - `docs/arquitectura_routing_multisociedad.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
 - `docs/contratos_api_mvp.md`
+- `docs/setup_backend.md`
 
 Para entender dominio:
 

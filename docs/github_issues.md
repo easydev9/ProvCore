@@ -67,6 +67,7 @@ Issues candidatas:
 - Definir modelo de usuarios, roles y autorizacion.
 - Definir contratos API MVP.
 - Definir testing y primer caso backend.
+- Definir configuración local backend.
 
 ### M1 - Flujo principal
 
@@ -328,7 +329,19 @@ Objetivo:
 
 Definir estrategia de testing, esqueleto backend y primer caso implementable `CreateInternalOrder`.
 
-### 17. Modelar alta de proveedor fiscal para ERP simulado
+### 17. Definir configuración local backend
+
+Labels:
+
+```text
+functional-analysis, documentation, prototype, P0, mvp, module:infrastructure, ready
+```
+
+Objetivo:
+
+Definir Python 3.12.3, venv, pip-tools, pytest, reglas de `.env` y comandos mínimos del entorno local backend.
+
+### 18. Modelar alta de proveedor fiscal para ERP simulado
 
 Labels:
 
@@ -340,7 +353,7 @@ Objetivo:
 
 Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
 
-### 18. Generar alertas de cierre por grupo responsable
+### 19. Generar alertas de cierre por grupo responsable
 
 Labels:
 

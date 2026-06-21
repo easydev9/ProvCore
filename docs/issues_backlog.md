@@ -74,6 +74,20 @@ Criterios de aceptacion:
 - Indica que FastAPI se implementa después de validar application.
 - Indica que SQLAlchemy entra después de estabilizar el contrato del caso de uso.
 
+### P0 - Definir configuración local backend
+
+Como equipo de arquitectura, quiero definir la configuración local del backend, para que el entorno sea reproducible antes de crear código productivo.
+
+Criterios de aceptacion:
+
+- Define Python 3.12.3.
+- Define `venv` como entorno virtual.
+- Define `pip-tools` como gestor de dependencias bloqueadas.
+- Define `pytest` como herramienta de tests.
+- Define que `.env` queda fuera de Git.
+- Define `.env.example` sin secretos.
+- Define comandos mínimos de instalación y tests.
+
 ## Epic 1 - Modelo comun de provisiones
 
 ### P0 - Definir contrato funcional de Provisionable

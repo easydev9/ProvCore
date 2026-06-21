@@ -107,6 +107,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Modelo de dominio MVP](docs/modelo_dominio_mvp.md) | Entidades, metodos conceptuales y movimientos provisionables. |
 | [Modelo de usuarios, roles y autorizacion](docs/modelo_usuarios_roles_autorizacion.md) | Perfiles, permisos, alcance, auditoria y criterios de uso de area financiera y usuario financiero autorizado. |
 | [Contratos API MVP](docs/contratos_api_mvp.md) | Endpoints, permisos, formatos de respuesta, errores y eventos del MVP. |
+| [Setup backend](docs/setup_backend.md) | Preparación local del backend con Python, venv, pip-tools y pytest. |
 | [Estados por entidad](docs/estados_entidades.md) | Ciclos de vida de pedido, provision, factura, mapeo y regularizacion. |
 | [Casos de uso detallados](docs/casos_uso_detallados.md) | Casos principales con actores, precondiciones, flujos y excepciones. |
 | [Diagramas de flujo](docs/diagramas_flujo.md) | Diagramas Mermaid de arquitectura, flujos, estados y ERD funcional. |
@@ -120,6 +121,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Decision 0007 - Usuarios, roles y autorizacion](docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md) | Usuarios, roles, permisos y alcance. |
 | [Decision 0008 - Contratos API MVP](docs/decisiones/0008-contratos-api-mvp.md) | API orientada a casos de uso, permisos, contexto y auditoria. |
 | [Decision 0009 - Testing y esqueleto backend](docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md) | Estrategia de testing, estructura backend y primer caso `CreateInternalOrder`. |
+| [Decision 0010 - Configuracion local backend](docs/decisiones/0010-configuracion-local-backend.md) | Python 3.12.3, venv, pip-tools, pytest y reglas de entorno local. |
 | [Definition of Done](docs/definition_of_done.md) | Criterios para considerar terminadas tareas, decisiones e implementacion. |
 | [Glosario](docs/glosario.md) | Vocabulario comun del dominio y arquitectura. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |

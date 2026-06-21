@@ -40,9 +40,11 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/decisiones/0008-contratos-api-mvp.md`
 - `docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md`
+- `docs/decisiones/0010-configuracion-local-backend.md`
 - `docs/arquitectura_routing_multisociedad.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
 - `docs/contratos_api_mvp.md`
+- `docs/setup_backend.md`
 
 Para cambios de dominio:
 
@@ -81,6 +83,7 @@ Para trabajo planificado:
 - Contratos API MVP aprobados.
 - Primer caso implementable aprobado: `CreateInternalOrder`.
 - Testing inicial aprobado con `pytest`.
+- Configuracion local aprobada: Python 3.12.3, venv y pip-tools.
 
 ## Reglas de arquitectura
 
@@ -114,6 +117,8 @@ Reglas obligatorias:
 - Los routers llaman a application y traducen errores de dominio a HTTP.
 - El primer codigo backend debe empezar por dominio y application.
 - No implementar FastAPI antes de probar el caso de uso en application.
+- No subir `.env`.
+- No añadir dependencias sin registrarlas en el archivo `.in` correspondiente.
 
 ## Modulos iniciales
 
