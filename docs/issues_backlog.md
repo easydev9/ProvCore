@@ -61,6 +61,19 @@ Criterios de aceptacion:
 - Traduce errores de dominio a HTTP desde interface.
 - Mantiene reglas de negocio fuera de routers.
 
+### P0 - Definir testing y primer caso backend
+
+Como equipo de arquitectura, quiero definir estrategia de tests, esqueleto backend y primer caso implementable, para empezar el desarrollo con una base validable.
+
+Criterios de aceptacion:
+
+- Define `CreateInternalOrder` como primer caso implementable.
+- Define `pytest` como herramienta base de testing.
+- Define tests unitarios de dominio y tests de application.
+- Define estructura backend objetivo sin exigir carpetas vacías.
+- Indica que FastAPI se implementa después de validar application.
+- Indica que SQLAlchemy entra después de estabilizar el contrato del caso de uso.
+
 ## Epic 1 - Modelo comun de provisiones
 
 ### P0 - Definir contrato funcional de Provisionable

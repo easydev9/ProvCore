@@ -44,8 +44,9 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002, 0003, 0004, 0005, 0006, 0007 y 0008.
+- decisiones 0001, 0002, 0003, 0004, 0005, 0006, 0007, 0008 y 0009.
 - contratos API del MVP.
+- estrategia de testing y primer caso implementable.
 - vision estrategica de producto.
 - modelo de dominio MVP.
 - definition of done.
@@ -194,6 +195,22 @@ Documentos:
 - `docs/decisiones/0008-contratos-api-mvp.md`
 - `docs/contratos_api_mvp.md`
 
+### Decision 0009 - Testing, esqueleto backend y primer caso implementable
+
+ProvCore empezará el desarrollo por el caso de uso `CreateInternalOrder`.
+
+Reglas:
+
+- el primer código backend empieza por dominio y application.
+- no se implementa FastAPI antes de probar el caso de uso en application.
+- los primeros tests usan `pytest`.
+- la primera validación usa puertos e implementaciones en memoria.
+- SQLAlchemy y Alembic entran después de estabilizar el contrato del caso de uso.
+
+Documento:
+
+- `docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md`
+
 ## Modulos iniciales
 
 ### provisioning_engine
@@ -271,6 +288,7 @@ Issues cerradas:
 - #13 Definir routing funcional multi-sociedad.
 - #14 Definir modelo de usuarios, roles y autorizacion.
 - #15 Definir contratos API MVP.
+- #16 Definir testing y primer caso backend.
 
 Issues abiertas relevantes:
 
@@ -284,15 +302,15 @@ Issues abiertas relevantes:
 
 ## Siguiente decision pendiente
 
-La siguiente decision debe tratar estrategia de testing inicial y esqueleto backend.
+La siguiente decision debe tratar configuración local del backend y entorno de desarrollo.
 
 Temas a decidir:
 
-- estructura inicial de carpetas.
-- primer caso de uso implementable.
-- tests de dominio.
-- tests de application.
-- criterios para levantar FastAPI sin romper capas.
+- versión de Python.
+- gestor de dependencias.
+- variables de entorno.
+- configuración local de SQL Server para fases posteriores.
+- comandos mínimos de desarrollo.
 
 No implementar codigo productivo antes de vincularlo a una issue.
 
@@ -312,6 +330,7 @@ Para entender arquitectura:
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/decisiones/0008-contratos-api-mvp.md`
+- `docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md`
 - `docs/arquitectura_routing_multisociedad.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
 - `docs/contratos_api_mvp.md`

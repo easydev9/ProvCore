@@ -119,6 +119,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Decision 0006 - Routing funcional multi-sociedad](docs/decisiones/0006-routing-funcional-multisociedad.md) | Routing funcional antes de balanceo tecnico. |
 | [Decision 0007 - Usuarios, roles y autorizacion](docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md) | Usuarios, roles, permisos y alcance. |
 | [Decision 0008 - Contratos API MVP](docs/decisiones/0008-contratos-api-mvp.md) | API orientada a casos de uso, permisos, contexto y auditoria. |
+| [Decision 0009 - Testing y esqueleto backend](docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md) | Estrategia de testing, estructura backend y primer caso `CreateInternalOrder`. |
 | [Definition of Done](docs/definition_of_done.md) | Criterios para considerar terminadas tareas, decisiones e implementacion. |
 | [Glosario](docs/glosario.md) | Vocabulario comun del dominio y arquitectura. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |

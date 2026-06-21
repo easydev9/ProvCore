@@ -220,6 +220,7 @@ Decision documentada:
 - [Decision 0006 - Routing funcional multi-sociedad](decisiones/0006-routing-funcional-multisociedad.md)
 - [Decision 0007 - Modelo de usuarios, roles y autorizacion](decisiones/0007-modelo-usuarios-roles-autorizacion.md)
 - [Decision 0008 - Contratos API MVP](decisiones/0008-contratos-api-mvp.md)
+- [Decision 0009 - Testing, esqueleto backend y primer caso implementable](decisiones/0009-testing-esqueleto-backend-primer-caso.md)
 
 ## Fuera de alcance inicial
 
@@ -280,7 +281,7 @@ Documentos:
 
 Definir las decisiones tecnicas derivadas:
 
-- estrategia de testing inicial.
-- esqueleto backend.
-- primer caso de uso implementable.
 - convencion minima de configuracion local.
+- estrategia de configuración local.
+- primer entorno de desarrollo.
+- primera migración cuando entre infrastructure.

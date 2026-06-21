@@ -66,6 +66,7 @@ Issues candidatas:
 - Definir routing funcional multi-sociedad.
 - Definir modelo de usuarios, roles y autorizacion.
 - Definir contratos API MVP.
+- Definir testing y primer caso backend.
 
 ### M1 - Flujo principal
 
@@ -315,7 +316,19 @@ Objetivo:
 
 Definir endpoints, actores, permisos, formato de respuesta, formato de error, eventos y reglas de seguridad del MVP.
 
-### 16. Modelar alta de proveedor fiscal para ERP simulado
+### 16. Definir testing y primer caso backend
+
+Labels:
+
+```text
+functional-analysis, documentation, prototype, P0, mvp, module:infrastructure, ready
+```
+
+Objetivo:
+
+Definir estrategia de testing, esqueleto backend y primer caso implementable `CreateInternalOrder`.
+
+### 17. Modelar alta de proveedor fiscal para ERP simulado
 
 Labels:
 
@@ -327,7 +340,7 @@ Objetivo:
 
 Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
 
-### 17. Generar alertas de cierre por grupo responsable
+### 18. Generar alertas de cierre por grupo responsable
 
 Labels:
 

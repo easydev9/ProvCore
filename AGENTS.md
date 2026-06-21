@@ -39,6 +39,7 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/decisiones/0008-contratos-api-mvp.md`
+- `docs/decisiones/0009-testing-esqueleto-backend-primer-caso.md`
 - `docs/arquitectura_routing_multisociedad.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
 - `docs/contratos_api_mvp.md`
@@ -78,6 +79,8 @@ Para trabajo planificado:
 - Routing funcional antes de balanceo tecnico aprobado.
 - Modelo de usuarios, roles, permisos y alcance aprobado.
 - Contratos API MVP aprobados.
+- Primer caso implementable aprobado: `CreateInternalOrder`.
+- Testing inicial aprobado con `pytest`.
 
 ## Reglas de arquitectura
 
@@ -109,6 +112,8 @@ Reglas obligatorias:
 - Usar `usuario financiero autorizado` para decisiones contables dentro del sistema.
 - Los endpoints deben declarar actor, permiso, contexto, caso de uso, auditoria y errores.
 - Los routers llaman a application y traducen errores de dominio a HTTP.
+- El primer codigo backend debe empezar por dominio y application.
+- No implementar FastAPI antes de probar el caso de uso en application.
 
 ## Modulos iniciales
 
