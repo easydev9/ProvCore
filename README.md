@@ -105,7 +105,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Vision estrategica de producto](docs/vision_estrategica_producto.md) | Vision SaaS, analitica, control de cierre, alertas e integracion ERP. |
 | [Modelo de datos inicial](docs/modelo_datos_inicial.md) | Entidades, relaciones, campos funcionales e indices sugeridos. |
 | [Modelo de dominio MVP](docs/modelo_dominio_mvp.md) | Entidades, metodos conceptuales y movimientos provisionables. |
-| [Modelo de usuarios, roles y autorizacion](docs/modelo_usuarios_roles_autorizacion.md) | Perfiles, permisos, alcance, auditoria y criterios de uso de area financiera y usuario financiero autorizado. |
+| [Modelo de usuarios, roles y autorizacion](docs/modelo_usuarios_roles_autorizacion.md) | Perfiles, permisos, alcance, auditoria y criterios de uso de Área financiera y usuario financiero autorizado. |
 | [Contratos API MVP](docs/contratos_api_mvp.md) | Endpoints, permisos, formatos de respuesta, errores y eventos del MVP. |
 | [Setup backend](docs/setup_backend.md) | Preparación local del backend con Python, venv, pip-tools y pytest. |
 | [Estados por entidad](docs/estados_entidades.md) | Ciclos de vida de pedido, provision, factura, mapeo y regularizacion. |
