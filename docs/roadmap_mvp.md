@@ -219,6 +219,7 @@ Decision documentada:
 - [Decision 0005 - Modelo SaaS tenant-aware](decisiones/0005-modelo-saas-tenant-aware.md)
 - [Decision 0006 - Routing funcional multi-sociedad](decisiones/0006-routing-funcional-multisociedad.md)
 - [Decision 0007 - Modelo de usuarios, roles y autorizacion](decisiones/0007-modelo-usuarios-roles-autorizacion.md)
+- [Decision 0008 - Contratos API MVP](decisiones/0008-contratos-api-mvp.md)
 
 ## Fuera de alcance inicial
 
@@ -259,6 +260,7 @@ La vision final incorpora:
 - multiples legal entities por tenant.
 - routing funcional multi-sociedad.
 - usuarios, roles, permisos y alcance.
+- contratos API orientados a casos de uso.
 - integracion ERP por puertos y adaptadores.
 - movimientos provisionables como entrada comun.
 - eventos, auditoria y metricas.
@@ -272,13 +274,13 @@ Documentos:
 - [Modelo de dominio MVP](modelo_dominio_mvp.md)
 - [Arquitectura de routing multi-sociedad](arquitectura_routing_multisociedad.md)
 - [Modelo de usuarios, roles y autorizacion](modelo_usuarios_roles_autorizacion.md)
+- [Contratos API MVP](contratos_api_mvp.md)
 
 ## Siguiente decision
 
 Definir las decisiones tecnicas derivadas:
 
-- convencion de API.
-- formato de errores.
-- propagacion de contexto tenant, legal entity y correlation id.
-- propagacion de usuario, rol, permiso y alcance.
 - estrategia de testing inicial.
+- esqueleto backend.
+- primer caso de uso implementable.
+- convencion minima de configuracion local.

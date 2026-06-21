@@ -32,6 +32,7 @@ El backlog detallado vive en [Backlog de issues inicial](issues_backlog.md). Est
 - `module:audit`.
 - `module:analytics`.
 - `module:erp`.
+- `module:api`.
 - `module:tenants`.
 - `module:alerts`.
 - `module:closing`.
@@ -64,6 +65,7 @@ Issues candidatas:
 - Validar tenant, legal entity y movimiento provisionable como base.
 - Definir routing funcional multi-sociedad.
 - Definir modelo de usuarios, roles y autorizacion.
+- Definir contratos API MVP.
 
 ### M1 - Flujo principal
 
@@ -299,9 +301,21 @@ functional-analysis, documentation, P0, mvp, module:security, module:tenants, re
 
 Objetivo:
 
-Definir usuarios, roles, permisos, alcance y criterio de reemplazo de Administracion por usuario financiero autorizado.
+Definir usuarios, roles, permisos, alcance y criterio de uso de usuario financiero autorizado para decisiones contables dentro del sistema.
 
-### 15. Modelar alta de proveedor fiscal para ERP simulado
+### 15. Definir contratos API MVP
+
+Labels:
+
+```text
+functional-analysis, documentation, P0, mvp, module:api, ready
+```
+
+Objetivo:
+
+Definir endpoints, actores, permisos, formato de respuesta, formato de error, eventos y reglas de seguridad del MVP.
+
+### 16. Modelar alta de proveedor fiscal para ERP simulado
 
 Labels:
 
@@ -313,7 +327,7 @@ Objetivo:
 
 Preparar el flujo donde una factura queda bloqueada hasta confirmar proveedor fiscal para la legal entity.
 
-### 16. Generar alertas de cierre por grupo responsable
+### 17. Generar alertas de cierre por grupo responsable
 
 Labels:
 

@@ -30,7 +30,7 @@ FastAPI + SQL Server + SQL Server Management Studio + frontend simple
 
 La ejecucion sera backend-first y con alcance controlado.
 
-Esta decision sustituye la propuesta inicial de usar MySQL y HeidiSQL. El cambio se realiza para alinear el prototipo con un entorno corporativo mas habitual en administracion, finanzas y backoffice.
+Esta decision sustituye la propuesta inicial de usar MySQL y HeidiSQL. El cambio se realiza para alinear el prototipo con un entorno corporativo mas habitual en administración, finanzas y backoffice.
 
 ## Justificacion
 
@@ -56,11 +56,11 @@ SQL Server se elige como base de datos relacional del prototipo porque el domini
 - proveedores fiscales.
 - auditoria.
 
-El uso de SQL Server permite trabajar integridad referencial, claves, indices, normalizacion, T-SQL, consultas reales y criterios transferibles a proyectos internos de administracion y finanzas.
+El uso de SQL Server permite trabajar integridad referencial, claves, indices, normalizacion, T-SQL, consultas reales y criterios transferibles a proyectos internos de administración y finanzas.
 
 ### SQL Server Management Studio
 
-SQL Server Management Studio se usara como herramienta de inspeccion y administracion manual de la base de datos durante el desarrollo.
+SQL Server Management Studio se usara como herramienta de inspeccion y administración manual de la base de datos durante el desarrollo.
 
 Su papel sera:
 

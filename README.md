@@ -105,7 +105,8 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Vision estrategica de producto](docs/vision_estrategica_producto.md) | Vision SaaS, analitica, control de cierre, alertas e integracion ERP. |
 | [Modelo de datos inicial](docs/modelo_datos_inicial.md) | Entidades, relaciones, campos funcionales e indices sugeridos. |
 | [Modelo de dominio MVP](docs/modelo_dominio_mvp.md) | Entidades, metodos conceptuales y movimientos provisionables. |
-| [Modelo de usuarios, roles y autorizacion](docs/modelo_usuarios_roles_autorizacion.md) | Perfiles, permisos, alcance, auditoria y criterios de reemplazo de Administracion. |
+| [Modelo de usuarios, roles y autorizacion](docs/modelo_usuarios_roles_autorizacion.md) | Perfiles, permisos, alcance, auditoria y criterios de uso de area financiera y usuario financiero autorizado. |
+| [Contratos API MVP](docs/contratos_api_mvp.md) | Endpoints, permisos, formatos de respuesta, errores y eventos del MVP. |
 | [Estados por entidad](docs/estados_entidades.md) | Ciclos de vida de pedido, provision, factura, mapeo y regularizacion. |
 | [Casos de uso detallados](docs/casos_uso_detallados.md) | Casos principales con actores, precondiciones, flujos y excepciones. |
 | [Diagramas de flujo](docs/diagramas_flujo.md) | Diagramas Mermaid de arquitectura, flujos, estados y ERD funcional. |
@@ -117,6 +118,7 @@ El detalle completo esta en [Roadmap MVP](docs/roadmap_mvp.md).
 | [Decision 0005 - Modelo SaaS tenant-aware](docs/decisiones/0005-modelo-saas-tenant-aware.md) | Tenants, legal entities y frontera de seguridad SaaS. |
 | [Decision 0006 - Routing funcional multi-sociedad](docs/decisiones/0006-routing-funcional-multisociedad.md) | Routing funcional antes de balanceo tecnico. |
 | [Decision 0007 - Usuarios, roles y autorizacion](docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md) | Usuarios, roles, permisos y alcance. |
+| [Decision 0008 - Contratos API MVP](docs/decisiones/0008-contratos-api-mvp.md) | API orientada a casos de uso, permisos, contexto y auditoria. |
 | [Definition of Done](docs/definition_of_done.md) | Criterios para considerar terminadas tareas, decisiones e implementacion. |
 | [Glosario](docs/glosario.md) | Vocabulario comun del dominio y arquitectura. |
 | [Estructura de issues GitHub](docs/github_issues.md) | Labels, milestones e issues iniciales sugeridas. |

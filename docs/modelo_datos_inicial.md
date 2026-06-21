@@ -804,6 +804,6 @@ Para entidades principales:
 - Nivel exacto de tolerancia para diferencias antes de exigir regularizacion.
 - Si la periodificacion se decide en provision, factura o ambos.
 - Como versionar reglas contables y fiscales sin acoplarlas al ERP.
-- Nivel exacto de granularidad de permisos en el MVP.
+- Como representar roles y permisos en el modelo final.
 - Como aislar tenants fisicamente en una version productiva.
 - Que datos minimos exige cada ERP para alta de proveedor fiscal.

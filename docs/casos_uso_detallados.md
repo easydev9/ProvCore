@@ -8,9 +8,6 @@ Describir los casos principales del motor de provisiones desde una perspectiva f
 
 - Responsable: usuario que compromete el gasto o valida funcionalmente el servicio.
 - Usuario financiero autorizado: usuario con permisos para validar proveedor fiscal, impuestos, cuentas, consumo y contabilizacion.
-- Administrador de tenant: usuario que gestiona usuarios, roles, legal entities y configuracion funcional del tenant.
-- Administrador tecnico: usuario que gestiona integraciones, routing y configuracion tecnica.
-- Auditor: usuario que consulta trazabilidad sin modificar decisiones.
 - Sistema: motor de provisiones, reglas, integraciones y busquedas.
 - IA/OCR: componente de extraccion y sugerencia.
 - ERP: fuente de datos maestros e integracion contable.

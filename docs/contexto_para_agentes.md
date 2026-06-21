@@ -21,7 +21,7 @@ El sistema separa:
 - usuario operativo.
 - proveedor operativo.
 - proveedor fiscal.
-- usuario financiero autorizado.
+- area financiera.
 - ERP.
 - IA/OCR como herramienta de sugerencia.
 
@@ -44,7 +44,8 @@ Ya existen:
 - roadmap MVP.
 - backlog de issues.
 - estructura de issues GitHub.
-- decisiones 0001, 0002, 0003, 0004, 0005, 0006 y 0007.
+- decisiones 0001, 0002, 0003, 0004, 0005, 0006, 0007 y 0008.
+- contratos API del MVP.
 - vision estrategica de producto.
 - modelo de dominio MVP.
 - definition of done.
@@ -165,8 +166,8 @@ ProvCore separa usuario, rol, permiso y alcance.
 
 Reglas:
 
-- `usuario financiero autorizado` sustituye a `Administracion` cuando el texto hable de acciones de validacion dentro del sistema.
-- `Administracion` solo debe mantenerse cuando represente area funcional o contexto de discovery.
+- `usuario financiero autorizado` representa las acciones de validacion dentro del sistema.
+- usar `area financiera` cuando se represente area funcional o contexto de discovery.
 - todo permiso se evalua por tenant y alcance.
 - toda operacion fiscal o contable requiere legal entity.
 - servicios de integracion no pueden aprobar decisiones humanas.
@@ -175,6 +176,23 @@ Documentos:
 
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
+
+### Decision 0008 - Contratos API MVP
+
+ProvCore define contratos API para convertir los casos de uso del MVP en endpoints implementables con FastAPI.
+
+Reglas:
+
+- prefijo base `/api/v1`.
+- cada endpoint declara actor, permiso, contexto, caso de uso, auditoria y errores.
+- toda operacion fiscal, contable o de provision requiere `tenant_id` y `legal_entity_id`.
+- los routers no contienen reglas de negocio.
+- los errores de dominio se traducen a HTTP en interface.
+
+Documentos:
+
+- `docs/decisiones/0008-contratos-api-mvp.md`
+- `docs/contratos_api_mvp.md`
 
 ## Modulos iniciales
 
@@ -252,6 +270,7 @@ Issues cerradas:
 - #12 Definir vision estrategica SaaS y modelo de dominio MVP.
 - #13 Definir routing funcional multi-sociedad.
 - #14 Definir modelo de usuarios, roles y autorizacion.
+- #15 Definir contratos API MVP.
 
 Issues abiertas relevantes:
 
@@ -265,18 +284,17 @@ Issues abiertas relevantes:
 
 ## Siguiente decision pendiente
 
-La siguiente decision debe tratar contratos de API y formato de errores.
+La siguiente decision debe tratar estrategia de testing inicial y esqueleto backend.
 
 Temas a decidir:
 
-- prefijo de API.
-- versionado.
-- formato de respuesta.
-- formato de error.
-- codigos HTTP.
-- traduccion de errores de dominio a HTTP.
+- estructura inicial de carpetas.
+- primer caso de uso implementable.
+- tests de dominio.
+- tests de application.
+- criterios para levantar FastAPI sin romper capas.
 
-No implementar endpoints antes de cerrar esta decision.
+No implementar codigo productivo antes de vincularlo a una issue.
 
 ## Documentos clave por tarea
 
@@ -293,8 +311,10 @@ Para entender arquitectura:
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
+- `docs/decisiones/0008-contratos-api-mvp.md`
 - `docs/arquitectura_routing_multisociedad.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
+- `docs/contratos_api_mvp.md`
 
 Para entender dominio:
 

@@ -326,7 +326,7 @@ Las decisiones relevantes deben registrar:
 - fecha_hora.
 - correlation_id.
 
-## Criterio de reemplazo de Administracion
+## Criterio de uso de area financiera
 
 Usar `usuario financiero autorizado` cuando se hable de:
 
@@ -338,7 +338,7 @@ Usar `usuario financiero autorizado` cuando se hable de:
 - aprobar regularizaciones.
 - desbloquear factura por criterio financiero.
 
-Mantener o reformular como `area financiera` cuando se hable de:
+Usar `area financiera` cuando se hable de:
 
 - conversaciones de discovery.
 - gobierno funcional del proceso.

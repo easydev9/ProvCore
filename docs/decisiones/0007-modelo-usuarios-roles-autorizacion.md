@@ -8,7 +8,7 @@ Aceptada.
 
 ProvCore necesita distinguir usuarios, roles, permisos y alcance antes de disenar contratos API o implementar seguridad.
 
-El termino `Administracion` ha servido en la documentacion inicial para representar el gobierno fiscal y contable. Sin embargo, como modelo de producto SaaS, el sistema no debe depender de un departamento concreto. Debe trabajar con usuarios autenticados, roles asignados y permisos acotados por tenant, legal entity y ambito operativo.
+El gobierno fiscal y contable debe representarse con un modelo de usuarios, roles, permisos y alcance. Desde esta decision, el termino profesional para el area organizativa sera `area financiera`. Como modelo de producto SaaS, el sistema no debe depender de un departamento concreto como rol tecnico. Debe trabajar con usuarios autenticados, roles asignados y permisos acotados por tenant, legal entity y ambito operativo.
 
 ## Problema
 
@@ -22,7 +22,7 @@ Riesgos:
 - no se distingue configuracion tecnica de decision financiera.
 - no se prepara el modelo para RBAC, permisos ni alcance por sociedad.
 
-Usar `Administracion` como actor tecnico tambien es limitado porque representa un area funcional, no un perfil de seguridad.
+Usar `area financiera` como actor tecnico tambien es limitado porque representa un area funcional, no un perfil de seguridad.
 
 ## Decision
 
@@ -35,13 +35,13 @@ usuario
 -> alcance
 ```
 
-El rol que sustituye a `Administracion` en acciones de validacion sera:
+El rol que representa acciones de validacion dentro del sistema sera:
 
 ```text
 Usuario financiero autorizado
 ```
 
-La expresion `Administracion` puede mantenerse solo cuando el texto hable del area funcional o de validacion con negocio, no como actor tecnico de permisos.
+La expresion `area financiera` se usara cuando el texto hable del area funcional o de validacion con negocio, no como actor tecnico de permisos.
 
 ## Perfiles iniciales
 
@@ -157,14 +157,14 @@ Un permiso sin alcance valido no autoriza la operacion.
 
 ## Implicaciones para documentacion
 
-Cuando `Administracion` actue como actor de sistema, se reemplazara por `usuario financiero autorizado`.
+Cuando una accion requiera permisos dentro del sistema, se usara `usuario financiero autorizado`.
 
-Cuando `Administracion` represente un area funcional, se puede mantener o expresar como `area financiera`.
+Cuando el texto represente el area funcional, se usara `area financiera`.
 
 Estados derivados:
 
-- `PendienteValidacionAdministracion` queda reemplazado por `PendienteValidacionFinanciera`.
-- `ValidadoAdministracion` queda reemplazado por `ValidadoFinanciero`.
+- `PendienteValidacionFinanciera`.
+- `ValidadoFinanciero`.
 
 ## MVP
 
@@ -193,7 +193,7 @@ No entra inicialmente:
 - Evita ambiguedad entre usuario generico y autoridad contable.
 - Prepara seguridad, autorizacion y auditoria.
 - Encaja con SaaS, tenant y legal entity.
-- Permite separar decisiones financieras y administracion tecnica.
+- Permite separar decisiones financieras y gestión técnica.
 
 ### Costes
 
@@ -205,7 +205,7 @@ No entra inicialmente:
 ## Reglas derivadas
 
 - No usar `usuario` como sinonimo de autoridad contable.
-- No usar `Administracion` como rol tecnico nuevo.
+- No usar departamentos como roles tecnicos.
 - Usar `usuario financiero autorizado` para decisiones contables.
 - Separar rol, permiso y alcance.
 - Auditar rol y permiso usado en decisiones relevantes.

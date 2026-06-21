@@ -48,6 +48,19 @@ Criterios de aceptacion:
 - Incluye observabilidad minima de decisiones de routing.
 - Deja alcance MVP y evolucion futura documentados.
 
+### P0 - Definir contratos API MVP
+
+Como equipo de arquitectura, quiero definir endpoints orientados a casos de uso, para implementar FastAPI manteniendo separadas las responsabilidades de interface, application y dominio.
+
+Criterios de aceptacion:
+
+- Define prefijo `/api/v1`.
+- Define endpoints P0 para pedido interno, provision, factura, consumo, provision tardia y auditoria.
+- Declara actor, permiso y contexto requerido por endpoint.
+- Define formato comun de respuesta y error.
+- Traduce errores de dominio a HTTP desde interface.
+- Mantiene reglas de negocio fuera de routers.
+
 ## Epic 1 - Modelo comun de provisiones
 
 ### P0 - Definir contrato funcional de Provisionable

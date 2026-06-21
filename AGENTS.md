@@ -38,8 +38,10 @@ Para cambios de arquitectura o backend:
 - `docs/decisiones/0005-modelo-saas-tenant-aware.md`
 - `docs/decisiones/0006-routing-funcional-multisociedad.md`
 - `docs/decisiones/0007-modelo-usuarios-roles-autorizacion.md`
+- `docs/decisiones/0008-contratos-api-mvp.md`
 - `docs/arquitectura_routing_multisociedad.md`
 - `docs/modelo_usuarios_roles_autorizacion.md`
+- `docs/contratos_api_mvp.md`
 
 Para cambios de dominio:
 
@@ -75,6 +77,7 @@ Para trabajo planificado:
 - La factura se bloquea si el proveedor fiscal no existe para la legal entity.
 - Routing funcional antes de balanceo tecnico aprobado.
 - Modelo de usuarios, roles, permisos y alcance aprobado.
+- Contratos API MVP aprobados.
 
 ## Reglas de arquitectura
 
@@ -101,8 +104,11 @@ Reglas obligatorias:
 - Los bloqueos, alertas y excepciones deben generar auditoria o evento de proceso.
 - El balanceo tecnico solo se decide dentro del pool autorizado por tenant, legal entity y permisos.
 - Las reglas de routing no viven en domain.
-- No usar `Administracion` como rol tecnico nuevo.
+- No usar departamentos como roles tecnicos.
+- Usar `area financiera` cuando se hable del area organizativa.
 - Usar `usuario financiero autorizado` para decisiones contables dentro del sistema.
+- Los endpoints deben declarar actor, permiso, contexto, caso de uso, auditoria y errores.
+- Los routers llaman a application y traducen errores de dominio a HTTP.
 
 ## Modulos iniciales
 

@@ -152,7 +152,7 @@ La fuente de verdad puede variar por tenant.
 
 - aislamiento multi-tenant productivo completo.
 - facturacion SaaS.
-- administracion de tenants.
+- gestión de tenants.
 - provisionamiento automatico de tenants.
 - integracion real con multiples ERPs.
 

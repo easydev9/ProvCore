@@ -6,13 +6,13 @@ Definir vocabulario comun para ProvCore.
 
 Este glosario debe usarse en documentacion, issues, decisiones y codigo futuro.
 
-## Administracion
+## Area financiera
 
-Equipo responsable de validar la verdad fiscal y contable.
+Area responsable de gobierno fiscal y contable.
 
-Valida proveedor fiscal, impuestos, cuentas, consumos, regularizaciones y contabilizacion.
+Puede agrupar usuarios financieros autorizados, supervisores financieros y procesos de revision.
 
-En acciones de sistema debe modelarse como `usuario financiero autorizado`.
+No debe usarse como rol tecnico de autorizacion.
 
 ## Analitica minima
 
@@ -49,6 +49,48 @@ Debe permitir reconstruir quien hizo que, cuando y por que.
 ## Autorizacion
 
 Proceso por el que el sistema decide si un usuario o servicio puede ejecutar una accion concreta dentro de un alcance.
+
+## Permiso
+
+Capacidad concreta de ejecutar una accion del sistema.
+
+Ejemplos:
+
+- `approve_provision_consumption`.
+- `validate_fiscal_supplier`.
+- `manage_routing_policies`.
+
+## Contrato API
+
+Definicion funcional y tecnica de una operacion expuesta por HTTP.
+
+Incluye endpoint, metodo HTTP, actor, permiso, contexto, request, response, errores y eventos.
+
+En ProvCore, representa una intencion de negocio implementable desde la capa interface.
+
+## Endpoint
+
+Punto de entrada HTTP de la API.
+
+Ejemplo:
+
+```text
+POST /api/v1/invoices/{invoice_id}/provision-consumptions
+```
+
+El endpoint vive en interface y llama a un caso de uso de application.
+
+## Error de dominio
+
+Error provocado porque una regla de negocio impide ejecutar la operacion.
+
+Ejemplo:
+
+```text
+PROVISION_NOT_CONSUMABLE
+```
+
+El dominio define el problema funcional. La capa interface lo traduce a HTTP.
 
 ## Balanceo tecnico
 
@@ -135,16 +177,6 @@ Permite:
 Herramienta de extraccion o sugerencia.
 
 Puede sugerir datos, proveedor fiscal o matching factura-provision. No valida la verdad contable.
-
-## Permiso
-
-Capacidad concreta de ejecutar una accion del sistema.
-
-Ejemplos:
-
-- `approve_provision_consumption`.
-- `validate_fiscal_supplier`.
-- `manage_routing_policies`.
 
 ## Legal entity
 
@@ -286,18 +318,6 @@ Cliente, grupo empresarial o unidad aislada dentro de un SaaS.
 
 Los datos de un tenant no deben mezclarse con los de otro tenant.
 
-## Usuario financiero autorizado
-
-Usuario con permisos para validar decisiones fiscales o contables dentro de su alcance.
-
-Puede validar proveedor fiscal, aprobar consumos, crear provision tardia, aprobar regularizaciones y desbloquear facturas cuando tenga permisos especificos.
-
-## Usuario operativo
-
-Usuario que informa compromisos, pedidos, proveedores conocidos, adjuntos o validaciones funcionales.
-
-No debe validar verdad contable ni datos fiscales.
-
 ## Provision
 
 Entidad central del motor.
@@ -358,6 +378,18 @@ No debe conocer datos fiscales ni contables.
 Conjunto funcional de responsabilidades asignado a un usuario o servicio.
 
 Un rol no autoriza por si solo si no existe permiso y alcance valido.
+
+## Usuario financiero autorizado
+
+Usuario con permisos para validar decisiones fiscales o contables dentro de su alcance.
+
+Puede validar proveedor fiscal, aprobar consumos, crear provision tardia, aprobar regularizaciones y desbloquear facturas cuando tenga permisos especificos.
+
+## Usuario operativo
+
+Usuario que informa compromisos, pedidos, proveedores conocidos, adjuntos o validaciones funcionales.
+
+No debe validar verdad contable ni datos fiscales.
 
 ## SQL Server Management Studio
 
